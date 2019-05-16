@@ -413,6 +413,7 @@
 
 	.page-div{
 		width: 82.5%;
+		min-height: 100%;
 		margin-left: 17.5%;
 		background-color: lavender;
 	}
