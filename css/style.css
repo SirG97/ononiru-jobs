@@ -1,0 +1,119 @@
+#category-grid, #featured-grid{
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+
+.categories-card{
+    padding-top:15px;
+}
+
+.categories-img{
+    max-width: 100%;
+    border-radius: 50% !important;
+    width: 10em;
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: 15px
+}
+
+.content-border{
+    border-top: 0 !important;
+    margin-top: 20px !important;
+}
+
+.items-pad{
+    margin: 15px;
+}
+
+.apply{
+    margin-right: 25px !important;
+}
+
+.call-to-action-column{
+    background:linear-gradient(rgba(255,0,0,.45),rgba(255,0,0,.45)), url(../static/images/parallax1.jpg);
+    padding:8em !important;
+}
+
+.call-to-action-column2{
+    background:linear-gradient(rgba(29, 216, 13, 0.45),rgba(29, 216, 13, 0.45)), url(../static/images/parallax2.jpg);
+    padding:8em !important;
+}
+
+.call-to-action-column2 p, .call-to-action-column p{
+    font-size: 20px
+}
+
+#for-who{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#modal
+{
+	position: fixed;
+	background: rgba(255,255,255,0.8);
+	z-index: 300;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+.slik{
+	font-family: nunitolight !important;
+}
+
+.slik-b{
+	font-family: nunitoregular !important;
+}
+
+.lato{
+	font-family: quicksandbold !important;
+}
+
+.widget{
+	background-color: white;
+	border: 1px solid lightgray;
+	margin-top: 7px;
+}
+
+.post_widget{
+	background-color: white;
+	border: 1px solid lightgray;
+	margin-top: 8px;
+}
+
+.curve{
+	border-radius: 4px;
+}
+
+.lift{
+	box-shadow: 1px 1px 5px -1px gray;
+}
+
+.carousel-caption-text-body{
+	color: white;
+	background-color:black;
+	opacity: 0.7;
+	border-radius:4px;
+	padding-left: 10px;
+}
+
+.carousel-nav{
+	background-color:black;
+	opacity: 0.7;
+	border-radius:4px;
+}
+
+.pad a{
+	
+    padding: 20px 0px !important;
+    display: block;
+    color: white;
+    font-weight: 600;
+}
+
+.menu-div{
+    background: #1b1c1d;
+}
