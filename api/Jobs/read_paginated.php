@@ -37,11 +37,11 @@ if($num>0){
 
         $job_item=array(
             "id" => $id,
-            "company_name" => $company_name,
             "description" => html_entity_decode($description),
             "salary_range" => $salary_range,
             "company_id" => $company_id,
-            "qualification" => $qualification
+            "qualification" => $qualification,
+            "link" => $home_url.'single?id='.$id
         );
 
         array_push($jobs_arr["records"], $job_item);

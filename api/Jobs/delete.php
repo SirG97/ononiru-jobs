@@ -21,24 +21,27 @@ $job = new job($db);
 $data = json_decode(file_get_contents("php://input"));
 
 // set job id to be deleted
-$job->id = $data->id;
+$job->id = $data->job_id;
 
-// delete the job
-if($job->delete()){
+
+
+
+try {
+    
+    $job->delete();
     // set response code - 200 ok
-    http_response_code(200);
+    http_response_code(201);
 
     // tell the user
     echo $job->actionSuccess('Job was deleted successfully');
-}
 
-// if unable to delete the job
-else{
-
+} catch (\Throwable $th) {
+    
     // set response code - 503 service unavailable
     http_response_code(503);
 
     // tell the user
-    echo $job->forbidden("Unable to delete job.");
+    echo $job->forbidden("Unable to delete job.".$th->getMessage());
 }
+
 ?>

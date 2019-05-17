@@ -30,7 +30,6 @@ if ($num > 0) {
 
     $job_item = array(
       "id" => $id,
-      "company" => $company_name,
       "description" => html_entity_decode($description),
       "location" => $location,
       "slaryRange" => $salary_range,
@@ -45,6 +44,7 @@ if ($num > 0) {
 
   // show jobs data in json format
   echo $job->success($jobs_arr);
+  
 } else {
 
   // set response code - 404 Not found

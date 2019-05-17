@@ -28,47 +28,45 @@ if(
   !empty($data->working_hours) &&
   !empty($data->age) &&
   !empty($data->gender) &&
-  !empty($data->sector)){
+  !empty($data->sector) &&  
+  !empty($data->title)
+  ){
 
-  // set ID property of job to be edited
-  $job->id = $data->id;
-
-    if(!$job->is_workable()){
-    http_response_code(400);
-    echo $job->forbidden("Unable to update job.");
-    }
   // set job property values
   $job->salary_range = $data->salary_range;
   $job->description = $data->description;
   $job->qualification = $data->qualification;
+  $job->title = $data->title;
   $job->age = $data->age;
   $job->gender = $data->gender;
   $job->sector = $data->sector;
   $job->location = $data->location;
   $job->working_hours = $data->working_hours;
   $job->updated_at = date('Y-m-d H:i:s');
+  $job->id = $data->job_id;
+  
+try {
+  $job->update();
 
+     // set response code - 200 ok
+     http_response_code(200);
 
+     // tell the user
+     echo $job->actionSuccess("job was updated. ");
 
-  // update the job
-  if ($job->update()) {
-
-    // set response code - 200 ok
-    http_response_code(200);
-
-    // tell the user
-    echo $job->actionSuccess("job was updated.");
-  }
-
-  // if unable to update the job, tell the user
-  else {
-
+     return;
+  
+} catch (\Throwable $th) {
+  
     // set response code - 503 service unavailable
     http_response_code(503);
 
     // tell the user
-    echo $job->forbidden("Unable to update job.");
-  }
+    echo $job->forbidden("Unable to update job. ".$th->getMessage());
+    return;
+}
+
+
 
   }else{
 
