@@ -23,7 +23,7 @@ class job extends Base {
   {
 
     // select all query
-    $query = "SELECT id,company_id,description,location,salary_range,qualification  FROM
+    $query = "SELECT *  FROM
                 " . $this->table_name . "
                 WHERE status = :status
                 ORDER BY created_at

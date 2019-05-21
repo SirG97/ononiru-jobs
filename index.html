@@ -167,12 +167,12 @@
           <h1 class="ui inverted header">Ononiru Jobs</h1>
           <h2>Can't think of a tag line right now :(</h2>
           <div class="ui huge action input" style="width: 100%">
-              <input type="text" placeholder="Search...">
-              <button class="ui green button">Search</button>
+              <input onkeyup="instantiateSearch(this.value)" id="search_input" type="text" placeholder="Search...">
+              <button onclick="searchinit()" type="button" id="search_btn" class="ui green button">Search</button>
             </div>
-          <!-- <div class="ui huge primary button">
-            Get Started <i class="right arrow icon"></i>
-          </div> -->
+          <div class="ui huge primary button" id="search_result" style="display:none">
+          
+          </div>
         </div>
       </div>
       <section id="category-grid">
@@ -247,68 +247,9 @@
       <section id="featured-grid">
           <h2 class="" style="text-align: center;">Featured Jobs</h2>
          <div class="ui container segments">
-            <div class="ui divided items items-pad">
-                <div class="item">
-                  <div class="image">
-                    <img src="static/images/avatar/nan.jpg" style="width: 8em; height: 8em; max-width: 100%; border-radius: 50%;margin:auto">
-                  </div>
-                  <div class="content">
-                    <a class="header">12 Years a Slave</a>
-                    <p>This is a paragraph to test whether things are working very well
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis repellendus nemo voluptatibus quae praesentium. Itaque sit labore commodi facere rerum optio inventore quisquam. Dignissimos officia placeat totam nemo, impedit doloribus.</p>
-                    <div class="meta">
-                      <span class="cinema">Union Square 14</span>
-                    </div>
-                    <div class="description">
-                      <p></p>
-                    </div>
-                    <div class="extra">
-                        <button class="ui right floated primary basic button apply">Apply</button>
-                      <div class="ui label">IMAX</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="image">
-                    <img src="static/images/avatar/nan.jpg" style="width: 8em; height: 8em; max-width: 100%; border-radius: 50%;margin:auto">
-                  </div>
-                  <div class="content">
-                    <a class="header">My Neighbor Totoro</a>
-                    <p>This is a paragraph to test whether things are working very well
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis repellendus nemo voluptatibus quae praesentium. Itaque sit labore commodi facere rerum optio inventore quisquam. Dignissimos officia placeat totam nemo, impedit doloribus.</p>
-                    <div class="meta">
-                      <span class="cinema">IFC Cinema</span>
-                    </div>
-                    <div class="description">
-                      <p></p>
-                    </div>
-                    <div class="extra">
-                      
-                          <button class="ui right floated primary basic button apply">Apply</button>
-                      
-                      <div class="ui label">Limited</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="image" style="margin:auto">
-                    <img src="static/images/avatar/nan.jpg" style="width: 8em; height: 8em; max-width: 100%; border-radius: 50%;margin:auto">
-                  </div>
-                  <div class="content">
-                    <a class="header">Watchmen</a>
-                    <p>This is a paragraph to test whether things are working very well
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis repellendus nemo voluptatibus quae praesentium. Itaque sit labore commodi facere rerum optio inventore quisquam. Dignissimos officia placeat totam nemo, impedit doloribus.</p>
-                    <div class="meta">
-                      <span class="cinema">IFC</span>
-                    </div>
-                    <div class="description">
-                      <p></p>
-                    </div>
-                    <div class="extra">
-                        <button class="ui right floated primary basic button apply">Apply</button>
-                    </div>
-                  </div>
-                </div>
+            <div class="ui divided items items-pad" id="featured_jobs">
+               
+              
             </div>
          </div>
 
@@ -459,5 +400,7 @@
         $(".ui.sidebar").sidebar("attach events", ".toc.item");
       });
     </script>
+    <script src="js/search.js"></script>
+    <script src="js/featuredjobs.js"></script>
   </body>
 </html>

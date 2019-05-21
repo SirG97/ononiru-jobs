@@ -29,11 +29,13 @@ if ($num > 0) {
     extract($row);
 
     $job_item = array(
-      "id" => $id,
+      "id" => $job_id,
       "description" => html_entity_decode($description),
       "location" => $location,
       "slaryRange" => $salary_range,
-      "qualification" => $qualification
+      "qualification" => $qualification,
+      "title" => $title,
+      "sector" => $sector
     );
 
     array_push($jobs_arr["records"], $job_item);
