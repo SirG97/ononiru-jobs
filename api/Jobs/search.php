@@ -38,6 +38,7 @@ if($num>0){
             "qualification" => $qualification,
             "company_id" => $company_id,
             'title' => $title,
+            'sector' => $sector
             
         );
 

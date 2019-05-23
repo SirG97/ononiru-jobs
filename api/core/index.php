@@ -98,11 +98,12 @@ class job extends Base {
   function readOne(){
     // query to read single record
     $query = "SELECT
-                id,company_name,company_id,location,qualification,description,age,gender,salary_range
+                *
             FROM
-                " . $this->table_name . "
+                " . $this->table_name . " 
+           INNER JOIN company_profile ON company_profile.company_id = ". $this->table_name .".company_id
             WHERE
-                id = ? AND status = ?
+                job_id = ? AND status = ?
             LIMIT
                 0,1";
 
@@ -127,6 +128,16 @@ class job extends Base {
     $this->age = $row['age'];
     $this->qualification = $row['qualification'];
     $this->gender = $row['gender'];
+    $this->title = $row['title'];
+    $this->location = $row['location'];
+    $this->education = $row['education'];
+    $this->experience_level = $row['experience_level']; 
+    $this->education = $row['education']; 
+    $this->company_email = $row['email'];
+    $this->phone = $row['phone1'];
+
+
+
 
   }
 
@@ -295,9 +306,9 @@ class job extends Base {
             FROM
                 " . $this->table_name . "
             WHERE
-                title LIKE ? OR location LIKE ? OR qualification LIKE ?
+                title LIKE ? OR location LIKE ? OR qualification LIKE ? AND status = ?
             ORDER BY
-                created_at DESC";
+                created_at DESC LIMIT 7";
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -310,6 +321,8 @@ class job extends Base {
     $stmt->bindParam(1, $keywords);
     $stmt->bindParam(2, $keywords);
     $stmt->bindParam(3, $keywords);
+    $stmt->bindParam(4, $this->active_status);
+
 
     // execute query
     $stmt->execute();

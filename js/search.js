@@ -29,7 +29,7 @@ function instantiateSearch(val) {
             let response = res.data;
     container.innerHTML = '';
             response.forEach(element => {
-        container.innerHTML += '<small>'+ element.title + '</small> <br/>';
+        container.innerHTML += `<small><a href=http://localhost:4000/job.php?id=${element.id}>`+ element.title + '</small> <br/>';
             });
         }).fail(err => {
         container.style.backgroundColor = '#b13030';

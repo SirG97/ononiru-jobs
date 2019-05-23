@@ -20,12 +20,12 @@ $db = $database->getConnection();
 
 // prepare job object
 $job = new job($db);
+$data = file_get_contents("php://input");
 
 // set job id to be deleted
-$job->company_id = $_REQUEST['company_id'];
-$job->id = $_REQUEST['job_id'];
-$user = $_REQUEST['user_id'];
-$cv = isset($_FILES['cv']) ? $_FILES['cv'] : null;
+$job->company_id = isset($_POST['company_id']) ? $_POST['company_id'] : null;
+$job->id = isset($_POST['job_id']) ? $_POST['job_id'] : null;
+$user = isset($_POST['user_id']) ? $_POST['user_id'] : null;
 
 /**
  * Let's check for the status of the job first
@@ -85,44 +85,45 @@ if (!$stmt->execute() || $num = $stmt->rowCount() <= 0
 
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($cv['size'] > 300000) {
-    echo $job->forbidden('File size too large');
-    return;
-}
+// if ($cv['size'] > 300000) {
+//     echo $job->forbidden('File size too large');
+//     return;
+// }
 
-$type = explode('/', $cv['type']);
-if ($type[1] != 'pdf') {
-    echo $job->forbidden('Only pdf file type is allowed');
-    return;
-}
-if ($cv['error']) {
-    echo $job->actionFailure('File could not be uploaede');
-    return;
-}
-$filename = time() . uniqid() . '.' . $type[1];
+// $type = explode('/', $cv['type']);
+// if ($type[1] != 'pdf') {
+//     echo $job->forbidden('Only pdf file type is allowed');
+//     return;
+// }
+// if ($cv['error']) {
+//     echo $job->actionFailure('File could not be uploaede');
+//     return;
+// }
+// $filename = time() . uniqid() . '.' . $type[1];
 
-$uploaded = move_uploaded_file($cv['tmp_name'], '../uploads/cv/' . $filename);
-if ($uploaded && !($cv['error'])) {
+// $uploaded = move_uploaded_file($cv['tmp_name'], '../uploads/cv/' . $filename);
+
+// if ($uploaded && !($cv['error'])) {
 // add cv to table
-    $_query = "INSERT into job_application_cv
-SET cv_id = :cv_id , user_id = :userid, path = :path";
-    $cv_id = time().uniqid('cv',true);
-    $stmt = $db->prepare($_query);
-    $stmt->bindParam(':cv_id', $cv_id);
-    $stmt->bindParam(':userid', $user);
-    $stmt->bindParam(':path', $filename);
+//     $_query = "INSERT into job_application_cv
+// SET cv_id = :cv_id , user_id = :userid, path = :path";
+//     $cv_id = time().uniqid('cv',true);
+//     $stmt = $db->prepare($_query);
+//     $stmt->bindParam(':cv_id', $cv_id);
+//     $stmt->bindParam(':userid', $user);
+//     $stmt->bindParam(':path', $filename);
 
-    if(!$stmt->execute()){
-        echo $job->actionFailure('Opps! Table could not be updated');
-        return;
-    }
+//     if(!$stmt->execute()){
+//         echo $job->actionFailure('Opps! Table could not be updated');
+//         return;
+//     }
 
     $_query = "INSERT into job_applications
-SET job_id=:job_id, cv_id = :cv_id , user_id = :userid, is_shortlisted = :shortlisted,company_id = :company_id";
+SET job_id=:job_id, user_id = :userid, is_shortlisted = :shortlisted,company_id = :company_id";
     $shorlisted = 0;
     $cv_id = time().uniqid('cv',true);
     $stmt = $db->prepare($_query);
-    $stmt->bindParam(':cv_id', $cv_id);
+    // $stmt->bindParam(':cv_id', $cv_id);
     $stmt->bindParam(':userid', $user);
     $stmt->bindParam(':job_id', $job->id);
     $stmt->bindParam(':shortlisted', $shorlisted);
@@ -137,5 +138,5 @@ try{
     return;    
 }
 
-    }
+    // }
 

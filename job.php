@@ -1,3 +1,41 @@
+<?php
+session_start();
+//start server side rendering
+$job_id = isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
+$activa_status = 1;
+$table_name = 'jobs';
+
+trim($job_id);
+htmlspecialchars($job_id);
+$job_id = strtolower($job_id);
+
+if (is_null($job_id)) {
+    header('Location: index.html');
+} else {
+    if (file_exists('api/config/db.php') && file_exists('api/core/index.php')) {
+        include_once 'api/config/db.php';
+        include 'api/core/index.php';
+
+    } else {
+        throw new Exception('Some Files could not be found', 404);
+    }
+
+    try {
+
+        //sql query
+        $db = new Database();
+        $job = new Job($db->getConnection());
+        $job->id = $job_id;
+        $job->readOne();
+    
+    } catch (\Throwable $th) {
+        echo $th->getMessage();
+        die('SQL query Failed');
+    }
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,13 +58,13 @@
                     <img src="static/images/avatar/ononiru.png" alt="" style="width: 60px; height: auto;"><h6 style="font-size: 22px; display: inline-block;font-weight: normal;">noniru</h6>
                 </div>
                 <div class="ui vertical borderless fluid text pad">
-                    <a href="/ojob/dashboard.html" class="pad-1 active item pad">Dashboard</a> 
-                    <a href="/ojob/company.html" class="pad-1 item pad">Company profile</a> 
+                    <a href="/ojob/dashboard.html" class="pad-1 active item pad">Dashboard</a>
+                    <a href="/ojob/company.html" class="pad-1 item pad">Company profile</a>
                     <a href="/ojob/managejobs.html" class="pad-1 item pad">Manage Jobs</a>
-                    <a href="/ojob/applicants.html" class="pad-1 item pad">Applicants</a> 
+                    <a href="/ojob/applicants.html" class="pad-1 item pad">Applicants</a>
                     <a href="/ojob/postjob.html" class="pad-1 item pad">Post new job</a>
-                    <a href="/ojob/password.html" class="pad-1 item pad">Change password</a> 
-                    <a class="pad-1 item pad">Logout</a> 
+                    <a href="/ojob/password.html" class="pad-1 item pad">Change password</a>
+                    <a class="pad-1 item pad">Logout</a>
                 </div>
             </div>
         </div>
@@ -34,9 +72,9 @@
             <div>
                 <div class="pad-2 sixteen wide mobile sixteen wide tablet thirteen wide computer right floated column" id="content">
                     <div class="row">
-                        <h1 class="ui huge dividing header">Senior Web Designer</h1>
+                        <h1 class="ui huge dividing header"><?=$job->title?></h1>
                     </div>
-                    <div class="ui grid padded">    
+                    <div class="ui grid padded">
                         <div class="ui sixteen wide column">
                             <div class="ui segment">
                                 <div class="ui center aligned meta-list">
@@ -44,19 +82,19 @@
                                         <div class="item">
                                             <i class="marker alternate icon"></i>
                                           <div class="content">
-                                            <div class="header">Texas, US</div>
+                                            <div class="header"><?=$job->location?></div>
                                           </div>
                                         </div>
                                         <div class="item">
                                             <i class="phone icon"></i>
                                           <div class="content">
-                                            <div class="header">+234798930482</div>
+                                            <div class="header">+ <?=$job->phone?></div>
                                           </div>
                                         </div>
                                         <div class="item">
                                             <i class="envelope outline icon"></i>
                                           <div class="content">
-                                            <div class="header">apply@ononiru.com</div>
+                                            <div class="header"><?=$job->company_email?></div>
                                           </div>
                                         </div>
                                       </div>
@@ -66,13 +104,13 @@
                                         <div class="item">
                                             <i class="money icon"></i>
                                             <div class="content">
-                                                Salary: $15,000 - $25,000
+                                                Salary: <?=$job->salary_range?>
                                             </div>
                                         </div>
                                         <div class="item">
                                             <i class="shield icon"></i>
                                             <div class="content">
-                                                Experience level: 3years
+                                                Experience level: <?=$job->experience_level?> years
                                             </div>
                                         </div>
                                     </ul>
@@ -84,7 +122,7 @@
                                         <h3 class="ui big dividing header">Job Description</h3>
                                     </div>
                                     <div class="ui message">
-                                        Company is a 2016 Iowa City-born start-up that develops consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien
+                                        <?=$job->description?>
                                     </div>
                                     <!-- ======================= -->
                                     <!-- Work Experience -->
@@ -94,14 +132,11 @@
                                     </div>
                                     <div class="ui message">
                                         <div class="ui list">
-                                            <p>Experience in video production a plus or, at a minimum, a willingness to learn</p>
-                                            <p>Experience using Invision a plus</p>
-                                            <p>Cross-browser and platform testing as standard practice</p>
-                                            <p>Proficient in Photoshop, Illustrator, bonus points for familiarity with Sketch (Sketch is our preferred concepting)</p>
-                                            <p>Ability to write code – HTML & CSS (SCSS flavor of SASS preferred when writing CSS</p>
-                                        </div>
+                                      
+                                    <?=$job->qualification?>
                                     </div>
-                                    
+                                    </div>
+
                                     <!-- ======================= -->
                                     <!-- Skills -->
                                     <!-- ======================= -->
@@ -110,22 +145,18 @@
                                         <h3 class="ui big dividing header">Education + Experience</h3>
                                     </div>
                                     <div class="ui message">
-                                        <p>Advanced degree or equivalent experience in graphic and web design</p>
-                                        <p>Ability to work independently and to carry out assignments to completion within parameters of instructions given, prescribed routines, and standard accepted practices</p>
-                                        <p>Must be able to work under pressure and meet deadlines while maintaining a positive attitude and providing exemplary customer service</p>
-                                        <p>Excellent communication skills, most notably a demonstrated ability to solicit and address creative and design feedback</p>
-                                        <p>3 or more years of professional design experience</p>
+                                        <?=$job->education?>
                                     </div>
-                                    
+
                             </div>
                             <button class="ui green button right floated apply-button">Apply</button>
-                        </div>    
+                        </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
-        <div class="ui mini modal">
+        <div class="ui mini modal" 
                 <i class="close icon"></i>
                 <div class="header">
                   Confirmation
@@ -137,16 +168,18 @@
                 </div>
                 <div class="actions">
                   <div class="ui button red">Cancel</div>
-                  <div class="ui button green">OK</div>
-                </div>
+                  <div class="ui button green" onclick=jobApplyInit("<?=$job_id?>","<?=$job->company_id?>")>OK</div>
+                </div>  
               </div>
         <script src="js/jquery.min.js"></script>
         <script src="semantic/dist/semantic.min.js"></script>
         <script>
             $(document).ready(function(){
                 $('.mini.modal')
-                .modal('attach events', '.apply-button.button', 'show');
+                .modal('attach events', '.apply-button.button', 'show')
+
             });
         </script>
+        <script src="./js/jobApply.js"></script>
     </body>
 </html>

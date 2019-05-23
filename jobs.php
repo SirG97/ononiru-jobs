@@ -1,3 +1,62 @@
+<?php
+$query = isset($_GET['s']) ? $_GET['s'] : null;
+trim($query);
+strtolower($query);
+$query = htmlspecialchars($query);
+
+if (file_exists('api/config/db.php') && file_exists('api/core/index.php')) {
+  include_once 'api/config/db.php';
+  include 'api/core/index.php';
+
+} else {
+  throw new Exception('Some Files could not be found', 404);
+}
+
+
+ //sql query
+  $db = new Database();
+  $job = new Job($db->getConnection());
+
+  
+// get keywords
+$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
+
+// query jobs
+$stmt = $job->search(trim($keywords));
+$num = $stmt->rowCount();
+
+// check if more than 0 record found
+if($num>0){
+
+    // jobs array
+    $jobs_arr=array();
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        extract($row);
+
+        $job_item=array(
+            "id" => $job_id,
+            "description" => html_entity_decode($description),
+            "company_id" => $company_id,
+            'title' => $title,
+            'sector' => $sector,
+            'location' => $location
+            
+        );
+
+        array_push($jobs_arr, $job_item);
+    }
+}
+else{
+    // set response code - 404 Not found
+    http_response_code(404);
+
+    // tell the user no jobs found
+    echo $job->notFound("No jobs found.");
+}
+
+ 
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -165,80 +224,57 @@
         <div class="ui text container">
           <h1 class="ui inverted header">Browse Jobs</h1>
           <div class="ui huge action input" style="width: 100%">
-              <input type="text" placeholder="Search...">
-              <button class="ui green button">Search</button>
+              <input onkeyup="instantiateSearch(this.value)" id="search_input" type="text" placeholder="Search...">
+              <button onclick="searchinit()" type="button" id="search_btn" class="ui green button">Search</button>
             </div>
-          <!-- <div class="ui huge primary button">
-            Get Started <i class="right arrow icon"></i>
-          </div> -->
+          <div class="ui huge primary button" id="search_result" style="display:none">
+          
+          </div>
         </div>
       </div>
      
       <section id="featured-grid">
            <div class="ui container segments">
               <div class="ui divided items items-pad">
-                  <div class="item">
-                    <div class="image">
-                      <img src="static/images/avatar/nan.jpg" style="width: 8em; height: 8em; max-width: 100%; border-radius: 50%;margin:auto">
-                    </div>
-                    <div class="content">
-                      <a class="header">12 Years a Slave</a>
-                      <p>This is a paragraph to test whether things are working very well
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis repellendus nemo voluptatibus quae praesentium. Itaque sit labore commodi facere rerum optio inventore quisquam. Dignissimos officia placeat totam nemo, impedit doloribus.</p>
-                      <div class="meta">
-                        <span class="cinema">Union Square 14</span>
-                      </div>
-                      <div class="description">
-                        <p></p>
-                      </div>
-                      <div class="extra">
-                          <button class="ui right floated primary basic button apply">Apply</button>
-                        <div class="ui label">IMAX</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="image">
-                      <img src="static/images/avatar/nan.jpg" style="width: 8em; height: 8em; max-width: 100%; border-radius: 50%;margin:auto">
-                    </div>
-                    <div class="content">
-                      <a class="header">My Neighbor Totoro</a>
-                      <p>This is a paragraph to test whether things are working very well
-                          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis repellendus nemo voluptatibus quae praesentium. Itaque sit labore commodi facere rerum optio inventore quisquam. Dignissimos officia placeat totam nemo, impedit doloribus.</p>
-                      <div class="meta">
-                        <span class="cinema">IFC Cinema</span>
-                      </div>
-                      <div class="description">
-                        <p></p>
-                      </div>
-                      <div class="extra">
-                        
-                            <button class="ui right floated primary basic button apply">Apply</button>
-                        
-                        <div class="ui label">Limited</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="image" style="margin:auto">
-                      <img src="static/images/avatar/nan.jpg" style="width: 8em; height: 8em; max-width: 100%; border-radius: 50%;margin:auto">
-                    </div>
-                    <div class="content">
-                      <a class="header">Watchmen</a>
-                      <p>This is a paragraph to test whether things are working very well
-                          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis repellendus nemo voluptatibus quae praesentium. Itaque sit labore commodi facere rerum optio inventore quisquam. Dignissimos officia placeat totam nemo, impedit doloribus.</p>
-                      <div class="meta">
-                        <span class="cinema">IFC</span>
-                      </div>
-                      <div class="description">
-                        <p></p>
-                      </div>
-                      <div class="extra">
-                          <button class="ui right floated primary basic button apply">Apply</button>
-                      </div>
-                    </div>
-                  </div>
-              </div>
+                <?php 
+
+foreach ($jobs_arr as $key ) {
+  echo "
+  <br>
+  <br>
+  
+  <div class='item'>  
+  <div class='image'>
+    <img src='static/images/avatar/nan.jpg' style='width: 8em; height: 8em; max-width: 100%; border-radius: 50%;margin:auto'>
+  </div>
+  <div class='content'>
+    <a class='header'>
+    ".$key['title']."
+    </a>
+    <br>
+    <br>
+
+    <p>
+    ".$key['description']."
+    </p>
+    <div class='meta'>
+      <span class='cinema'>".$key['location']."</span>
+    </div>
+    <div class='description'>
+      <p></p>
+    </div>
+    <div class='extra'>
+        <a class='ui right floated primary basic button apply' href='job.php?id=".$key['id']."'>View</a>
+      <div class='ui label'>".$key['sector']."</div>
+    </div>
+  </div>
+</div>
+
+";
+}
+  
+                    ?>
+                </div>
            </div>
            <button class="ui inverted center aligned orange button">Load more jobs</button>
         </section>
@@ -294,5 +330,6 @@
         $(".ui.sidebar").sidebar("attach events", ".toc.item");
       });
     </script>
+    <script src="./js/search.js"></script>
   </body>
 </html>

@@ -51,7 +51,7 @@ function loadJobs(){
                 </p>
               </div>
               <div class="extra">
-                  <button class="ui right floated primary basic button apply"><a href="/jobs/job?id=${element.id}&s=1&u=true">More</a></button>
+                  <button class="ui right floated primary basic button apply"><a href="/job.html?id=${element.id}&s=1&u=true">More</a></button>
                 <div class="ui label">${element.sector}</div>
               </div>
             </div>
