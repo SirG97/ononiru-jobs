@@ -136,7 +136,7 @@
                   </div>
                 </div>
                 <div class="actions">
-                  <div class="ui button red">Cancel</div>
+                  <div class="ui button red cancel-button">Cancel</div>
                   <div class="ui button green">OK</div>
                 </div>
               </div>
@@ -146,6 +146,8 @@
             $(document).ready(function(){
                 $('.mini.modal')
                 .modal('attach events', '.apply-button.button', 'show');
+                $('.mini.modal')
+                .modal('attach events', '.cancel-button.button', 'hide');
             });
         </script>
     </body>
