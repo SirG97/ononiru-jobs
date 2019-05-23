@@ -20,11 +20,18 @@
 
 .content-border{
     border-top: 0 !important;
-    margin-top: 20px !important;
+    margin-top: 20px!important;
+    text-align: center;
 }
+
+
 
 .items-pad{
     margin: 15px;
+}
+
+.ui.items.items-pad:first-child{
+    margin-top: 15px !important;
 }
 
 .apply{
