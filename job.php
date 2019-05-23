@@ -167,17 +167,18 @@ if (is_null($job_id)) {
                   </div>
                 </div>
                 <div class="actions">
-                  <div class="ui button red">Cancel</div>
-                  <div class="ui button green" onclick=jobApplyInit("<?=$job_id?>","<?=$job->company_id?>")>OK</div>
-                </div>  
+                  <div class="ui button red cancel-button">Cancel</div>
+                  <div class="ui button green">OK</div>
+                </div>
               </div>
         <script src="js/jquery.min.js"></script>
         <script src="semantic/dist/semantic.min.js"></script>
         <script>
             $(document).ready(function(){
                 $('.mini.modal')
-                .modal('attach events', '.apply-button.button', 'show')
-
+                .modal('attach events', '.apply-button.button', 'show');
+                $('.mini.modal')
+                .modal('attach events', '.cancel-button.button', 'hide');
             });
         </script>
         <script src="./js/jobApply.js"></script>
