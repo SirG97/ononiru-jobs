@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION['user_id'] = uniqid().time();
+$user_id =  $_SESSION['user_id'];
 //start server side rendering
 $job_id = isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
 $activa_status = 1;
@@ -19,7 +21,19 @@ if (is_null($job_id)) {
     } else {
         throw new Exception('Some Files could not be found', 404);
     }
-
+    $db2 = new Database();
+    $job2 = new Job($db2->getConnection());
+    $job2->query("SELECT * FROM job_applications WHERE user_id = ?",[$user_id]);
+    if($job2->_count > 0){
+        $status = '
+        <div class="ui green horizontal label">Applied</div>
+        ';
+    }
+    else {
+        $status = '
+        <div class="ui red horizontal label">Not Applied</div>
+        ';
+    }
     try {
 
         //sql query
@@ -27,6 +41,7 @@ if (is_null($job_id)) {
         $job = new Job($db->getConnection());
         $job->id = $job_id;
         $job->readOne();
+        
     
     } catch (\Throwable $th) {
         echo $th->getMessage();
@@ -52,6 +67,9 @@ if (is_null($job_id)) {
 </style>
     </head>
     <body>
+    <div id="successMsg">
+            
+            </div>
         <div class='menu-div s-hide m-hide l-show' style='height: 100%;'>
             <div class="pad-2 ">
                 <div class="logo-container">
@@ -72,7 +90,9 @@ if (is_null($job_id)) {
             <div>
                 <div class="pad-2 sixteen wide mobile sixteen wide tablet thirteen wide computer right floated column" id="content">
                     <div class="row">
-                        <h1 class="ui huge dividing header"><?=$job->title?></h1>
+                        <h1 class="ui huge dividing header"><?=$job->title?><span id="job_status"><?=$status?></span></h1>
+                    
+                    </h1>
                     </div>
                     <div class="ui grid padded">
                         <div class="ui sixteen wide column">
@@ -162,13 +182,13 @@ if (is_null($job_id)) {
                   Confirmation
                 </div>
                 <div class="content">
-                  <div class="description">
+                  <div class="description" id="alertdesc">
                     Please confirm that you want to apply to this job
                   </div>
                 </div>
                 <div class="actions">
-                  <div class="ui button red cancel-button">Cancel</div>
-                  <div class="ui button green">OK</div>
+                  <div class="ui button red cancel-button" id="canclebtn">Cancel</div>
+                  <div class="ui button green" id="okbtn" onclick=jobApplyInit("<?=$job_id?>","<?=$job->company_id?>") >OK</div>
                 </div>
               </div>
         <script src="js/jquery.min.js"></script>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -21,11 +22,10 @@ $db = $database->getConnection();
 // prepare job object
 $job = new job($db);
 $data = file_get_contents("php://input");
-
 // set job id to be deleted
 $job->company_id = isset($_POST['company_id']) ? $_POST['company_id'] : null;
 $job->id = isset($_POST['job_id']) ? $_POST['job_id'] : null;
-$user = isset($_POST['user_id']) ? $_POST['user_id'] : null;
+$user = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 /**
  * Let's check for the status of the job first
