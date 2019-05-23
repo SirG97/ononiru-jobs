@@ -27,21 +27,22 @@ if($num>0){
 
     // jobs array
     $jobs_arr=array();
-    $jobs_arr["records"] = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
 
         $job_item=array(
-            "id" => $id,
-            "company_name" => $company_name,
+            "id" => $job_id,
             "description" => html_entity_decode($description),
-            "salaray_range" => $salaray_range,
+            "salary_range" => $salary_range,
             "qualification" => $qualification,
-            "company_id" => $company_id
+            "company_id" => $company_id,
+            'title' => $title,
+            'sector' => $sector
+            
         );
 
-        array_push($jobs_arr["records"], $job_item);
+        array_push($jobs_arr, $job_item);
     }
 
     // set response code - 200 OK

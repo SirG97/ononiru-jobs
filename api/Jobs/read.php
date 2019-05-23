@@ -29,12 +29,13 @@ if ($num > 0) {
     extract($row);
 
     $job_item = array(
-      "id" => $id,
-      "company" => $company_name,
+      "id" => $job_id,
       "description" => html_entity_decode($description),
       "location" => $location,
       "slaryRange" => $salary_range,
-      "qualification" => $qualification
+      "qualification" => $qualification,
+      "title" => $title,
+      "sector" => $sector
     );
 
     array_push($jobs_arr["records"], $job_item);
@@ -45,6 +46,7 @@ if ($num > 0) {
 
   // show jobs data in json format
   echo $job->success($jobs_arr);
+  
 } else {
 
   // set response code - 404 Not found

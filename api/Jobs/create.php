@@ -32,11 +32,11 @@ if(
     !empty($data->age) &&
     !empty($data->gender) &&
     !empty($data->sector) &&
-    !empty($data->company_name)
+    !empty($data->title) 
+
 ){
 
     // set job property values
-    $job->company_name = trim($data->company_name);
     $job->salary_range = trim($data->salary_range);
     $job->description = trim($data->description);
     $job->company_id = trim($data->company_id);
@@ -45,6 +45,7 @@ if(
     $job->age = trim($data->age);
     $job->sector = trim($data->sector);
     $job->gender = trim($data->gender);
+    $job->job_title = trim($data->title);
     $job->working_hours = trim($data->working_hours);
     $job->created_at = date('Y-m-d H:i:s');
 
