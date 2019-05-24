@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['user_id'] = uniqid().time();
+$_SESSION['user_id'] = 'hgfrdfcgvbhjnkmlmkjh';
 $user_id =  $_SESSION['user_id'];
 //start server side rendering
 $job_id = isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
@@ -23,16 +23,20 @@ if (is_null($job_id)) {
     }
     $db2 = new Database();
     $job2 = new Job($db2->getConnection());
-    $job2->query("SELECT * FROM job_applications WHERE user_id = ?",[$user_id]);
+    $job2->query("SELECT * FROM job_applications WHERE user_id = ? AND job_id = ?",[$user_id,$job_id]);
     if($job2->_count > 0){
         $status = '
         <div class="ui green horizontal label">Applied</div>
         ';
+        $active_btn = '<button class="ui green button right floated apply-button" disabled>Apply</button>';
+
     }
     else {
         $status = '
         <div class="ui red horizontal label">Not Applied</div>
         ';
+        $active_btn = '<button class="ui green button right floated apply-button">Apply</button>';
+
     }
     try {
 
@@ -59,6 +63,7 @@ if (is_null($job_id)) {
         <link rel="stylesheet" href="semantic/dist/semantic.min.css">
         <link rel='stylesheet' type='text/css' href='css/space_app.css'/>
         <link rel='stylesheet' type='text/css' href='css/style.css'/>
+        <link rel="stylesheet" href="./css/iziToast.min.css">
 <style>
 *{
     padding: 0;
@@ -169,7 +174,7 @@ if (is_null($job_id)) {
                                     </div>
 
                             </div>
-                            <button class="ui green button right floated apply-button">Apply</button>
+                            <?=$active_btn?>
                         </div>
                     </div>
                 </div>
@@ -191,14 +196,15 @@ if (is_null($job_id)) {
                   <div class="ui button green" id="okbtn" onclick=jobApplyInit("<?=$job_id?>","<?=$job->company_id?>") >OK</div>
                 </div>
               </div>
-        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery2.2.4.min.js"></script>
         <script src="semantic/dist/semantic.min.js"></script>
+        <script src="./js/iziToast.min.js"></script>
         <script>
             $(document).ready(function(){
                 $('.mini.modal')
                 .modal('attach events', '.apply-button.button', 'show');
                 $('.mini.modal')
-                .modal('attach events', '.cancel-button.button', 'hide');
+                .modal('attach events', '.cancel-button.button', 'hide');  
             });
         </script>
         <script src="./js/jobApply.js"></script>

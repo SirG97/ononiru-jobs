@@ -1,3 +1,5 @@
+
+
 function jobApplyInit(id,company_id){
     let c_id = company_id;
     let jb_id = id;
@@ -21,25 +23,26 @@ function jobApplyInit(id,company_id){
         if(data.status_code == 200 && data.status == 'success'){
 
 
-    document.getElementById('successMsg').innerHTML = `
-    <div class='ui success message floating'>
-    <i class='close icon'>
-            </i>
-            <div class='header'>
-            Your application was successful!
-            </div>
-            </div>`;
-    document.getElementById('okbtn').innerHTML = 'Great,please wait...';
-    setTimeout(() => {
-        document.getElementById('canclebtn').click();
-        document.getElementById('job_status').innerHTML =  `
-        <div class="ui green horizontal label">Applied</div>
-        `;
-    },1500)
+            iziToast.success({
+                title: 'Great!',
+                message: 'You\'ve applied successfully!',
+            });
+        // document.getElementById('okbtn').innerHTML = 'Great,please wait...';
+        setTimeout(() => {
+            document.getElementById('canclebtn').click();
+            document.getElementById('job_status').innerHTML =  `
+            <div class="ui green horizontal label">Applied</div>
+            `;
+        },2500)
 
 
         }else if(data.status == 'failed' && data.status_code == 409 && data.message == "You cannot apply for this job a second time"){
-        
+
+            iziToast.error({
+                title: 'Oops!',
+                message: data.message,
+                timeout: 5000,
+            });
             document.getElementById('okbtn').innerHTML = 'Apply';
             document.getElementById('canclebtn').style.display = 'inline';
             document.getElementById('alertdesc').innerHTML = data.message;
