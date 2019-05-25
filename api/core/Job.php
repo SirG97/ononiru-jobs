@@ -3,7 +3,7 @@
 use Ononiru\Core\Base;
 use \PDO;
 
-class job extends Base {
+class Job extends Base {
 
   // database connection and table name
   private $conn,$table_name = "jobs";
@@ -18,49 +18,72 @@ class job extends Base {
   public function __construct($db){
     $this->conn = $db;
   }
+/**
+ * Dump and die a data
+ * @return mixed
+ * @param required
+ */
+public function dd($data = '') : void
+{
+    echo '<pre>';
+    echo var_dump($data);
+    echo '</pre>';
+}
+
+/**
+ * Baptize the value
+ * @param mixed required $data , data to sanitize
+ * @return mixed
+ */
+public function sanitize($data)
+{
+    trim($data);
+    \htmlspecialchars($data);
+    \strip_tags($data);
+    stripcslashes($data);
+    return $data;
+}
 
   // read jobs
-  function read()
-  {
+  function read() {
 
     // select all query
-    $query = "SELECT *  FROM
-                " . $this->table_name . "
-                WHERE status = :status
-                ORDER BY created_at
-                 DESC";
+    $query = "SELECT * FROM " . $this->table_name . " WHERE status = :status ORDER BY created_at DESC ";
 
     // prepare query statement
-    $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(":status", $this->active_status);
+    $this->_query = $this->conn->prepare($query);
+    $this->_query->bindParam(":status", $this->active_status);
 
 
     // execute query
-    $stmt->execute();
-
-    return $stmt;
+      $this->_query->execute();
+      $this->_fetchStyle = PDO::FETCH_ASSOC;
+      $this->_result = $this->_query->fetchAll($this->_fetchStyle);
+      
+      
+    $this->_count = $this->_query->rowCount();
+    $this->_lastInsertID = $this->conn->lastInsertId();
+    
+    
+    return true;
   }
 
   // create job
-  function create()
-  {
+  function create() {
 
     // query to insert record
-    $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-             job_id=:job_id,salary_range=:salary_range,title=:job_title,description=:description, company_id=:company_id, created_at=:created_at,qualification=:qualification,gender=:gender,age=:age,sector=:sector,location=:location,
+    $query = "INSERT INTO " . $this->table_name . " SET job_id=:job_id,salary_range=:salary_range,title=:job_title,description=:description, company_id=:company_id, created_at=:created_at,qualification=:qualification,gender=:gender,age=:age,sector=:sector,location=:location,
                 status=:status,working_hours=:working_hours,deleted_at=:deleted_at";
 
     // prepare query
     $stmt = $this->conn->prepare($query);
+    
     // sanitize
     $this->salary_range = htmlspecialchars(strip_tags($this->salary_range));
     $this->description = htmlspecialchars(strip_tags($this->description));
     $this->company_id = htmlspecialchars(strip_tags($this->company_id));
     $this->created_at = htmlspecialchars(strip_tags($this->created_at));
     $this->job_title = htmlspecialchars(strip_tags($this->job_title));
-
     $this->qualification = htmlspecialchars(strip_tags($this->qualification));
     $this->location = htmlspecialchars(strip_tags($this->location));
     $this->sector = htmlspecialchars(strip_tags($this->sector));
@@ -97,15 +120,9 @@ class job extends Base {
   // used when filling up the update job form
   function readOne(){
     // query to read single record
-    $query = "SELECT
-                *
-            FROM
-                " . $this->table_name . " 
-           INNER JOIN company_profile ON company_profile.company_id = ". $this->table_name .".company_id
-            WHERE
-                job_id = ? AND status = ?
-            LIMIT
-                0,1";
+    $query = "SELECT * FROM ".$this->table_name." 
+    INNER JOIN company_profile ON company_profile.company_id = ". $this->table_name .".company_id
+            WHERE job_id = ? AND status = ? LIMIT 0,1";
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -113,7 +130,6 @@ class job extends Base {
     // bind id of job to be updated
     $stmt->bindParam(1, $this->id);
     $stmt->bindParam(2,$this->active_status);
-
 
     // execute query
     $stmt->execute();
@@ -135,9 +151,6 @@ class job extends Base {
     $this->education = $row['education']; 
     $this->company_email = $row['email'];
     $this->phone = $row['phone1'];
-
-
-
 
   }
 
@@ -174,6 +187,7 @@ class job extends Base {
           $x++;
         }
       }
+
       if($this->_query->execute()) {
           
         if($fetch){

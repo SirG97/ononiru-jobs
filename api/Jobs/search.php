@@ -1,19 +1,24 @@
 <?php
+
+session_start();
+require '../../vendor/autoload.php';
+
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 // include database and object files
 include_once '../config/core.php';
-include_once '../config/db.php';
-include_once '../core/index.php';
 
 // instantiate database and job object
 $database = new Database();
 $db = $database->getConnection();
 
 // initialize object
-$job = new job($db);
+$job = new Job($db);
 
 // get keywords
 $keywords=isset($_GET["s"]) ? $_GET["s"] : "";

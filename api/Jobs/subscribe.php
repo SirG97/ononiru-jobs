@@ -6,31 +6,7 @@ use Ononiru\Config\Database;
 use Ononiru\Core\Base;
 use Ononiru\Core\job;
 
-/**
- * Dump and die a data
- * @return mixed
- * @param required
- */
-function dd($data = '') : void
-{
-    echo '<pre>';
-    echo var_dump($data);
-    echo '</pre>';
-}
 
-/**
- * Baptize the value
- * @param mixed required $data , data to sanitize
- * @return mixed
- */
-function sanitize($data)
-{
-    trim($data);
-    \htmlspecialchars($data);
-    \strip_tags($data);
-    stripcslashes($data);
-    return $data;
-}
 // subscribe users to job alert
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
@@ -70,14 +46,14 @@ $job_sub_id = uniqid() . time() . md5('ononirujobs');
 
 $response = new Base();
 
-if (is_null(sanitize($job_category))) {
+if (is_null($job->sanitize($job_category))) {
     echo $response->forbidden('Job Category cannot be empty');
     return;
-} else if (sanitize($job_location) == null) {
+} else if ($job->sanitize($job_location) == null) {
     echo $response->forbidden('Job Location cannot be empty');
     return;
 
-} else if (sanitize($plan) == null || empty(sanitize($plan))) {
+} else if ($job->sanitize($plan) == null || empty($job->sanitize($plan))) {
     echo $response->forbidden('Job Plan cannot be empty');
     return;
 }
@@ -86,7 +62,7 @@ if (is_null(sanitize($job_category))) {
 
 try {
 
-    $job->query("SELECT * FROM job_subscription_plan WHERE plan_id = ? ", [sanitize($plan)]);
+    $job->query("SELECT * FROM job_subscription_plan WHERE plan_id = ? ", [$job->sanitize($plan)]);
 
     if (empty($job->_result)) {
         echo $response->actionFailure('Opps! Something went wrong, error code 09876tyuix - number' . $job->_count);

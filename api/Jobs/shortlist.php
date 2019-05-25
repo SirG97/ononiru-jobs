@@ -1,11 +1,15 @@
 <?php
+session_start();
+require '../../vendor/autoload.php';
+
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
 
 /**
  * 
  * Code to shortlist a candidate
  * 
  */
-// required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
@@ -16,9 +20,6 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 if($_SERVER['REQUEST_METHOD']  != 'POST'){
     die('Use the right method bro');
 }
-// include database and object file
-include_once '../config/db.php';
-include_once '../core/index.php';
 
 // get database connection
 $database = new Database();

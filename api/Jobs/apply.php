@@ -1,5 +1,10 @@
 <?php
 session_start();
+require '../../vendor/autoload.php';
+
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -10,10 +15,6 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     die('HEY NIGGA!! SEND THE RIGHT REQUEST TYPE');
 }
-
-// include database and object file
-include_once '../config/db.php';
-include_once '../core/index.php';
 
 // get database connection
 $database = new Database();

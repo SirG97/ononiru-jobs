@@ -1,5 +1,10 @@
 <?php
 session_start();
+require './vendor/autoload.php';
+
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
+
 $_SESSION['user_id'] = 'hgfrdfcgvbhjnkmlmkjh';
 $user_id =  $_SESSION['user_id'];
 //start server side rendering
@@ -14,13 +19,7 @@ $job_id = strtolower($job_id);
 if (is_null($job_id)) {
     header('Location: index.html');
 } else {
-    if (file_exists('api/config/db.php') && file_exists('api/core/index.php')) {
-        include_once 'api/config/db.php';
-        include 'api/core/index.php';
-
-    } else {
-        throw new Exception('Some Files could not be found', 404);
-    }
+    
     $db2 = new Database();
     $job2 = new Job($db2->getConnection());
     $job2->query("SELECT * FROM job_applications WHERE user_id = ? AND job_id = ?",[$user_id,$job_id]);
