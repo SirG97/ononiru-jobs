@@ -122,7 +122,7 @@ if (is_null($job_id)) {
                                           </div>
                                         </div>
                                       </div>
-                                </div>
+                                </div> 
                                 <div class="ui message">
                                     <ul class="ui list">
                                         <div class="item">

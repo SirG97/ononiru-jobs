@@ -14,23 +14,7 @@
 </style>
     </head>
     <body>
-        <div class='menu-div s-hide m-hide l-show' style='height: 100%;'>
-            <div class="pad-2 ">
-                <div class="logo-container">
-                    <img src="static/images/avatar/ononiru.png" alt="" style="width: 60px; height: auto;"><h6 style="font-size: 22px; display: inline-block;font-weight: normal;">noniru</h6>
-                </div>
-                <div class="ui vertical borderless fluid text pad">
-                        <a href="/ojob/dashboard.html" class="pad-1 active item pad">Dashboard</a> 
-                        <a href="/ojob/company.html" class="pad-1 item pad">Company profile</a> 
-                        <a href="/ojob/manage
-                        jobs.html" class="pad-1 item pad">Manage Jobs</a>
-                        <a href="/ojob/applicants.html" class="pad-1 item pad">Applicants</a> 
-                        <a href="/ojob/postjob.html" class="pad-1 item pad">Post new job</a>
-                        <a href="/ojob/password.html" class="pad-1 item pad">Change password</a> 
-                    <a class="pad-1 item pad">Logout</a> 
-                </div>
-            </div>
-        </div>
+      <?php include 'includes/company_sidebar_menu.php' ?>
         <div class='page-div'>
             <div>
                 <div class="pad-2 sixteen wide mobile sixteen wide tablet thirteen wide computer right floated column" id="content">
@@ -39,70 +23,84 @@
                     </div>
                     <div class="ui grid padded">    
                         <div class="ui sixteen wide column">
+                          <form action="" class="ui form" id="create_job">
                             <div class="ui equal width form">
                                 <div class="fields">
                                   <div class="field">
                                     <label>Job Title</label>
-                                    <input type="text" placeholder="Junior Software Developer">
+                                    <input type="text" id="job_title" placeholder="Junior Software Developer" required>
                                   </div>
                                 </div>
                                 <div class="fields">
                                   <div class="field">
                                     <label>Description</label>
-                                    <textarea placeholder="Job Description"></textarea>
+                                    <textarea id="job_description" placeholder="Job Description" required></textarea>
                                   </div>
                                 </div>
                                 <div class="fields">
                                   <div class="field">
                                     <label>Job type</label>
-                                    <select class="ui search dropdown">
-                                      <option value="">Programming</option>
-                                      <option value="AF">Human Resource</option>
-                                      <option value="AX">Finance</option>
-                                      <option value="AL">Web Design</option>
+                                    <select id="sector" name="sector" class="ui search dropdown" required>
+                                      <option value="programming">Programming</option>
+                                      <option value="Human resource">Human Resource</option>
+                                      <option value="finance">Finance</option>
+                                      <option value="Web">Web Design</option>
                                     </select>
                                   </div>
                                   <div class="field">
                                       <label>Gender</label>
-                                      <select class="ui search dropdown">
-                                        <option value="">Male</option>
-                                        <option value="AF">Female</option>
+                                      <select id="gender" name="dropdown" class="ui dropdown" required>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                       </select>
                                   </div>
+                                  
                                 </div>
                                 <div class="fields">
                                     <div class="field">
                                       <label>Company Name</label>
-                                      <input type="text" placeholder="Company">
+                                      <input type="text" id="company_name" placeholder="Company" required>
                                     </div>
                                     <div class="field">
-                                        <label>Company ID</label>
-                                        <input type="text" placeholder="Salary Range">
-                                      
+                                        <label>Experience Level</label>
+                                        <select id="experience_level" class="ui search dropdown" required>
+                                          <option value="1">1 year</option>
+                                          <option value="2">2 years</option>
+                                          <option value="3">3 years</option>
+                                          <option value="4">4 years</option>
+                                          <option value="5+">5+ years</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="fields">
                                     <div class="field">
-                                      <label>Company Logo</label>
-                                      <input type="file" placeholder="Location">
+                                      <label>Minimum Age</label>
+                                      <input type="number" min="18" max="40" id="min_age" placeholder="18" required>
+                                    </div>
+                                    <div class="field">
+                                      <label>Minimum Age</label>
+                                      <input type="number" max="40" id="max_age" placeholder="40" required>
                                     </div>
                                     <div class="field">
                                         <label>Location</label>
-                                        <input type="text" placeholder="Location">
+                                        <input type="text" id="location" placeholder="Location" required>
                                     </div>
                                 </div>
+                              
                                 <div class="fields">
                                     <div class="field">
                                       <label>Salary Range</label>
-                                      <input type="text" placeholder="Lagos, Nigeria">
+                                      <input type="text" id="salary" placeholder="Lagos, Nigeria" required>
                                     </div>
                                     <div class="field">
                                         <label>Working Hours</label>
-                                        <input type="text" placeholder="8:00am - 4:00pm GMT+1">
+                                        <input type="text" id="working_hours" placeholder="8:00am - 4:00pm GMT+1" required>
                                     </div>
                                 </div>
                             </div>
-                            <button class="ui green button right floated">Submit</button>
+                            <button class="ui green button right floated submit" id="submit-btn">Submit</button>
+                            <div class="ui error message"></div>
+                          </form>
                         </div>
                     </div>
                 </div>
@@ -111,5 +109,9 @@
 
         <script src="js/jquery.min.js"></script>
         <script src="semantic/dist/semantic.min.js"></script>
+        <script src="js/createjob.js"></script>
+        <script>
+
+        </script>
     </body>
 </html>

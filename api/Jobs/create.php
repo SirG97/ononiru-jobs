@@ -31,6 +31,7 @@ if(
     !empty($data->location) &&
     !empty($data->qualification) &&
     !empty($data->working_hours) &&
+    !empty($data->experience_level) &&
     !empty($data->age) &&
     !empty($data->gender) &&
     !empty($data->sector) &&
@@ -44,6 +45,7 @@ if(
     $job->company_id = trim($data->company_id);
     $job->location = trim($data->location);
     $job->qualification = trim($data->qualification);
+    $$data->experience_level = trim($data->experience_level);
     $job->age = trim($data->age);
     $job->sector = trim($data->sector);
     $job->gender = trim($data->gender);
