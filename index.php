@@ -483,7 +483,7 @@
             </div>
           </div>
       </section>
-      <div class="ui vertical stripe segment">
+      <!-- <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
           <div class="row">
             <div class="eight wide column">
@@ -556,7 +556,7 @@
           </p>
           <a class="ui large button">I'm Still Quite Interested</a>
         </div>
-      </div>
+      </div> -->
       <div class="ui inverted vertical footer segment">
         <div class="ui container">
           <div
