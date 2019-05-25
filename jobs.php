@@ -47,13 +47,7 @@ if($num>0){
         array_push($jobs_arr, $job_item);
     }
 }
-else{
-    // set response code - 404 Not found
-    http_response_code(404);
 
-    // tell the user no jobs found
-    echo $job->notFound("No jobs found.");
-}
 
  
 ?>
@@ -237,40 +231,44 @@ else{
            <div class="ui container segments">
               <div class="ui divided items items-pad">
                 <?php 
-
-foreach ($jobs_arr as $key ) {
-  echo "
-  <br>
-  <br>
+if($num > 0) {
+  foreach ($jobs_arr as $key ) {
+    echo "
+    <br>
+    <br>
+    
+    <div class='item'>  
+    <div class='image'>
+      <img src='static/images/avatar/nan.jpg' style='width: 8em; height: 8em; max-width: 100%; border-radius: 50%;margin:auto'>
+    </div>
+    <div class='content'>
+      <a class='header'>
+      ".$key['title']."
+      </a>
+      <br>
+      <br>
   
-  <div class='item'>  
-  <div class='image'>
-    <img src='static/images/avatar/nan.jpg' style='width: 8em; height: 8em; max-width: 100%; border-radius: 50%;margin:auto'>
-  </div>
-  <div class='content'>
-    <a class='header'>
-    ".$key['title']."
-    </a>
-    <br>
-    <br>
-
-    <p>
-    ".$key['description']."
-    </p>
-    <div class='meta'>
-      <span class='cinema'>".$key['location']."</span>
-    </div>
-    <div class='description'>
-      <p></p>
-    </div>
-    <div class='extra'>
-        <a class='ui right floated primary basic button apply' href='job.php?id=".$key['id']."'>View</a>
-      <div class='ui label'>".$key['sector']."</div>
+      <p>
+      ".$key['description']."
+      </p>
+      <div class='meta'>
+        <span class='cinema'>".$key['location']."</span>
+      </div>
+      <div class='description'>
+        <p></p>
+      </div>
+      <div class='extra'>
+          <a class='ui right floated primary basic button apply' href='job.php?id=".$key['id']."'>View</a>
+        <div class='ui label'>".$key['sector']."</div>
+      </div>
     </div>
   </div>
-</div>
-
-";
+  
+  ";
+  }
+  
+}else{
+  echo '<h1>No Job Found!</h1>';
 }
   
                     ?>
