@@ -269,14 +269,15 @@
       </section>
       <section id="for-who">
           <h2 class="" style="text-align: center;">Who is ononiru jobs for</h2>
-          <div class="ui equal width left aligned padded grid">
+          <p class="ui center aligned">Ononiru jobs is for job seekers and companies looking to find jobs tailored for them or find qualified candidate in less than 48 hours</p>
+          <div class="ui equal width left aligned padded grid for-who-row">
             <div class="row">
-              <div class="olive column">
+              <div class="column pad-3">
                 <div class="ui items">
-                  <div class="item left aligned">
-                    <div class="image">
-                      <i class="universal icon"></i>
-                    </div>
+                  <div class="item">
+                    
+                      <i class="bug huge icon"></i>
+                    
                     <div class="content">
                       <a class="header">Fast and convienent</a>
                       <div class="description">
@@ -286,12 +287,10 @@
                   </div>
                 </div>
               </div>
-              <div class="black column">
+              <div class=" column pad-3">
                 <div class="ui items">
-                  <div class="item left aligned">
-                    <div class="image">
-                      <i class="universal icon"></i>
-                    </div>
+                  <div class="item">
+                      <i class="bug huge icon"></i>
                     <div class="content">
                       <a class="header">Safe and reliable</a>
                       <div class="description">
@@ -303,12 +302,184 @@
               </div>
             </div>
             <div class="row">
-              <div class="black column">
-                Black
+              <div class="column pad-3">
+                <div class="ui items">
+                    <div class="item">
+                        <i class="bug huge icon"></i>
+                      <div class="content">
+                        <a class="header">Safe and reliable</a>
+                        <div class="description">
+                          <p>This is a little message that tries to explain the meaning of the header above. I think I need to make it a little longer so that it will look nicer than it is now.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </div>
-              <div class="olive column">
-                Olive
+              <div class="column pad-3">
+                <div class="ui items">
+                    <div class="item">
+                        <i class="bug huge icon"></i>
+                      <div class="content">
+                        <a class="header">Safe and reliable</a>
+                        <div class="description">
+                          <p>This is a little message that tries to explain the meaning of the header above. I think I need to make it a little longer so that it will look nicer than it is now.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </div>
+            </div>
+          </div>
+      </section>
+
+      <section id="for-who">
+        <div class="ui container">
+            <div class="ui three columns stackable grid">
+                <div class="column">
+                    <div class="ui segments plan">
+                        <div class="ui top attached segment grey inverted plan-title">
+                            <span class="ui header">Basic</span>
+                        </div>
+                        <div class="ui  attached segment feature"> 
+                          <div class="amount">$0</div>
+                        </div>
+                        <div class="ui  attached secondary segment feature">
+                          <i class="icon green check"></i>  
+                          Email Subscription
+                        </div>
+                        <div class="ui  attached segment feature">
+                          <i class="icon green check"></i>
+                            Personalized jobs
+                        </div>         
+                        <div class="ui  attached segment feature">
+                            <i class="icon red remove"></i>
+                              SMS notification
+                        </div>    
+                        <div class="ui  attached segment feature">
+                        <i class="icon red remove"></i>
+                            Automatic application
+                        </div>  
+                        <div class="ui  attached segment feature">
+                          <i class="icon red remove"></i>
+                              Professional CV writing
+                          </div> 
+                          <div class="ui  attached segment feature">
+                          <i class="icon red remove"></i>
+                              Ready made CV templates
+                          </div> 
+                        <div class="ui  attached segment feature">
+                        <i class="icon red remove"></i>
+                            CV review
+                        </div>  
+                        <div class="ui  attached segment feature">
+                        <i class="icon red remove"></i>
+                            Cover letter review
+                        </div>  
+
+                        <div class="ui bottom attached grey button btn-plan">
+                            <i class="cart icon"></i>
+                            SUBSCRIBE
+                        </div>
+          
+                    </div>
+                </div>
+              <div class="column">
+                    <div class="ui segments plan principal">
+                        <div class="ui top attached segment violet inverted plan-title">
+                            <span class="plan-ribbon red">RECOMMENDED</span>
+                            <span class="ui header">Premium</span>
+                        </div>
+                        <div class="ui  attached segment feature">
+                          
+                            <div class="amount">$100</div>
+                          </div>
+                        <div class="ui  attached secondary segment feature">
+                            <i class="icon green check"></i>  
+                            Email Subscription
+                          </div>
+                          <div class="ui  attached segment feature">
+                            <i class="icon green check"></i>
+                              Personalized jobs
+                          </div>         
+                          <div class="ui  attached segment feature">
+                              <i class="icon green check"></i>
+                                SMS notification
+                            </div>    
+                            <div class="ui  attached segment feature">
+                              <i class="icon green check"></i>
+                                Automatic application
+                            </div>  
+                            <div class="ui  attached segment feature">
+                            <i class="icon green check"></i>
+                                Professional CV writing
+                            </div> 
+                            <div class="ui  attached segment feature">
+                            <i class="icon green check"></i>
+                                Ready made CV templates
+                            </div> 
+                            <div class="ui  attached segment feature">
+                              <i class="icon green check"></i>
+                                Multiple CV review
+                            </div>  
+                            <div class="ui  attached segment feature">
+                              <i class="icon green check"></i>
+                                Cover letter review
+                            </div>           
+                        <div class="ui bottom attached violet button btn-plan">
+                            <i class="cart icon"></i>
+                            SUBSCRIBE
+                        </div>
+          
+                    </div>
+                </div>
+              <div class="column">
+                    <div class="ui segments plan">
+                        <div class="ui top attached segment brown inverted plan-title">
+                            
+                            <span class="ui header">Classic</span>
+                        </div>
+                        <div class="ui attached segment feature">
+                          <div class="amount">$50</div>
+                        </div>
+                        <div class="ui  attached secondary segment feature">
+                            <i class="icon green check"></i>  
+                            Email Subscription
+                          </div>
+                          <div class="ui  attached segment feature">
+                            <i class="icon green check"></i>
+                              Personalized jobs
+                          </div>         
+                          <div class="ui  attached segment feature">
+                              <i class="icon green check"></i>
+                                SMS notification
+                          </div>    
+                          <div class="ui  attached segment feature">
+                          <i class="icon red remove"></i>
+                              Automatic application
+                          </div>  
+                          <div class="ui  attached segment feature">
+                          <i class="icon red remove"></i>
+                              Professional CV writing
+                          </div> 
+                          <div class="ui  attached segment feature">
+                          <i class="icon red remove"></i>
+                              Ready made CV templates
+                          </div> 
+                          <div class="ui  attached segment feature">
+                          <i class="icon green check"></i>
+                              1 CV review 
+                          </div>  
+                          <div class="ui  attached segment feature">
+                          <i class="icon red remove"></i>
+                              Cover letter review
+                          </div>           
+                        <div class="ui bottom attached brown button btn-plan">
+                            <i class="cart icon"></i>
+                            SUBSCRIBE
+                        </div>
+          
+                    </div>
+                </div>
             </div>
           </div>
       </section>
