@@ -1,4 +1,6 @@
 <?php
+namespace Ononiru\Core;
+
 class Base {
 
      //HTTP status codes

@@ -1,8 +1,19 @@
 {
-
+    "name": "ononiru/jobs",
+    "homepage": "https://ononiru.com",
+    "authors": [
+        {
+            "email": "johnsonmessilo19@gmail.com",
+            "name": "Johnson-Awah Alfred"
+        }
+    ],
     "autoload":{
         "psr-4": {
-            "Ononiru\\":"api"
-        }
+            "Ononiru\\":"api/"
+        
+        },
+    "require": {
+        "ramsey/uuid":"^2.9"
     }
+ }
 }

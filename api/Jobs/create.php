@@ -1,4 +1,8 @@
 <?php
+require '../../vendor/autoload.php';
+
+use Ramsey\Uuid\Uuid;
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -48,6 +52,7 @@ if(
     $job->job_title = trim($data->title);
     $job->working_hours = trim($data->working_hours);
     $job->created_at = date('Y-m-d H:i:s');
+    $Job->job_id =   $uuid5 = Uuid::uuid5(Uuid::NAMESPACE_DNS, 'php.net')->toString();
 
     // create the job
     if($job->create()){

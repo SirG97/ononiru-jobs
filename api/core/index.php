@@ -1,6 +1,7 @@
-<?php
+<?php namespace Ononiru\Core;
 
-require 'Base.php';
+use Ononiru\Core\Base;
+use \PDO;
 
 class job extends Base {
 
@@ -53,7 +54,6 @@ class job extends Base {
 
     // prepare query
     $stmt = $this->conn->prepare($query);
-    $job_id = time().uniqid();
     // sanitize
     $this->salary_range = htmlspecialchars(strip_tags($this->salary_range));
     $this->description = htmlspecialchars(strip_tags($this->description));
@@ -71,7 +71,7 @@ class job extends Base {
 
     // bind values
     $stmt->bindParam(":salary_range", $this->salary_range);
-    $stmt->bindParam(":job_id", $job_id);
+    $stmt->bindParam(":job_id", $this->job_id);
     $stmt->bindParam(":description", $this->description);
     $stmt->bindParam(":company_id", $this->company_id);
     $stmt->bindParam(":created_at", $this->created_at);
@@ -175,7 +175,7 @@ class job extends Base {
         }
       }
       if($this->_query->execute()) {
-
+          
         if($fetch){
           if($class && $this->_fetchStyle === PDO::FETCH_CLASS){
             $this->_result = $this->_query->fetchAll($this->_fetchStyle,$class);
