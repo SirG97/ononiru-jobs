@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 23, 2019 at 06:27 PM
+-- Generation Time: May 25, 2019 at 09:59 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -421,7 +421,10 @@ CREATE TABLE `job_applications` (
 --
 
 INSERT INTO `job_applications` (`id`, `job_id`, `user_id`, `company_id`, `is_shortlisted`, `cv_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(4, '15581147445cdef1b89fd81', 'ddwdwdcwo-qfqefwfwfw-ww', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-22 10:56:13', NULL);
+(11, '15581150055cdef2bdb085b', 'ddwdwdcwo-qfqefwfwfw-ww', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-23 17:33:02', NULL),
+(12, '15581150055cdef2bdb085b', 'ddwdwdcwo-qfqefwfwfw-w', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-23 17:34:16', NULL),
+(13, '15581150055cdef2bdb085b', '5ce6d9b18976a1558632881', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-23 17:34:48', NULL),
+(14, '15581147445cdef1b89fd81', 'hgfrdfcgvbhjnkmlmkjh', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-24 15:07:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -432,8 +435,9 @@ INSERT INTO `job_applications` (`id`, `job_id`, `user_id`, `company_id`, `is_sho
 CREATE TABLE `job_application_cv` (
   `id` int(11) NOT NULL,
   `cv_id` varchar(200) NOT NULL,
-  `user_id` varchar(200) NOT NULL,
+  `user_id` varchar(200) DEFAULT NULL,
   `path` varchar(200) NOT NULL,
+  `job_subscriber_id` varchar(200) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -443,9 +447,84 @@ CREATE TABLE `job_application_cv` (
 -- Dumping data for table `job_application_cv`
 --
 
-INSERT INTO `job_application_cv` (`id`, `cv_id`, `user_id`, `path`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(2, '1558117343cv5cdefbdf0fe9d3.48644622', 'ddwdwdcwo-qfqefwfwfw-ww', '15581173435cdefbdf0f97e.pdf', '2019-05-17 18:22:23', NULL, NULL),
-(3, '1558117432cv5cdefc385a1e15.31165629', 'ddwdwdcwo-qfqefwfwfw-w', '15581174325cdefc3859d60.pdf', '2019-05-17 18:23:52', NULL, NULL);
+INSERT INTO `job_application_cv` (`id`, `cv_id`, `user_id`, `path`, `job_subscriber_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, '1558117343cv5cdefbdf0fe9d3.48644622', 'ddwdwdcwo-qfqefwfwfw-ww', '15581173435cdefbdf0f97e.pdf', NULL, '2019-05-17 18:22:23', NULL, NULL),
+(3, '1558117432cv5cdefc385a1e15.31165629', 'ddwdwdcwo-qfqefwfwfw-w', '15581174325cdefc3859d60.pdf', NULL, '2019-05-17 18:23:52', NULL, NULL),
+(4, '1558720710cv5ce830c6a1ef96.29013677', NULL, '15587207105ce830c6a1a60.pdf', NULL, '2019-05-24 17:58:30', NULL, NULL),
+(5, '1558721154cv5ce83282b00eb3.04554758', NULL, '15587211545ce83282afc54.pdf', '5ce83282add5e1558721154812a200165f9f595d7f37cf4062f89d1', '2019-05-24 18:05:54', NULL, NULL),
+(6, '1558721279cv5ce832ff58f651.14763763', NULL, '15587212795ce832ff589f9.pdf', '5ce832ff56f7f1558721279812a200165f9f595d7f37cf4062f89d1', '2019-05-24 18:07:59', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_category`
+--
+
+CREATE TABLE `job_category` (
+  `id` int(11) NOT NULL,
+  `job_category_id` varchar(250) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_subscribers`
+--
+
+CREATE TABLE `job_subscribers` (
+  `id` int(11) NOT NULL,
+  `job_subscribers_id` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `user_id` varchar(200) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `job_subscription_plan_id` varchar(200) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `job_subscribers`
+--
+
+INSERT INTO `job_subscribers` (`id`, `job_subscribers_id`, `status`, `user_id`, `email`, `phone_number`, `job_subscription_plan_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(11, '5ce82f40078ca1558720320812a200165f9f595d7f37cf4062f89d1', 0, NULL, 'johnsonmmessilo19@gmail.com', NULL, '11a38b9a-b3da-360f-9353-a5a725514269', '2019-05-24 17:52:00', NULL, NULL),
+(12, '5ce83073a81af1558720627812a200165f9f595d7f37cf4062f89d1', 0, NULL, 'johnsonmmessilo19@gmail.com', NULL, '11a38b9a-b3da-360f-9353-a5a725514269', '2019-05-24 17:57:07', NULL, NULL),
+(13, '5ce8308f4fa971558720655812a200165f9f595d7f37cf4062f89d1', 0, NULL, 'johnsonmmessilo19@gmail.com', NULL, '11a38b9a-b3da-360f-9353-a5a725514269', '2019-05-24 17:57:35', NULL, NULL),
+(14, '5ce830c6a00741558720710812a200165f9f595d7f37cf4062f89d1', 0, NULL, 'johnsonmmessilo19@gmail.com', NULL, '11a38b9a-b3da-360f-9353-a5a725514269', '2019-05-24 17:58:30', NULL, NULL),
+(15, '5ce83282add5e1558721154812a200165f9f595d7f37cf4062f89d1', 0, NULL, 'johnsonmmessilo19@gmail.com', NULL, '11a38b9a-b3da-360f-9353-a5a725514269', '2019-05-24 18:05:54', NULL, NULL),
+(16, '5ce832ff56f7f1558721279812a200165f9f595d7f37cf4062f89d1', 0, NULL, 'johnsonmmessilo19@gmail.com', NULL, '11a38b9a-b3da-360f-9353-a5a725514269', '2019-05-24 18:07:59', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_subscription_plan`
+--
+
+CREATE TABLE `job_subscription_plan` (
+  `id` int(11) NOT NULL,
+  `plan_id` varchar(200) NOT NULL,
+  `requirements` text NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `count` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `job_subscription_plan`
+--
+
+INSERT INTO `job_subscription_plan` (`id`, `plan_id`, `requirements`, `name`, `count`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'e4eaaaf2-d142-11e1-b3e4-080027620cdd', '[\"email\"]', 'Basic', 0, '2019-05-24 17:17:34', NULL, NULL),
+(2, '11a38b9a-b3da-360f-9353-a5a725514269', '[\"email\",\"phonenumber\"]', 'Premium', 0, '2019-05-24 18:07:46', NULL, NULL),
+(3, '25769c6c-d34d-4bfe-ba98-e0ee856f3e7a', '[\"email\",\"phonenumber\",\"cv\"]', 'Classic', 0, '2019-05-24 18:07:40', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -821,6 +900,18 @@ ALTER TABLE `job_application_cv`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `job_subscribers`
+--
+ALTER TABLE `job_subscribers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `job_subscription_plan`
+--
+ALTER TABLE `job_subscription_plan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `os`
 --
 ALTER TABLE `os`
@@ -990,12 +1081,24 @@ ALTER TABLE `jobs_shortlisted_candidates`
 -- AUTO_INCREMENT for table `job_applications`
 --
 ALTER TABLE `job_applications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `job_application_cv`
 --
 ALTER TABLE `job_application_cv`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `job_subscribers`
+--
+ALTER TABLE `job_subscribers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `job_subscription_plan`
+--
+ALTER TABLE `job_subscription_plan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --

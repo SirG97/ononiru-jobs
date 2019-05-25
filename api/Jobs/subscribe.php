@@ -266,7 +266,7 @@ try {
             }
             $filename = time() . uniqid() . '.' . $type[1];
 
-            $uploaded = move_uploaded_file($cv['tmp_name'], '../uploads/cv/' . $filename);
+            $uploaded = move_uploaded_file($cv['tmp_name'], './uploads/cv/' . $filename);
 
             if ($uploaded && !($cv['error'])) {
                 // add cv to table
