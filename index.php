@@ -226,8 +226,7 @@
               <div class="four wide column">
                   <div class="ui cards">
                       <div class="card categories-card">
-                          <i class="huge bug orange icon categories-img" style="margin: auto;"></i>
-                          
+                          <i class="huge bug orange icon categories-img" style="margin: auto;"></i>                       
                           <div class="content content-border">
                             <div class="header">Human Resource</div>
                             <div class="meta">

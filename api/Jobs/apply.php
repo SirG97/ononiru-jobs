@@ -22,7 +22,6 @@ $db = $database->getConnection();
 
 // prepare job object
 $job = new job($db);
-$data = file_get_contents("php://input");
 // set job id to be deleted
 $job->company_id = isset($_POST['company_id']) ? $_POST['company_id'] : null;
 $job->id = isset($_POST['job_id']) ? $_POST['job_id'] : null;

@@ -2,6 +2,7 @@
 session_start();
 require '../../vendor/autoload.php';
 
+$user_id =  $_SESSION['user_id'];
 use Ononiru\Config\Database;
 use Ononiru\Core\Job;
 
@@ -25,7 +26,6 @@ $data = json_decode(file_get_contents("php://input"));
 
 // make sure data is not empty
 if(
-    !empty($data->company_id) &&
     !empty($data->salary_range) &&
     !empty($data->description) &&
     !empty($data->location) &&
@@ -38,11 +38,19 @@ if(
     !empty($data->title) 
 
 ){
+    // Get company id
+    $job->query("SELECT company_id FROM company_profile WHERE user_id = ?",[$userid]);
+    if($job->_count > 0){
+        $company_id = $job->_result;
+    }else {
+        echo $job->forbidden('You do not have a company profile set up to post a job');
+        return;
+    }
 
     // set job property values
     $job->salary_range = trim($data->salary_range);
     $job->description = trim($data->description);
-    $job->company_id = trim($data->company_id);
+    $job->company_id = trim($company_id);
     $job->location = trim($data->location);
     $job->qualification = trim($data->qualification);
     $$data->experience_level = trim($data->experience_level);
