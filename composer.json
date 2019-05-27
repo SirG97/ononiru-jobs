@@ -11,9 +11,9 @@
         "psr-4": {
             "Ononiru\\":"api/"
         
-        },
+        }
+ },
     "require": {
-        "ramsey/uuid":"^2.9"
+        "ramsey/uuid": "^3.8"
     }
- }
 }
