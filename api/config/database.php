@@ -1,4 +1,7 @@
-<?php
+<?php namespace Ononiru\Config;
+
+use \PDO;
+
 class Database{
 
     // specify your own database credentials

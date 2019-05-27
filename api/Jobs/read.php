@@ -1,51 +1,34 @@
 <?php
+session_start();
+require '../../vendor/autoload.php';
+
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
+
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-
-// include database and object files
-include_once '../config/db.php';
-include_once '../core/index.php';
 
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
 
 // initialize object
-$job = new job($db);
+$job = new Job($db);
 
 // query jobs
 $stmt = $job->read();
-$num = $stmt->rowCount();
+$num = $job->_count;
 
 // check if more than 0 record found
 if ($num > 0) {
-
-  // jobs array
-  $jobs_arr = array();
-  $jobs_arr["records"] = array();
-  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
-    extract($row);
-
-    $job_item = array(
-      "id" => $job_id,
-      "description" => html_entity_decode($description),
-      "location" => $location,
-      "slaryRange" => $salary_range,
-      "qualification" => $qualification,
-      "title" => $title,
-      "sector" => $sector
-    );
-
-    array_push($jobs_arr["records"], $job_item);
-  }
 
   // set response code - 200 OK
   http_response_code(200);
 
   // show jobs data in json format
-  echo $job->success($jobs_arr);
+  echo $job->success($job->_result);
   
 } else {
 

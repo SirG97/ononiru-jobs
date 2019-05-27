@@ -27,8 +27,7 @@ function loadJobs(){
         container.innerHTML = 'loading...';
         }
     }).done(res => {
-            console.log(res);
-        let response  = res.data.records;
+        let response  = res.data;
 
 
         response.forEach(element => {
@@ -49,7 +48,7 @@ function loadJobs(){
                 </p>
               </div>
               <div class="extra">
-                  <button class="ui right floated primary basic button apply"><a href="/job.php?id=${element.id}&s=1&u=true">More</a></button>
+                  <button class="ui right floated primary basic button apply"><a href="/job.php?id=${element.job_id}&s=1&u=true">More</a></button>
                 <div class="ui label">${element.sector}</div>
               </div>
             </div>
@@ -59,6 +58,6 @@ function loadJobs(){
 
         container.innerHTML = content;
     }).fail(err => {
-        console.log(err);
+        console.error(err);
     })
 }

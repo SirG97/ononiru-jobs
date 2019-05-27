@@ -1,18 +1,14 @@
 <?php
+session_start();
+require '../../vendor/autoload.php';
+
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
+
 $query = isset($_GET['s']) ? $_GET['s'] : null;
 trim($query);
 strtolower($query);
 $query = htmlspecialchars($query);
-
-if (file_exists('api/config/db.php') && file_exists('api/core/index.php')) {
-  include_once 'api/config/db.php';
-  include 'api/core/index.php';
-
-} else {
-  throw new Exception('Some Files could not be found', 404);
-}
-
-
  //sql query
   $db = new Database();
   $job = new Job($db->getConnection());

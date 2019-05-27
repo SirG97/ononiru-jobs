@@ -13,28 +13,22 @@ header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+    die('HEY NIGGA!! SEND THE RIGHT REQUEST TYPE');
+}
 
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
 
 // prepare job object
-$job = new job($db);
+$job = new Job($db);
 
-$company_id = $_REQUEST['company_id'];
+$job->query("SELECT job_category_id,display_name,icon,available_jobs FROM job_category ORDER BY available_jobs DESC LIMIT 4",[]);
+if($job->_count > 0){
 
-try {
-$job->query("SELECT company_id FROM jobs WHERE company_id = ? AND status = ?",[$company_id,$job->active_status]);
-    $num  =  count($job->_result);
-
-    echo $job->actionSuccess(['data' => $num]);
-    return;
-} catch (\Throwable $th) {
-    echo $job->forbidden($th->getMessage()); 
+    echo $job->success($job->_result);
     return;
 }
 
-
-
-
-
+echo $job->actionFailure('No Job category Available');  return;
