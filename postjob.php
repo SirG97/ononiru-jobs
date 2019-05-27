@@ -23,7 +23,7 @@
                     </div>
                     <div class="ui grid padded">    
                         <div class="ui sixteen wide column">
-                          <form action="" class="ui form" id="create_job">
+                          <form action="" class="ui form" id="create_job_form" method="POST">
                             <div class="ui equal width form">
                                 <div class="fields">
                                   <div class="field">
@@ -90,7 +90,7 @@
                                 <div class="fields">
                                     <div class="field">
                                       <label>Salary Range</label>
-                                      <input type="text" id="salary" placeholder="Lagos, Nigeria" required>
+                                      <input type="text" id="salary_range" placeholder="200k - 500k" required>
                                     </div>
                                     <div class="field">
                                         <label>Working Hours</label>
@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="ui green button right floated submit" id="submit-btn">Submit</button>
+                            <button type="button" class="ui green button right floated submit" id="submit-btn">Submit</button>
                             <div class="ui error message"></div>
                           </form>
                         </div>

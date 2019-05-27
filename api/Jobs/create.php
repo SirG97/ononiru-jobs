@@ -1,4 +1,6 @@
 <?php
+session_start();
+$user_id =  $_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfq';
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -17,38 +19,38 @@ $db = $database->getConnection();
 
 $job = new job($db);
 
-// get posted data
-$data = json_decode(file_get_contents("php://input"));
-
-
 // make sure data is not empty
 if(
-    !empty($data->company_id) &&
-    !empty($data->salary_range) &&
-    !empty($data->description) &&
-    !empty($data->location) &&
-    !empty($data->qualification) &&
-    !empty($data->working_hours) &&
-    !empty($data->experience_level) &&
-    !empty($data->age) &&
-    !empty($data->gender) &&
-    !empty($data->sector) &&
-    !empty($data->title) 
+    !empty($_REQUEST['salary_range']) &&
+    !empty($_REQUEST['description']) &&
+    !empty($_REQUEST['location']) &&
+    !empty($_REQUEST['qualification']) &&
+    !empty($_REQUEST['working_hours']) &&
+    !empty($_REQUEST['experience_level']) &&
+    !empty($_REQUEST['age']) &&
+    !empty($_REQUEST['gender']) &&
+    !empty($_REQUEST['sector']) &&
+    !empty($_REQUEST['title']) 
 
 ){
 
+
+
+    $job->query('SELECT company_id FROM company_profile WHERE user_id = ?',[$user_id]);
+    $c_id = $job->_result;
+
     // set job property values
-    $job->salary_range = trim($data->salary_range);
-    $job->description = trim($data->description);
-    $job->company_id = trim($data->company_id);
-    $job->location = trim($data->location);
-    $job->qualification = trim($data->qualification);
-    $$data->experience_level = trim($data->experience_level);
-    $job->age = trim($data->age);
-    $job->sector = trim($data->sector);
-    $job->gender = trim($data->gender);
-    $job->job_title = trim($data->title);
-    $job->working_hours = trim($data->working_hours);
+    $job->salary_range = trim($_REQUEST['salary_range']);
+    $job->description = trim($_REQUEST['description']);
+    $job->location = trim($_REQUEST['location']);
+    $job->qualification = trim($_REQUEST['qualification']);
+    $job->experience_level = trim($_REQUEST['experience_level']);
+    $job->age = trim($_REQUEST['age']);
+    $job->sector = trim($_REQUEST['sector']);
+    $job->company_id = $c_id;
+    $job->gender = trim($_REQUEST['gender']);
+    $job->job_title = trim($_REQUEST['title']);
+    $job->working_hours = trim($_REQUEST['working_hours']);
     $job->created_at = date('Y-m-d H:i:s');
 
     // create the job
@@ -60,7 +62,7 @@ if(
         // tell the user
         echo $job->actionSuccess('Job created successfully');
     }
-
+ 
     // if unable to create the job, tell the user
     else{
 
