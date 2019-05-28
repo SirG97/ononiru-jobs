@@ -27,6 +27,9 @@ function jobApplyInit(id,company_id){
                 title: 'Great!',
                 message: 'You\'ve applied successfully!',
             });
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
         // document.getElementById('okbtn').innerHTML = 'Great,please wait...';
         setTimeout(() => {
             document.getElementById('canclebtn').click();
