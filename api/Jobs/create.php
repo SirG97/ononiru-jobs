@@ -39,7 +39,7 @@ if(
 
 ){
     // Get company id
-    $job->query("SELECT company_id FROM company_profile WHERE user_id = ?",[$userid]);
+    $job->query("SELECT company_id FROM company_profile WHERE user_id = ? AND status = ? ",[$userid,$job->active_status]);
     if($job->_count > 0){
         $company_id = $job->_result;
     }else {
@@ -60,7 +60,7 @@ if(
     $job->job_title = trim($data->title);
     $job->working_hours = trim($data->working_hours);
     $job->created_at = date('Y-m-d H:i:s');
-    $Job->job_id =   $uuid5 = Uuid::uuid5(Uuid::NAMESPACE_DNS, 'php.net')->toString();
+    $Job->job_id =   $uuid5 = Uuid::uuid5(Uuid::NAMESPACE_DNS, 'ononirujons');
 
     // create the job
     if($job->create()){
