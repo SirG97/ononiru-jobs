@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 26, 2019 at 08:46 PM
+-- Generation Time: May 28, 2019 at 10:01 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -250,21 +250,29 @@ CREATE TABLE `company_profile` (
   `sector` varchar(200) NOT NULL,
   `location` varchar(200) NOT NULL,
   `logo` varchar(200) NOT NULL,
+  `about` text NOT NULL,
+  `phone2` varchar(30) NOT NULL,
+  `facebook_url` varchar(250) DEFAULT NULL,
   `email` varchar(200) NOT NULL,
   `phone1` varchar(20) NOT NULL,
   `user_id` varchar(255) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `twitter_url` varchar(250) DEFAULT NULL,
+  `linkedin_url` varchar(250) DEFAULT NULL,
+  `website` varchar(250) DEFAULT NULL,
+  `fax` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `company_profile`
 --
 
-INSERT INTO `company_profile` (`id`, `company_id`, `name`, `RCC`, `sector`, `location`, `logo`, `email`, `phone1`, `user_id`, `is_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'ABSCOEC-CECKWFCW-1332533', 'Oando Oils PLC', 'NCC-WCWCW-2C', 'Oil and Gas', 'Lagos,Nigeria', 'http://storage.com/path', 'oando@oandoplc.ng', '09238472832', 'dnwenicwo-qfqefwfwfw-fwqfqfq', 1, '2019-05-17 17:31:09', NULL, NULL);
+INSERT INTO `company_profile` (`id`, `company_id`, `name`, `RCC`, `sector`, `location`, `logo`, `about`, `phone2`, `facebook_url`, `email`, `phone1`, `user_id`, `is_active`, `created_at`, `updated_at`, `deleted_at`, `twitter_url`, `linkedin_url`, `website`, `fax`) VALUES
+(1, 'ABSCOEC-CECKWFCW-1332533', 'Oando Oils PLC', 'NCC-WCWCW-2C', 'Oil and Gas', 'Lagos,Nigeria', 'http://storage.com/path', '', '', '', 'oando@oandoplc.ng', '09238472832', 'dnwenicwo-qfqefwfwfw-fwqfqf', 1, '2019-05-17 17:31:09', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, '13ec055b-3fc7-44e8-9b7a-d24d67ecf561', 'Andela Inc', '2459BC0233', 'Information Technology', 'Lagos', 'uploads/company_logo/15589812855cec2aa5d86dd.png', 'We are super humans with super human strength', '+234929293452', 'http://www.facebook.com/ret', 'hello@andela.com', '+234942013424', 'dnwenicwo-qfqefwfwfw-fwqfqfq', 1, '2019-05-27 18:21:25', NULL, NULL, 'http://www.twitter.com/de', 'http://www.linkedin.com', 'https://www.andela.com', '');
 
 -- --------------------------------------------------------
 
@@ -355,7 +363,6 @@ CREATE TABLE `jobs` (
   `category_id` varchar(250) NOT NULL,
   `visits` int(11) NOT NULL,
   `age` int(10) NOT NULL,
-  `sector` varchar(30) NOT NULL,
   `status` int(11) NOT NULL,
   `gender` int(3) NOT NULL,
   `experience_level` int(11) NOT NULL,
@@ -370,11 +377,13 @@ CREATE TABLE `jobs` (
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `job_id`, `company_id`, `salary_range`, `description`, `title`, `location`, `qualification`, `category_id`, `visits`, `age`, `sector`, `status`, `gender`, `experience_level`, `working_hours`, `education`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(2, '15581147445cdef1b89fd81', 'ABSCOEC-CECKWFCW-1332533', '130,000-150,000', 'Be a Bar tender like no other\r\n\r\n                                        Company is a 2016 Iowa City-born start-up that develops consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien\r\n', 'Bar Tender At Oando', 'Enugu,Nigeria.', 'Know how to drink kpami well\r\n\r\nExperience in video production a plus or, at a minimum, a willingness to learn\r\n\r\nExperience using Invision a plus\r\n\r\nCross-browser and platform testing as standard pra', '', 1, 18, 'Oil', 1, 1, 4, '8:00:00AM -17:00:00PM', 'SSCE Min with the following \r\nAdvanced degree or equivalent experience in graphic and web design\r\n\r\nAbility to work independently and to carry out assignments to completion within parameters of instructions given, prescribed routines, and standard accepted practices\r\n\r\nMust be able to work under pressure and meet deadlines while maintaining a positive attitude and providing exemplary customer service\r\n\r\nExcellent communication skills, most notably a demonstrated ability to solicit and address creative and design feedback\r\n\r\n3 or more years of professional design experience', '2019-05-26 18:26:38', '2019-05-18 03:16:39', NULL),
-(3, '15581149085cdef25cc947f', 'ABSCOEC-CECKWFCW-1332533', '100,000-150,000', 'Get the best jobs done\r\n\r\n                                        Company is a 2016 Iowa City-born start-up that develops consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien\r\n', 'Receptionist At Oando Oil Plc', 'Lagos,Nigeria', 'Smart Guy\r\n\r\nExperience in video production a plus or, at a minimum, a willingness to learn\r\n\r\nExperience using Invision a plus\r\n\r\nCross-browser and platform testing as standard practice\r\n\r\nProficient in Photoshop, Illustrator, bonus points for familiarity with Sketch (Sketch is our preferred concepting)\r\n\r\nAbility to write code – HTML & CSS (SCSS flavor of SASS preferred when writing CSS', '', 7, 20, 'Oil And Gas', 1, 2, 2, '13:00:32AM - 17:00:00PM ', 'Bsc In CSC or related', '2019-05-26 18:26:19', '0000-00-00 00:00:00', NULL),
-(4, '15581150055cdef2bdb085b', 'ABSCOEC-CECKWFCW-1332533', '200,000-450,000', 'Work as a chef with us\r\n                                        Company is a 2016 Iowa City-born start-up that develops consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien\r\n', 'Chef person At Oando Oil Plc', 'Lagos,Nigeria', 'Smart Guy\r\n\r\nExperience in video production a plus or, at a minimum, a willingness to learn\r\n\r\nExperience using Invision a plus\r\n\r\nCross-browser and platform testing as standard practice\r\n\r\nProficient in Photoshop, Illustrator, bonus points for familiarity with Sketch (Sketch is our preferred concepting)\r\n\r\nAbility to write code – HTML & CSS (SCSS flavor of SASS preferred when writing CSS', '', 0, 20, 'Enginerring', 1, 1, 1, '13:00:32', 'Advanced degree or equivalent experience in graphic and web design  Ability to work independently and to carry out assignments to completion within parameters of instructions given, prescribed routines, and standard accepted practices  Must be able to work under pressure and meet deadlines while maintaining a positive attitude and providing exemplary customer service  Excellent communication skills, most notably a demonstrated ability to solicit and address creative and design feedback  3 or more years of professional design experience', '2019-05-21 20:53:39', '0000-00-00 00:00:00', NULL),
-(5, '87654345678poigfxjhgbnmlqxq', 'ABSCOEC-CECKWFCW-1332533', '450,000 - 500,000', 'Become a software engineer at Andela and work with others as a team to bring solutions to real world problems.', 'Software Engineer At Andela', 'Lagos,Nigeria', 'Proficiency in HTML,CSS,PHP,MYSQL,Bootstrap,Ajax,Graphql,RESTful API,devops for at least mimimum of 6 years', 'ASDFEQQ-QFQCWFDW2FW-QVQVQ-GVB4EBE', 5, 15, 'Information Technology', 1, 3, 6, '9:00am - 4:00pm', 'Not Required. ', '2019-05-26 18:43:17', '0000-00-00 00:00:00', NULL);
+INSERT INTO `jobs` (`id`, `job_id`, `company_id`, `salary_range`, `description`, `title`, `location`, `qualification`, `category_id`, `visits`, `age`, `status`, `gender`, `experience_level`, `working_hours`, `education`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, '15581147445cdef1b89fd81', 'ABSCOEC-CECKWFCW-1332533', '130,000-150,000', 'Be a Bar tender like no other\r\n\r\n                                        Company is a 2016 Iowa City-born start-up that develops consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien\r\n', 'Bar Tender At Oando', 'Enugu,Nigeria.', 'Know how to drink kpami well\r\n\r\nExperience in video production a plus or, at a minimum, a willingness to learn\r\n\r\nExperience using Invision a plus\r\n\r\nCross-browser and platform testing as standard pra', 'SDRWQWEFQW-EVWVWB-4WE-FECc', 1, 18, 1, 1, 4, '8:00:00AM -17:00:00PM', 'SSCE Min with the following \r\nAdvanced degree or equivalent experience in graphic and web design\r\n\r\nAbility to work independently and to carry out assignments to completion within parameters of instructions given, prescribed routines, and standard accepted practices\r\n\r\nMust be able to work under pressure and meet deadlines while maintaining a positive attitude and providing exemplary customer service\r\n\r\nExcellent communication skills, most notably a demonstrated ability to solicit and address creative and design feedback\r\n\r\n3 or more years of professional design experience', '2019-05-28 18:40:22', '2019-05-18 03:16:39', NULL),
+(3, '15581149085cdef25cc947f', 'ABSCOEC-CECKWFCW-1332533', '100,000-150,000', 'Get the best jobs done\r\n\r\n                                        Company is a 2016 Iowa City-born start-up that develops consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien\r\n', 'Receptionist At Oando Oil Plc', 'Lagos,Nigeria', 'Smart Guy\r\n\r\nExperience in video production a plus or, at a minimum, a willingness to learn\r\n\r\nExperience using Invision a plus\r\n\r\nCross-browser and platform testing as standard practice\r\n\r\nProficient in Photoshop, Illustrator, bonus points for familiarity with Sketch (Sketch is our preferred concepting)\r\n\r\nAbility to write code – HTML & CSS (SCSS flavor of SASS preferred when writing CSS', 'SDRWQWEFQW-EVWVWB-4WE-FECc', 8, 20, 1, 2, 2, '13:00:32AM - 17:00:00PM ', 'Bsc In CSC or related', '2019-05-28 19:18:36', '0000-00-00 00:00:00', NULL),
+(4, '15581150055cdef2bdb085b', 'ABSCOEC-CECKWFCW-1332533', '200,000-450,000', 'Work as a chef with us\r\n                                        Company is a 2016 Iowa City-born start-up that develops consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien\r\n', 'Chef person At Oando Oil Plc', 'Lagos,Nigeria', 'Smart Guy\r\n\r\nExperience in video production a plus or, at a minimum, a willingness to learn\r\n\r\nExperience using Invision a plus\r\n\r\nCross-browser and platform testing as standard practice\r\n\r\nProficient in Photoshop, Illustrator, bonus points for familiarity with Sketch (Sketch is our preferred concepting)\r\n\r\nAbility to write code – HTML & CSS (SCSS flavor of SASS preferred when writing CSS', '', 1, 20, 1, 1, 1, '13:00:32', 'Advanced degree or equivalent experience in graphic and web design  Ability to work independently and to carry out assignments to completion within parameters of instructions given, prescribed routines, and standard accepted practices  Must be able to work under pressure and meet deadlines while maintaining a positive attitude and providing exemplary customer service  Excellent communication skills, most notably a demonstrated ability to solicit and address creative and design feedback  3 or more years of professional design experience', '2019-05-28 15:47:48', '0000-00-00 00:00:00', NULL),
+(5, '87654345678poigfxjhgbnmlqxq', 'ABSCOEC-CECKWFCW-1332533', '450,000 - 500,000', 'Become a software engineer at Andela and work with others as a team to bring solutions to real world problems.', 'Software Engineer At Andela', 'Lagos,Nigeria', 'Proficiency in HTML,CSS,PHP,MYSQL,Bootstrap,Ajax,Graphql,RESTful API,devops for at least mimimum of 6 years', 'ASDFEQQ-QFQCWFDW2FW-QVQVQ-GVB4EBE', 9, 15, 1, 3, 6, '9:00am - 4:00pm', 'Not Required. ', '2019-05-28 19:17:38', '0000-00-00 00:00:00', NULL),
+(6, '294a10ae-67df-40a1-be46-3f21521eb955', '13ec055b-3fc7-44e8-9b7a-d24d67ecf561', '500,000 - 1,000,000', 'Be the guy to buy food for senior developers.Become a software engineer at Andela and work with others as a team to bring solutions to real world problems.\r\n', 'Junior Software Developer', 'London', 'senior', 'ASDFEQQ-QFQCWFDW2FW-QVQVQ-GVB4EBE', 2, 22, 1, 3, 0, '23-32', '', '2019-05-28 19:08:55', '0000-00-00 00:00:00', NULL),
+(16, '501a5645-c58b-4542-ba83-f194d9a0d5cb', '13ec055b-3fc7-44e8-9b7a-d24d67ecf561', '500,000 - 1,000,000', 'Bad Guy', 'Junior Software Developer', 'London', 'senior', 'SDRWQWEFQW-EVWVWB-4WE-FECc', 3, 22, 1, 3, 0, '23-32', '', '2019-05-28 19:20:30', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -424,13 +433,7 @@ CREATE TABLE `job_applications` (
 --
 
 INSERT INTO `job_applications` (`id`, `job_id`, `user_id`, `company_id`, `is_shortlisted`, `cv_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(11, '15581150055cdef2bdb085b', 'ddwdwdcwo-qfqefwfwfw-ww', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-23 17:33:02', NULL),
-(12, '15581150055cdef2bdb085b', 'ddwdwdcwo-qfqefwfwfw-w', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-23 17:34:16', NULL),
-(13, '15581150055cdef2bdb085b', '5ce6d9b18976a1558632881', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-23 17:34:48', NULL),
-(14, '15581147445cdef1b89fd81', 'hgfrdfcgvbhjnkmlmkjh', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-24 15:07:21', NULL),
-(15, '15581149085cdef25cc947f', 'hgfrdfcgvbhjnkmlmkjh', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-25 20:24:36', NULL),
-(16, '15581150055cdef2bdb085b', 'hgfrdfcgvbhjnkmlmkjh', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-25 20:24:59', NULL),
-(17, '87654345678poigfxjhgbnmlqxq', 'hgfrdfcgvbhjnkmlmkjh', 'ABSCOEC-CECKWFCW-1332533', 0, '', NULL, '2019-05-26 18:40:16', NULL);
+(19, '501a5645-c58b-4542-ba83-f194d9a0d5cb', 'hgfrdfcgvbhjnkmlmkjh', '13ec055b-3fc7-44e8-9b7a-d24d67ecf561', 0, '', NULL, '2019-05-28 19:20:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -1078,7 +1081,7 @@ ALTER TABLE `commentsettings`
 -- AUTO_INCREMENT for table `company_profile`
 --
 ALTER TABLE `company_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `device`
@@ -1096,7 +1099,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `jobs_shortlisted_candidates`
@@ -1108,7 +1111,7 @@ ALTER TABLE `jobs_shortlisted_candidates`
 -- AUTO_INCREMENT for table `job_applications`
 --
 ALTER TABLE `job_applications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `job_application_cv`
