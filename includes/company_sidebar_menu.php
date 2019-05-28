@@ -5,13 +5,13 @@
         </div>
         <div class="ui vertical borderless fluid text pad pad-2"
         >
-                <a href="/dashboard.php" class="pad-1 active item pad">Dashboard</a> 
-                <a href="/company.php" class="pad-1 item pad">Company profile</a> 
-                <a href="/managejobs.php" class="pad-1 item pad">Manage Jobs</a>
-                <a href="/applicants.php" class="pad-1 item pad">Applicants</a> 
-                <a href="/postjob.php" class="pad-1 item pad">Post new job</a>
-                <a href="/password.php" class="pad-1 item pad">Change password</a> 
-            <a class="pad-1 item pad">Logout</a> 
+                <a href="/dashboard/" class="pad-1 active item pad">Dashboard</a> 
+                <a href="/dashboard/company.php" class="pad-1 item pad">Company profile</a> 
+                <a href="/dashboard/managejobs.php" class="pad-1 item pad">Manage Jobs</a>
+                <a href="/dashboard/applicants.php" class="pad-1 item pad">Applicants</a> 
+                <a href="/dashboard/postjob.php" class="pad-1 item pad">Post new job</a>
+                <a href="/dashboard/password.php" class="pad-1 item pad">Change password</a> 
+            <a class="pad-1 item pad" href="/dashboard/logout.php">Logout</a> 
         </div>
     </div>
 </div>

@@ -1,11 +1,44 @@
+<?php
+session_start();
+
+require '../vendor/autoload.php';
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
+
+
+ //sql query
+ $db = new Database();
+ $job = new Job($db->getConnection());
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+if(is_null($user_id)){
+ $_SESSION['user_error_message'] = 'User_Id is null';
+ header('Location: ../../login.php');
+}
+//verify user 
+
+$user = $job->query("SELECT * FROM users WHERE userid = ?",[$user_id]);
+if($job->_count <= 0 ){
+ $_SESSION['user_error_message'] = 'User not found';
+ header('Location: ../../login.php');
+}
+
+//check if user uses company
+$_user =  $job->_result[0];
+if(!$_user->uses_job){
+ header('Location: company_new.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <link rel="stylesheet" href="semantic/dist/semantic.min.css">
-        <link rel='stylesheet' type='text/css' href='css/space_app.css'/>
-        <link rel='stylesheet' type='text/css' href='css/style.css'/>
+        <link rel="stylesheet" href="../semantic/dist/semantic.min.css">
+        <link rel='stylesheet' type='text/css' href='../css/space_app.css'/>
+        <link rel='stylesheet' type='text/css' href='../css/style.css'/>
 <style>
     *{
         padding: 0;
@@ -14,7 +47,7 @@
 </style>
 </head>
     <body>
-        <?php include 'includes/company_sidebar_menu.php' ?>
+        <?php include '../includes/company_sidebar_menu.php' ?>
         <div class='page-div'>
             <div>
                 <div class="pad-2 sixteen wide mobile sixteen wide tablet thirteen wide computer right floated column" id="content">
@@ -134,7 +167,7 @@
             </div>
         </div>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="semantic/dist/semantic.min.js"></script>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../semantic/dist/semantic.min.js"></script>
     </body>
 </html>

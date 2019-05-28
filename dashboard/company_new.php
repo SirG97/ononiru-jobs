@@ -1,3 +1,34 @@
+<?php
+session_start();
+
+require '../vendor/autoload.php';
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
+
+
+ //sql query
+ $db = new Database();
+ $job = new Job($db->getConnection());
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+if(is_null($user_id)){
+ $_SESSION['user_error_message'] = 'User_Id is null';
+ header('Location: ../../login.php');
+}
+//verify user 
+
+$user = $job->query("SELECT * FROM users WHERE userid = ?",[$user_id]);
+if($job->_count <= 0 ){
+ $_SESSION['user_error_message'] = 'User not found';
+ header('Location: ../../login.php');
+}
+
+//check if user uses company
+$_user =  $job->_result[0];
+if($_user->uses_job){
+ header('Location: company.php');
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,7 +48,7 @@
     <title>Ononiru::jobs</title>
     <link
       rel="stylesheet"
-      href="semantic/dist/semantic.min.css"
+      href="../semantic/dist/semantic.min.css"
       type="text/css"
     />
     <style type="text/css">
@@ -132,22 +163,15 @@
     <div class="ui large top fixed hidden menu">
       <div class="ui container">
         
-        <a class="item"><img src="static/images/avatar/ononiru.png" alt="">noniru</a>
+        <a class="item"><img src="../static/images/avatar/ononiru.png" alt="">noniru</a>
         <div class="right menu">
-            <a class="item">For Companies</a>
-            <a class="item">I want to hire</a>
-          <div class="item"><a class="">Log in</a></div>
-          <div class="item"><a class="ui primary button">Sign Up</a></div>
         </div>
       </div>
     </div>
     <!--Sidebar Menu-->
     <div class="ui vertical inverted sidebar menu">
-        <a class="item"><img src="static/images/avatar/ononiru.png" alt="">noniru</a>
-        <a class="item">For Companies</a> 
-        <a class="item">I want to hire</a>
-        <a class="item">Login</a> 
-        <a class="item">Signup</a>
+        <a class="item"><img src="../static/images/avatar/ononiru.png" alt="">noniru</a>
+     
     </div>
     <!--Page Contents-->
     <div class="pusher">
@@ -156,19 +180,16 @@
           <div class="ui large secondary inverted pointing menu">
             <a class="toc item"><i class="sidebar icon"></i></a>
             
-            <a class="item"><img src="static/images/avatar/ononiru.png" alt="">noniru</a>
+            <a class="item"><img src="../static/images/avatar/ononiru.png" alt="">noniru</a>
             <div class="right item">
-              <a class="item">For Companies</a>
-              <a class="item">I want to hire</a>
-              <a class="item">Log in</a>
-              <a class="ui inverted button">Sign Up</a>
             </div>
           </div>
         </div>
         <div class="ui text container">
-           <h1 class="ui inverted header">Fill Company Profile</h1>
+           <h1 class="ui inverted header">Set up your Company</h1>
         </div>
       </div>
+      <br>
       <div class="ui grid">
         <div class="ui three wide column"></div>
           <div class="ui ten wide column">
@@ -182,7 +203,7 @@
                   <div class="fields">
                     <div class="field">
                       <label>Company RCC</label>
-                      <textarea placeholder=""></textarea>
+                      <input placeholder="1987JHGVAD" required type="text" />
                     </div>
                   </div>
                   <div class="fields">
@@ -199,12 +220,12 @@
                   </div>
                   <div class="fields">
                       <div class="field">
-                        <label>Company Name</label>
-                        <input type="text" placeholder="Company">
+                        <label>Company Address</label>
+                        <input type="text" placeholder="No 234 company Address,somewhere">
                       </div>
                       <div class="field">
-                          <label>Company ID</label>
-                          <input type="text" placeholder="Salary Range">
+                          <label>Company Email</label>
+                          <input type="text" placeholder="hi@company.com">
                         
                       </div>
                   </div>
@@ -214,13 +235,16 @@
                         <input type="file" placeholder="Location">
                       </div>
                       <div class="field">
-                          <label>Location</label>
-                          <input type="text" placeholder="Location">
+                          <label>City</label>
+                          <input type="text" placeholder="lagos">
                       </div>
                   </div>
-            
+              <div>
+              <button type="button" class="ui green button right floated submit" id="create-btn">Create</button>
               </div>
-          </div>
+              </div>
+
+            </div>
           <div class="ui three wide column"></div>
       </div>
       

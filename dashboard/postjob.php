@@ -1,4 +1,34 @@
 <?php
+session_start();
+require '../vendor/autoload.php';
+$_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfq';
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
+
+
+ //sql query
+  $db = new Database();
+  $job = new Job($db->getConnection());
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+if(is_null($user_id)){
+  $_SESSION['user_error_message'] = 'User_Id is null';
+  header('Location: ../../login.php');
+
+}
+//verify user 
+
+$user = $job->query("SELECT * FROM users WHERE userid = ?",[$user_id]);
+if($job->_count <= 0 ){
+  $_SESSION['user_error_message'] = 'User not found';
+  header('Location: ../../login.php');
+}
+
+//check if user uses company
+$_user =  $job->_result[0];
+if(!$_user->uses_job){
+  header('Location: company.php');
+}
 
 ?>
 
