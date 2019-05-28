@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="semantic/dist/semantic.min.css">
         <link rel='stylesheet' type='text/css' href='css/space_app.css'/>
         <link rel='stylesheet' type='text/css' href='css/style.css'/>
+        <link rel="stylesheet" href="css/iziToast.min.css">
 <style>
 *{
     padding: 0;
@@ -27,7 +28,7 @@
                     </div>
                     <div class="ui grid padded">    
                         <div class="ui sixteen wide column">
-                          <form action="" class="ui form" id="create_job">
+                          <form action="" class="ui form" id="create_job_form" method="POST">
                             <div class="ui equal width form">
                                 <div class="fields">
                                   <div class="field">
@@ -83,7 +84,7 @@
                                     </div>
                                     <div class="field">
                                       <label>Minimum Age</label>
-                                      <input type="number" max="40" id="max_age" placeholder="40" required>
+                                      <input type="number" min="18" max="40" id="max_age" placeholder="40" required>
                                     </div>
                                     <div class="field">
                                         <label>Location</label>
@@ -94,7 +95,7 @@
                                 <div class="fields">
                                     <div class="field">
                                       <label>Salary Range</label>
-                                      <input type="text" id="salary" placeholder="Lagos, Nigeria" required>
+                                      <input type="text" id="salary_range" placeholder="200k - 500k" required>
                                     </div>
                                     <div class="field">
                                         <label>Working Hours</label>
@@ -102,7 +103,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="ui green button right floated submit" id="submit-btn">Submit</button>
+                            <button type="button" class="ui green button right floated submit" id="submit-btn">Submit</button>
                             <div class="ui error message"></div>
                           </form>
                         </div>
@@ -112,6 +113,7 @@
         </div>
 
         <script src="js/jquery.min.js"></script>
+        <script src="js/iziToast.min.js"></script>
         <script src="semantic/dist/semantic.min.js"></script>
         <script src="js/createjob.js"></script>
         <script>

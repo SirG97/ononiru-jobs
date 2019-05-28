@@ -28,7 +28,7 @@ function loadJobs(){
         }
     }).done(res => {
         let response  = res.data;
-
+        console.log(response);
 
         response.forEach(element => {
             content += `
