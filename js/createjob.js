@@ -5,12 +5,12 @@ submit_btn.on('click', function(e){
     e.preventDefault();
     // var validator = $( "#create_job_form" ).validate();
     
-       const data = {
+        data = {
             title: $("#job_title").val(),
             description : $("#job_description").val(),
             sector:  $("#sector").val(),
             gender: $("#gender").val(),
-            company_name: $("#company_name").val(),
+           // company_name: $("#company_name").val(),
             experience_level: $("#experience_level").val(),
             age: $("#min_age").val() +'-'+ $("#max_age").val(),
             location: $("#location").val(),
@@ -23,7 +23,7 @@ submit_btn.on('click', function(e){
         $.ajax({
             url: '/api/Jobs/create.php',
             method: 'POST',
-            data
+            data:{ test: JSON.stringify( data ) }
         }).done(data=> {
             console.log(data);
             if(data.status_code == 200 && data.status == 'success'){
