@@ -7,10 +7,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <link rel="stylesheet" href="semantic/dist/semantic.min.css">
-        <link rel='stylesheet' type='text/css' href='css/space_app.css'/>
-        <link rel='stylesheet' type='text/css' href='css/style.css'/>
-        <link rel="stylesheet" href="css/iziToast.min.css">
+        <link rel="stylesheet" href="../semantic/dist/semantic.min.css">
+        <link rel='stylesheet' type='text/css' href='../css/space_app.css'/>
+        <link rel='stylesheet' type='text/css' href='../css/style.css'/>
+        <link rel="stylesheet" href="../css/iziToast.min.css">
+        <title>Post A new Job :: Ononiru</title>
 <style>
 *{
     padding: 0;
@@ -19,7 +20,7 @@
 </style>
     </head>
     <body>
-      <?php include 'includes/company_sidebar_menu.php' ?>
+      <?php include '../includes/company_sidebar_menu.php' ?>
         <div class='page-div'>
             <div>
                 <div class="pad-2 sixteen wide mobile sixteen wide tablet thirteen wide computer right floated column" id="content">
@@ -55,8 +56,8 @@
                                   <div class="field">
                                       <label>Gender</label>
                                       <select id="gender" name="dropdown" class="ui dropdown" required>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
                                       </select>
                                   </div>
                                   
@@ -112,10 +113,10 @@
             </div>
         </div>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/iziToast.min.js"></script>
-        <script src="semantic/dist/semantic.min.js"></script>
-        <script src="js/createjob.js"></script>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/iziToast.min.js"></script>
+        <script src="../semantic/dist/semantic.min.js"></script>
+        <script src="../js/createjob.js"></script>
         <script>
 
         </script>

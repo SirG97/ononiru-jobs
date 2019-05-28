@@ -1,21 +1,31 @@
 <?php
 session_start();
-require '../../vendor/autoload.php';
+require 'vendor/autoload.php';
 
 use Ononiru\Config\Database;
 use Ononiru\Core\Job;
 
-$query = isset($_GET['s']) ? $_GET['s'] : null;
-trim($query);
-strtolower($query);
-$query = htmlspecialchars($query);
+$category = isset($_GET['c_id']) ? $_GET['c_id'] : null;
+
  //sql query
   $db = new Database();
   $job = new Job($db->getConnection());
 
-  
 // get keywords
-$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
+$keywords=isset($_GET["s"]) ? $_GET["s"] : null;
+trim($keywords);
+strtolower($keywords);
+$keywords = htmlspecialchars($keywords);
+
+
+if(isset($category)){
+
+  $stmt = $job->filter(trim($category));  
+  $num = $job->_count;
+
+  // var_dump($job->_result);
+  $jobs_arr = $job->_result;
+}else if(isset($keywords)){
 
 // query jobs
 $stmt = $job->search(trim($keywords));
@@ -25,24 +35,25 @@ $num = $stmt->rowCount();
 if($num>0){
 
     // jobs array
-    $jobs_arr=array();
+    $jobs_arr = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
 
         $job_item=array(
-            "id" => $job_id,
+            "job_id" => $job_id,
             "description" => html_entity_decode($description),
             "company_id" => $company_id,
             'title' => $title,
-            'sector' => $sector,
+            'display_name' => $display_name,
             'location' => $location
-            
         );
 
         array_push($jobs_arr, $job_item);
     }
 }
+}
+
 
 
  
@@ -254,8 +265,8 @@ if($num > 0) {
         <p></p>
       </div>
       <div class='extra'>
-          <a class='ui right floated primary basic button apply' href='job.php?id=".$key['id']."'>View</a>
-        <div class='ui label'>".$key['sector']."</div>
+          <a class='ui right floated primary basic button apply' href='job.php?id=".$key['job_id']."'>View</a>
+        <div class='ui label'>".$key['display_name']."</div>
       </div>
     </div>
   </div>

@@ -20,18 +20,20 @@ function instantiateSearch(val) {
         container.style.backgroundColor = '#78a2c1';
 
         $.ajax({
-            url:`http://localhost:4000/api/jobs/search.php?s=${searchKeyWord}`,
+            url:`/api/jobs/search.php?s=${searchKeyWord}`,
             method:'GET',
             beforeSend: function(){
     container.innerHTML = 'loading...';
             }
         }).done(res => {
+            console.log(res);
             let response = res.data;
     container.innerHTML = '';
             response.forEach(element => {
         container.innerHTML += `<small><a href=http://localhost:4000/job.php?id=${element.id}>`+ element.title + '</small> <br/>';
             });
         }).fail(err => {
+            console.log(err);
         container.style.backgroundColor = '#b13030';
             container.innerHTML = err.status  == 404 ? 'Not results found!' : ''
         })

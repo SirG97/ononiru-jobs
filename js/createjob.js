@@ -10,7 +10,6 @@ submit_btn.on('click', function(e){
             description : $("#job_description").val(),
             sector:  $("#sector").val(),
             gender: $("#gender").val(),
-           // company_name: $("#company_name").val(),
             experience_level: $("#experience_level").val(),
             age: $("#min_age").val() +'-'+ $("#max_age").val(),
             location: $("#location").val(),
@@ -18,37 +17,51 @@ submit_btn.on('click', function(e){
             salary_range: $("#salary_range").val(),
             working_hours:$('#working_hours').val()
         }
+
+        for (const key in data) {
+            console.log(data[key])
+
+            if (data.hasOwnProperty(key)) {
+                if(data[key] == ''){
+                    iziToast.warning({
+                        title: 'Oops!',
+                        message: key + ' should not be left empty',
+                        timeout: 3000,
+                        position:'topRight'
+                    });
+                    return false;
+                }
+            }
+        }
         console.log(data);
   
         $.ajax({
             url: '/api/Jobs/create.php',
             method: 'POST',
-            data:{ test: JSON.stringify( data ) }
+            data
         }).done(data=> {
-            console.log(data);
+            
             if(data.status_code == 200 && data.status == 'success'){
                 iziToast.success({
                     title: 'Great!',
                     message: data.message,
-                    timeout: 5000,
+                    timeout: 3000,
+                    position:'bottomLeft'
                 });
 
-            }else if(data.status == 'failed' && data.status_code == 409 && data.message == "Unable to create job. Data is incomplete."){
-    
-                iziToast.error({
-                    title: 'Oops!',
-                    message: data.message,
-                    timeout: 5000,
-                });
-            }else if(data.status == 'failed' && data.status_code == 403 && data.message == "Opps! Something went wrong"){
-                iziToast.error({
-                    title: 'Oops!',
-                    message: data.message,
-                    timeout: 5000,
-                });
+                setTimeout(() => {
+                    window.location.href = window.location.origin + '/dashboard/jobs.php';
+                },2500)
             }
 
         }).fail(err=>{
+            if(err.status == 409 || err.status == 403){
+                iziToast.error({
+                    title: 'Oops!',
+                    message: err.responseJSON.message,
+                    timeout: 5000,
+                });
+            }
             console.log(err);
         });
     
@@ -56,6 +69,3 @@ submit_btn.on('click', function(e){
 
 
 });
-function post_new_job(){
-
-}

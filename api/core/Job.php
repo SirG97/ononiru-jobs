@@ -2,6 +2,8 @@
 
 use Ononiru\Core\Base;
 use \PDO;
+use Ramsey\Uuid\Uuid;
+
 
 class Job extends Base {
 
@@ -13,10 +15,34 @@ class Job extends Base {
    $gender, $sector, $status,$_error , $created_at, $updated_at, $deleted_at, $company_id,$_count,$_result,$_lastInsertID;
   private $null  = null,$deleted_status = 2;
   public $active_status = 1,$not_active = 0;
-  private $_fetchStyle = PDO::FETCH_CLASS;
+  private $_fetchStyle = PDO::FETCH_CLASS,$uuid;
   // constructor with $db as database connection
   public function __construct($db){
     $this->conn = $db;
+    try {
+      $this->uuid = Uuid::uuid4();
+  } catch (UnsatisfiedDependencyException $e) {
+  
+      // Some dependency was not met. Either the method cannot be called on a
+      // 32-bit system, or it can, but it relies on Moontoast\Math to be present.
+      http_response_code(500);
+      echo 'Caught exception: ' . $e->getMessage() . "\n";
+      return;
+  }
+  
+  }
+
+  public function fetchCategory(){
+    $query = "SELECT * FROM job_category ORDER BY available_jobs DESC LIMIT 4";
+        
+    $this->_query = $this->conn->prepare($query);
+    
+ $this->_query->execute();
+ $this->_fetchStyle = PDO::FETCH_ASSOC;
+
+ $this->_result = $this->_query->fetchAll($this->_fetchStyle);
+ $this->_count = $this->_query->rowCount();
+ 
   }
 /**
  * Dump and die a data
@@ -44,11 +70,37 @@ public function sanitize($data)
     return $data;
 }
 
+public function filter($category){
+
+
+        $query = "SELECT * FROM jobs
+     INNER JOIN job_category ON job_category.job_category_id = ". $this->table_name .".category_id
+        
+         WHERE category_id = ? AND status = ?";
+        
+       $this->_query = $this->conn->prepare($query);
+       $this->_query->bindParam(1, $category);
+       $this->_query->bindParam(2, $this->active_status);
+        
+    $this->_query->execute();
+    $this->_fetchStyle = PDO::FETCH_ASSOC;
+  
+    $this->_result = $this->_query->fetchAll($this->_fetchStyle);
+    $this->_count = $this->_query->rowCount();
+    
+
+  
+  return $this->_query;
+}
+
   // read jobs
   function read() {
 
     // select all query
-    $query = "SELECT * FROM " . $this->table_name . " WHERE status = :status ORDER BY created_at DESC ";
+    $query = "SELECT * FROM " . $this->table_name . " 
+     INNER JOIN job_category ON job_category.job_category_id = ". $this->table_name .".category_id
+    
+     WHERE status = :status ORDER BY visits DESC LIMIT 3";
 
     // prepare query statement
     $this->_query = $this->conn->prepare($query);
@@ -72,7 +124,8 @@ public function sanitize($data)
   function create() {
 
     // query to insert record
-    $query = "INSERT INTO " . $this->table_name . " SET job_id=:job_id,salary_range=:salary_range,title=:job_title,description=:description, company_id=:company_id, created_at=:created_at,qualification=:qualification,gender=:gender,age=:age,sector=:sector,location=:location,
+    $query = "INSERT INTO " . $this->table_name . " SET job_id=:job_id,salary_range=:salary_range,title=:job_title,description=:description, company_id=:company_id, created_at=:created_at,
+    qualification=:qualification,gender=:gender,age=:age,category_id=:category_id,location=:location,
                 status=:status,working_hours=:working_hours,deleted_at=:deleted_at";
 
     // prepare query
@@ -86,7 +139,7 @@ public function sanitize($data)
     $this->job_title = htmlspecialchars(strip_tags($this->job_title));
     $this->qualification = htmlspecialchars(strip_tags($this->qualification));
     $this->location = htmlspecialchars(strip_tags($this->location));
-    $this->sector = htmlspecialchars(strip_tags($this->sector));
+    $this->category_id = htmlspecialchars(strip_tags($this->category_id));
     $this->status = 1;
     $this->gender = htmlspecialchars(strip_tags($this->gender));
     $this->age = htmlspecialchars(strip_tags($this->age));
@@ -94,14 +147,14 @@ public function sanitize($data)
 
     // bind values
     $stmt->bindParam(":salary_range", $this->salary_range);
-    $stmt->bindParam(":job_id", $this->job_id);
+    $stmt->bindParam(":job_id", $this->uuid);
     $stmt->bindParam(":description", $this->description);
     $stmt->bindParam(":company_id", $this->company_id);
     $stmt->bindParam(":created_at", $this->created_at);
     $stmt->bindParam(":job_title", $this->job_title);
     $stmt->bindParam(":location", $this->location);
     $stmt->bindParam(":qualification", $this->qualification);
-    $stmt->bindParam(":sector", $this->sector);
+    $stmt->bindParam(":category_id", $this->category_id);
     $stmt->bindParam(":gender", $this->gender);
     $stmt->bindParam(":status", $this->status);
     $stmt->bindParam(":age", $this->age);
@@ -319,10 +372,12 @@ public function sanitize($data)
     $query = "SELECT *
             FROM
                 " . $this->table_name . "
+     INNER JOIN job_category ON job_category.job_category_id = ". $this->table_name .".category_id
+
             WHERE
                 title LIKE ? OR location LIKE ? OR qualification LIKE ? AND status = ?
             ORDER BY
-                created_at DESC LIMIT 7";
+                visits DESC LIMIT 7";
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);

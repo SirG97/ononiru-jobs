@@ -7,7 +7,7 @@ $user_id = 'dnwenicwo-qfqefwfwfw-fwqfqfq';
 use Ononiru\Config\Database;
 use Ononiru\Core\Job;
 
-use Ramsey\Uuid\Uuid;
+
 
 // required headers
 header("Access-Control-Allow-Origin: *");
@@ -18,19 +18,18 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $database = new Database();
 $db = $database->getConnection();
-
 $job = new job($db);
 
-$test = utf8_encode($_POST['test']); // Don't forget the encoding
-$data = json_decode($test);
 // make sure data is not empty
 if(
-    !empty($data->title) && !empty($data->description) && !empty($data->sector) && !empty($data->gender) && 
-    !empty($data->experience_level) && !empty($data->age) && !empty($data->location) && !empty($data->qualification) &&
-    !empty($data->salary_range) && !empty($data->working_hours)
+    
+    !empty($_REQUEST['title']) && !empty($_REQUEST['description']) && !empty($_REQUEST['category_id']) && !empty($_REQUEST['gender']) && 
+    !empty($_REQUEST['experience_level']) && !empty($_REQUEST['age']) && !empty($_REQUEST['location']) && !empty($_REQUEST['qualification']) &&
+    !empty($_REQUEST['salary_range']) && !empty($_REQUEST['working_hours'])
+
 ){
     // Get company id
-    $job->query("SELECT company_id FROM company_profile WHERE user_id = ? AND status = ? ",[$userid,$job->active_status]);
+    $job->query("SELECT company_id FROM company_profile WHERE user_id = ? AND is_active = ? ",[$user_id,$job->active_status]);
     if($job->_count > 0){
         $company_id = $job->_result[0]->company_id;
     }else {
@@ -38,25 +37,19 @@ if(
         return;
     }
 
-
-
-    $job->query('SELECT company_id FROM company_profile WHERE user_id = ?',[$user_id]);
-    $c_id = $job->_result;
-
     // set job property values
-    $job->salary_range = trim($data->salary_range);
-    $job->description = trim($data->description);
+    $job->salary_range = trim($_REQUEST['salary_range']);
+    $job->description = trim($_REQUEST['description']);
     $job->company_id = trim($company_id);
-    $job->location = trim($data->location);
-    $job->qualification = trim($data->qualification);
-    $job->experience_level = trim($data->experience_level);
-    $job->age = trim($data->age);
-    $job->sector = trim($data->sector);
-    $job->gender = trim($data->gender);
-    $job->job_title = trim($data->title);
-    $job->working_hours = trim($data->working_hours);
+    $job->location = trim($_REQUEST['location']);
+    $job->qualification = trim($_REQUEST['qualification']);
+    $job->experience_level = trim($_REQUEST['experience_level']);
+    $job->age = trim($_REQUEST['age']);
+    $job->category_id = trim($_REQUEST['category_id']);
+    $job->gender = trim($_REQUEST['gender']);
+    $job->job_title = trim($_REQUEST['title']);
+    $job->working_hours = trim($_REQUEST['working_hours']);
     $job->created_at = date('Y-m-d H:i:s');
-    $Job->job_id =   $uuid5 = Uuid::uuid5(Uuid::NAMESPACE_DNS, 'ononirujons');
 
     // create the job
     if($job->create()){

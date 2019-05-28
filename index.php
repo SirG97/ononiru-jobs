@@ -130,20 +130,20 @@
     <div class="ui large top fixed hidden menu">
       <div class="ui container">
         
-        <a class="item"><img src="static/images/avatar/ononiru.png" alt="">noniru</a>
+        <a class="item" href="/"><img src="static/images/avatar/ononiru.png" alt="ononiru">noniru</a>
         <div class="right menu">
-            <a class="item">I want to hire</a>
-            <a class="item">Subscribe</a>
-          <div class="item"><a class="">Log in</a></div>
-          <div class="item"><a class="ui primary button">Sign Up</a></div>
+            <a class="item" href="company.php">I want to hire</a>
+            <a class="item" href="#subscribe">Subscribe</a>
+          <div class="item" href="#"><a class="">Log in</a></div>
+          <div class="item" href="#"><a class="ui primary button">Sign Up</a></div>
         </div>
       </div>
     </div>
     <!--Sidebar Menu-->
     <div class="ui vertical inverted sidebar menu">
-        <a class="item"><img src="static/images/avatar/ononiru.png" alt="">noniru</a>
-        <a class="item">I want to hire</a> 
-        <a class="item">Subscribe</a>
+        <a class="item" href="/"><img src="static/images/avatar/ononiru.png" alt="ononiru">noniru</a>
+        <a class="item" href="company.php">I want to hire</a> 
+        <a class="item" href="#subscribe">Subscribe</a>
         <a class="item">Login</a> 
         <a class="item">Signup</a>
     </div>
@@ -154,10 +154,10 @@
           <div class="ui large secondary inverted pointing menu">
             <a class="toc item"><i class="sidebar icon"></i></a>
             
-            <a class="item"><img src="static/images/avatar/ononiru.png" alt="">noniru</a>
+            <a class="item" href="/"><img src="static/images/avatar/ononiru.png" alt="ononiru">noniru</a>
             <div class="right item">
-              <a class="item">I want to hire</a>
-              <a class="item">Subscribe</a>
+              <a class="item" href="company.php">I want to hire</a>
+              <a class="item" href="#subscribe">Subscribe</a>
               <a class="item">Log in</a>
               <a class="ui inverted button">Sign Up</a>
             </div>
@@ -177,68 +177,9 @@
       </div>
       <section id="category-grid">
         <h2 class="" style="text-align: center;">Popular Categories</h2>
-          <div class="ui grid container stackable">
-              <div class="four wide column">
-                  <div class="ui cards">
-                      <div class="card categories-card">
-                          <i class="huge yellow bullhorn icon categories-img" style="margin: auto;"></i>
-                          
-                          <div class="content content-border">
-                            <div class="header">Art and multimedia</div>
-                            <div class="meta">
-                              <a>2 open positions</a>
-                            </div>
-                           
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="four wide column">
-                  <div class="ui cards">
-                      <div class="card categories-card">
-                          <i class="huge brown car icon categories-img" style="margin: auto;"></i>
-                          
-                          <div class="content content-border">
-                            <div class="header">Web Design & IT</div>
-                            <div class="meta">
-                              <a>15 open positions</a>
-                            </div>
-                           
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="four wide column">
-                  <div class="ui cards">
-                      <div class="card categories-card">
-                          <i class="huge green bullseye icon categories-img" style="margin: auto;"></i>
-                          
-                          <div class="content content-border ">
-                            <div class="header">Account & Finance</div>
-                            <div class="meta">
-                              <a>7 open positions</a>
-                            </div>
-                           
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="four wide column">
-                  <div class="ui cards">
-                      <div class="card categories-card">
-                          <i class="huge bug orange icon categories-img" style="margin: auto;"></i>                       
-                          <div class="content content-border">
-                            <div class="header">Human Resource</div>
-                            <div class="meta">
-                              <a>4 open positions</a>
-                            </div>
-                           
-                          </div>
-                      </div>
-                  </div>
-              </div>
-             
-          </div>
+          <div class="ui grid container stackable" id="job_featured_container">
+              
+                       </div>
       </section>
       <section id="featured-grid">
           <h2 class="" style="text-align: center;">Featured Jobs</h2>
@@ -256,12 +197,12 @@
                 <div class="green column call-to-action-column" style="">
                   <h3>I'M A RECRUITER</h3>
                   <p>O One of our jobs has some kind of flexibility jobs has some kind of flexibility option such as telecommuting, a part-time schedule or a flexible or flextime.</p>
-							<a href="#" title="" class="ui button  green huge">Post new job</a>
+							<a href="dashboard/postjob.php" title="" class="ui button  green huge">Post new job</a>
                 </div>
                 <div class="yellow column call-to-action-column2">
                     <h3>I AM JOBSEEKER!</h3>
                     <p>One of our One of our jobs has some kind of flexibility jobs has some kind of flexibility option such as telecommuting, a part-time schedule or a flexible or flextime.</p>
-                    <a href="#" title="" class="ui button yellow huge">Browse Jobs</a>
+                    <a href="jobs.php?s=" title="" class="ui button yellow huge">Browse Jobs</a>
                 </div>
               </div>
           </div>
@@ -332,7 +273,7 @@
       </section>
 
       <section id="for-who">
-        <div class="ui container">
+        <div class="ui container" id="subscribe">
             <div class="ui three columns stackable grid">
                 <div class="column">
                     <div class="ui segments plan">
@@ -377,7 +318,7 @@
 
                         <div class="ui bottom attached grey button btn-plan">
                             <i class="cart icon"></i>
-                            SUBSCRIBE
+                            <a href="freeform.php">SUBSCRIBE</a>
                         </div>
           
                     </div>
@@ -426,7 +367,7 @@
                             </div>           
                         <div class="ui bottom attached violet button btn-plan">
                             <i class="cart icon"></i>
-                            SUBSCRIBE
+                            <a href="premiumform.php">SUBSCRIBE</a>
                         </div>
           
                     </div>

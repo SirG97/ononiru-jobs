@@ -42,8 +42,7 @@ if($num>0){
             "salary_range" => $salary_range,
             "qualification" => $qualification,
             "company_id" => $company_id,
-            'title' => $title,
-            'sector' => $sector
+            'title' => $title
             
         );
 

@@ -1,7 +1,7 @@
 <div class='menu-div s-hide m-hide l-show' style='height: 100%;'>
     <div class="">
         <div class="logo-container">
-            <img src="static/images/avatar/ononiru.png" alt="" style="width: 60px; height: auto;"><h6 style="font-size: 22px; display: inline-block;font-weight: normal;">noniru</h6>
+            <img src="../static/images/avatar/ononiru.png" alt="" style="width: 60px; height: auto;"><h6 style="font-size: 22px; display: inline-block;font-weight: normal;">noniru</h6>
         </div>
         <div class="ui vertical borderless fluid text pad pad-2"
         >
