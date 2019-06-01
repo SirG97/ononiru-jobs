@@ -12,11 +12,8 @@ session_start();
     />
     <meta
       name="description"
-      content="Semantic-UI-Forest, collection of design, themes and templates for Semantic-UI."
-    />
-    <meta name="keywords" content="Semantic-UI, Theme, Design, Template" />
-    <meta name="author" content="PPType" />
-    <meta name="theme-color" content="#ffffff" />
+      content="Ononiru jobs is a platform for job seekers looking for their dream job and commpanies who wish to secure the right candidates."/>
+    
     <title>Ononiru::jobs</title>
     <link rel="stylesheet" href="semantic/dist/semantic.min.css" type="text/css"/>
     <!-- <link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/fontawesome.min.css"> -->
@@ -98,15 +95,22 @@ session_start();
         display: none;
       }
 
+      .toc.item{
+          
+        }
+
       @media only screen and (max-width: 700px) {
         .ui.fixed.menu {
           display: none !important;
         }
 
-        .secondary.pointing.menu .item,
-        .secondary.pointing.menu .menu {
+        .secondary.pointing.menu .right.item .item{
+        /* .secondary.pointing.menu .menu { */
           display: none;
         }
+
+       
+        
 
         .secondary.pointing.menu .toc.item {
           display: block;
@@ -124,6 +128,11 @@ session_start();
         .masthead h2 {
           margin-top: 0.5em;
           font-size: 1.5em;
+        }
+      }
+      @media screen and (max-width: 320px){
+        .secondary.pointing.menu .menu>.item{
+          display: inline-block;
         }
       }
     </style>
@@ -155,24 +164,26 @@ session_start();
       <div class="ui inverted vertical masthead center aligned segment">
         <div class="ui container">
           <div class="ui large secondary inverted pointing menu">
-            <a class="toc item"><i class="sidebar icon"></i></a>
+            <!-- former hambuger menu icon -->
             
             <a class="item" href="/"><img src="static/images/avatar/ononiru.png" alt="ononiru">noniru</a>
+            <a class="toc item" style="position: absolute;right: 0;top: 30px;"><i class="sidebar icon"></i></a>
             <div class="right item">
               <a class="item" href="company.php">I want to hire</a>
               <a class="item" href="#subscribe">Subscribe</a>
               <a class="item">Log in</a>
-              <a class="ui inverted button">Sign Up</a>
+              <a href="" class="item">Sign Up</a>
+              
             </div>
           </div>
         </div>
         <div class="ui text container">
           <h1 class="ui inverted header">Ononiru Jobs</h1>
           <h2>Can't think of a tag line right now :(</h2>
-          <div class="ui huge action input" style="width: 100%">
-              <input onkeyup="instantiateSearch(this.value)" id="search_input" type="text" placeholder="Search...">
-              <button onclick="searchinit()" type="button" id="search_btn" class="ui green button">Search</button>
-            </div>
+          <div class="ui huge action input ">
+            <input onkeyup="instantiateSearch(this.value)" id="search_input" type="text" placeholder="Search...">
+            <button onclick="searchinit()" type="button" id="search_btn" class="ui green button">Search</button>
+          </div>
           <div class="ui huge primary button" id="search_result" style="display:none">
             
           </div>
@@ -182,7 +193,7 @@ session_start();
         <h2 class="" style="text-align: center;">Popular Categories</h2>
           <div class="ui grid container stackable" id="job_featured_container">
               
-                       </div>
+          </div>
       </section>
       <section id="featured-grid">
           <h2 class="" style="text-align: center;">Featured Jobs</h2>
@@ -194,13 +205,14 @@ session_start();
          </div>
 
       </section>
+      
       <section id="call-to-action">
-          <div class="ui equal width center aligned padded grid">
+          <div class="ui two column stackable center aligned padded grid">
               <div class="row">
                 <div class="green column call-to-action-column" style="">
                   <h3>I'M A RECRUITER</h3>
                   <p>O One of our jobs has some kind of flexibility jobs has some kind of flexibility option such as telecommuting, a part-time schedule or a flexible or flextime.</p>
-							<a href="dashboard/postjob.php" title="" class="ui button  green huge">Post new job</a>
+							    <a href="dashboard/postjob.php" title="" class="ui button  green huge">Post new job</a>
                 </div>
                 <div class="yellow column call-to-action-column2">
                     <h3>I AM JOBSEEKER!</h3>
@@ -210,64 +222,101 @@ session_start();
               </div>
           </div>
       </section>
+      <section class="how-it-works">
+        <div class="how-it-works-title">
+          <h2>How does it work</h2>
+        </div>
+        <div class="ui stackable three column grid padded how-steps-container">
+          <div class="column">
+            <div class="how-steps">
+              <div class="how-steps-icon">
+                <span class="icon-main">
+                  <i class="icon user"></i>
+                </span>
+              </div>
+              <h3>Create your profile</h3>
+              <p>We have qualified candidates and jobs that match your specification. Create a profile to access it.</p>
+            </div>
+           
+          </div>
+          <div class="column">
+            <div class="how-steps">
+              <div class="how-steps-icon">
+                <span class="icon-main">
+                  <i class="search engine icon"></i>
+                </span>
+              </div>
+              <h3>Search and apply for a job</h3>
+              <p>See a job you like? Click to view more and apply for jobs one the platform.</p>
+            </div>
+
+          </div>
+          <div class="column">
+            <div class="how-steps">
+              <div class="how-steps-icon">
+                <span class="icon-main">
+                <i class="h square icon"></i>
+                </span>
+              </div>
+              <h3> Get hired</h3>
+              <p>That's it! very simple. Relax and wait for the calls for interview if you are shortlisted.</p>
+            </div>
+            
+          </div>
+        </div>
+      </section>
       <section id="for-who">
           <h2 class="" style="text-align: center;">Who is ononiru jobs for</h2>
-          <p class="ui center aligned">Ononiru jobs is for job seekers and companies looking to find jobs tailored for them or find qualified candidate in less than 48 hours</p>
-          <div class="ui equal width left aligned padded grid for-who-row">
-            <div class="row">
-              <div class="column pad-3">
-                <div class="ui items">
-                  <div class="item">
-                    
-                      <i class="bug huge icon"></i>
-                    
-                    <div class="content">
-                      <a class="header">Fast and convienent</a>
-                      <div class="description">
-                        <p>This is a little message that tries to explain the meaning of the header above. I think I need to make it a little longer so that it will look nicer than it is now.</p>
-                      </div>
+          <p style="text-align: center">Ononiru jobs is for job seekers and companies looking to find jobs tailored for them or find qualified candidate in less than 48 hours</p>
+          <div class="ui stackable four column grid padded">
+            <div class="column">
+            <div class="for-who-tabs">
+                <div class="image">
+                  <img src="static/images/webdesign.png" alt="">
+                </div>
+                <div class="content">
+                    <h4 class="header">Software Engineers</h4>
+                    <div class="description">
+                      <p>This is a little message that tries to explain the meaning of the header above. I think I need</p>
                     </div>
-                  </div>
                 </div>
               </div>
-              <div class=" column pad-3">
-                <div class="ui items">
-                  <div class="item">
-                      <i class="bug huge icon"></i>
-                    <div class="content">
-                      <a class="header">Safe and reliable</a>
-                      <div class="description">
-                        <p>This is a little message that tries to explain the meaning of the header above. I think I need to make it a little longer so that it will look nicer than it is now.</p>
-                      </div>
+            </div>
+            <div class="column">
+               <div class="for-who-tabs">
+               <div class="image">
+                  <img src="static/images/network.png" alt="">
+                </div>
+                <div class="content">
+                    <h4 class="header">Network Engineers</h4>
+                    <div class="description">
+                      <p>This is a little message that tries to explain the meaning of the header above. I think I need </p>
                     </div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="for-who-tabs">
+                <div class="image">
+                  <img src="static/images/design.png" alt="">
+                </div>
+                <div class="content">
+                  <h4 class="header">UX/UI Designers</h4>
+                  <div class="description">
+                    <p>This is a little message that tries to explain the meaning of the header above. I think I need </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="column pad-3">
-                <div class="ui items">
-                    <div class="item">
-                        <i class="bug huge icon"></i>
-                      <div class="content">
-                        <a class="header">Safe and reliable</a>
-                        <div class="description">
-                          <p>This is a little message that tries to explain the meaning of the header above. I think I need to make it a little longer so that it will look nicer than it is now.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              <div class="column pad-3">
-                <div class="ui items">
-                    <div class="item">
-                        <i class="bug huge icon"></i>
-                      <div class="content">
-                        <a class="header">Safe and reliable</a>
-                        <div class="description">
-                          <p>This is a little message that tries to explain the meaning of the header above. I think I need to make it a little longer so that it will look nicer than it is now.</p>
-                        </div>
-                      </div>
+            <div class="column">
+              <div class="for-who-tabs">
+                <div class="image">
+                  <img src="static/images/linechart.png" alt="">
+                </div>
+                <div class="content">
+                    <h4 class="header">Sales professionals</h4>
+                    <div class="description">
+                      <p>This is a little message that tries to explain the meaning of the header above. I think I need</p>
                     </div>
                   </div>
               </div>
@@ -275,7 +324,8 @@ session_start();
           </div>
       </section>
 
-      <section id="for-who">
+      <section id="subscribe">
+      <h2 style="text-align:center">Subscribe to our services</h2>
         <div class="ui container" id="subscribe">
             <div class="ui three columns stackable grid">
                 <div class="column">
@@ -426,104 +476,30 @@ session_start();
             </div>
           </div>
       </section>
-      <!-- <div class="ui vertical stripe segment">
-        <div class="ui middle aligned stackable grid container">
-          <div class="row">
-            <div class="eight wide column">
-              <h3 class="ui header">We Help Companies and Companions</h3>
-              <p>
-                We can give your company superpowers to do things that they
-                never thought possible. Let us delight your customers and
-                empower your needs...through pure data analytics.
-              </p>
-              <h3 class="ui header">We Make Bananas That Can Dance</h3>
-              <p>
-                Yes that's right, you thought it was the stuff of dreams, but
-                even bananas can be bioengineered.
-              </p>
-            </div>
-            <div class="six wide right floated column">
-              <img
-                class="ui large bordered rounded image"
-                src="./static/images/wireframe/white-image.png"
-              />
-            </div>
-          </div>
-          <div class="row">
-            <div class="center aligned column">
-              <a class="ui huge button">Check Them Out</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="ui vertical stripe segment">
-        <div class="ui equal width stackable very relaxed grid">
-          <div class="center aligned row">
-            <div class="column">
-              <h3>"What a Company"</h3>
-              <p>That is what they all say about us</p>
-            </div>
-            <div class="column">
-              <h3>"I shouldn't have gone with their competitor."</h3>
-              <p>
-                <img
-                  class="ui avatar image"
-                  src="./static/images/avatar/nan.jpg"
-                />
-                <b>Nan</b> Chief Fun Officer Acme Toys
-              </p>
-            </div>
 
-          </div>
-        </div>
-      </div>
-      <div class="ui vertical stripe segment">
-        <div class="ui text container">
-          <h3 class="ui header">Breaking The Grid, Grabs Your Attention</h3>
-          <p>
-            Instead of focusing on content creation and hard work, we have
-            learned how to master the art of doing nothing by providing massive
-            amounts of whitespace and generic content that can seem massive,
-            monolithic and worth your attention.
-          </p>
-          <a class="ui large button">Read More</a>
-          <h4 class="ui horizontal header divider">
-            <a href="#root"> Case Studies</a>
-          </h4>
-          <h3 class="ui header">Did We Tell You About Our Bananas?</h3>
-          <p>
-            Yes I know you probably disregarded the earlier boasts as
-            non-sequitur filler content, but its really true. It took years of
-            gene splicing and combinatory DNA research, but our bananas can
-            really dance.
-          </p>
-          <a class="ui large button">I'm Still Quite Interested</a>
-        </div>
-      </div> -->
       <div class="ui inverted vertical footer segment">
         <div class="ui container">
           <div
             class="ui stackable inverted divided equal height stackable grid"
           >
-            <div class="three wide column">
-              <h4 class="ui inverted header">About</h4>
+            <div class="five wide column">
+              <h4 class="ui inverted header">Ononiru Jobs</h4>
               <div class="ui inverted link list">
-                <a class="item" href="#root">Sitemap</a>
-                <a class="item" href="#root">Contact Us</a>
-                <a class="item" href="#root">Religious Ceremonies</a>
-                <a class="item" href="#root">Gazebo Plans</a>
+                <a class="item">Plot C9 MacDonald Mall, UUC Global, Onitsha-Owerri Road, Owerri</a>
+                <a class="item">+2347054345675</a>
+                <a class="item">admin@ononiru.com</a>
               </div>
             </div>
             <div class="three wide column">
-              <h4 class="ui inverted header">Services</h4>
+              <h4 class="ui inverted header">Find Jobs by Category</h4>
               <div class="ui inverted link list">
-                <a class="item" href="#root">Banana Pre-Order</a>
-                <a class="item" href="#root">DNA FAQ</a>
-                <a class="item" href="#root">How To Access</a>
-                <a class="item" href="#root">Favorite X-Men</a>
+                <a class="item"></a>
+                <a class="item">+2347054345675</a>
+                <a class="item">admin@ononiru.com</a>
+                <a class="item"></a>
               </div>
             </div>
-            <div class="seven wide column">
+            <div class="five wide column">
               <h4 class="ui inverted header">Footer Header</h4>
               <p>
                 Extra space for a call to action inside the footer that could

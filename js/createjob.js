@@ -1,7 +1,7 @@
 
 let submit_btn = $("#submit-btn");
 
-submit_btn.on('click', function(e){
+submit_btn.on('submit', function(e){
     e.preventDefault();
     // var validator = $( "#create_job_form" ).validate();
     
@@ -46,7 +46,7 @@ submit_btn.on('click', function(e){
                     title: 'Great!',
                     message: data.message,
                     timeout: 3000,
-                    position:'bottomLeft'
+                    position:'topRight'
                 });
 
                 setTimeout(() => {

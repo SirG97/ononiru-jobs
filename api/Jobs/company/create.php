@@ -2,7 +2,7 @@
 session_start();
 require '../../../vendor/autoload.php';
 header('Content-Type: Application/json',true);
-$_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfq';
+$_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfqh';
 use Ononiru\Config\Database;
 use Ononiru\Core\Job;
 use Ramsey\Uuid\Uuid;
@@ -59,14 +59,14 @@ $company_phone2 =  isset($_REQUEST['phone2']) ? $_REQUEST['phone2'] : null;
 $sector =  isset($_REQUEST['sector']) ? $_REQUEST['sector'] : null;
 $about =  isset($_REQUEST['about']) ? $_REQUEST['about'] : null;
 $address =  isset($_REQUEST['address']) ? $_REQUEST['address'] : null;
-$city =  isset($_REQUEST['city']) ? $_REQUEST['city'] : null;
-$facebook_link =  isset($_REQUEST['facebook_url']) ? $_REQUEST['facebook_url'] : null;
-$twitter_link =  isset($_REQUEST['twitter_url']) ? $_REQUEST['twitter_url'] : null;
-$linkedin =  isset($_REQUEST['linkedin_url']) ? $_REQUEST['linkedin_url'] : null;
-$website =  isset($_REQUEST['website_url']) ? $_REQUEST['website_url'] : null;
+$city =  isset($_REQUEST['location']) ? $_REQUEST['location'] : null;
+$facebook_link =  isset($_REQUEST['facebook']) ? $_REQUEST['facebook'] : null;
+$twitter_link =  isset($_REQUEST['twitter']) ? $_REQUEST['twitter'] : null;
+$linkedin =  isset($_REQUEST['linkedin']) ? $_REQUEST['linkedin'] : null;
+$website =  isset($_REQUEST['website']) ? $_REQUEST['website'] : null;
 $fax =  isset($_REQUEST['fax']) ? $_REQUEST['fax'] : null;
 $logo =  isset($_FILES['logo']) ? $_FILES['logo'] : null;
-$rcc =  isset($_REQUEST['reg_no']) ? $_REQUEST['reg_no'] : null;
+$rcc =  isset($_REQUEST['rcc']) ? $_REQUEST['rcc'] : null;
 
 // send api request to ncc to verify company
 
@@ -110,7 +110,7 @@ if ($logo['size'] > 300000) {
 $type = explode('/', $logo['type']);
 if ($type[0] != 'image') {
     http_response_code(403);
-    echo $job->forbidden('Only pdf file type is allowed');
+    echo $job->forbidden('Only image file type is allowed');
     return;
 }
 if ($logo['error']) {
@@ -131,7 +131,7 @@ if (!$uploaded || ($logo['error'])) {
 try {
     $Job->query("INSERT INTO company_profile SET
     company_id=?,email=?,name=?,phone1=?,phone2=?,sector=?,about=?,
-    user_id=?,logo=?,location=?,RCC=?,fax=?,website=?,linkedin_url=?,
+    user_id=?,logo=?,located_at=?,RCC=?,fax=?,website=?,linkedin_url=?,
     twitter_url=?,facebook_url=?,is_active=?",
     [$uuid4,$company_email,$company_name,$company_phone1,
     $company_phone2,$sector,$about,$user_id,'uploads/company_logo/'.$filename,$city,

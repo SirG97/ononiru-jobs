@@ -53,8 +53,68 @@
 }
 
 #for-who{
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 30px 0;
+    background-color: whitesmoke;
+}
+
+#subscribe{
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding-top: 20px;
+   
+}
+
+.for-who-row>.row>.pad-3>.items>.item>.content{
+  padding-left: 20px;
+}
+
+.for-who-row>.row>.pad-3>.items>.item>.image{
+  width: 65px;
+}
+.for-who-row>.row>.pad-3>.items>.item>.image img{
+  width: 70px;
+  border: 2px solid blueviolet;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.how-it-works{
+  padding: 60px 120px;
+}
+
+.how-it-works-title{
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.how-steps-container{
+  text-align: center;
+}
+
+.how-steps{
+  text-align: center;
+  float: none;
+}
+
+.how-steps-icon{
+  /* width: 100px; */
+  height: 100px;
+  border-radius: 50%;
+  line-height: 94px;
+  font-size: 33px;
+  /*  */
+  background: none;
+  color: #707070;
+  text-align: center;
+}
+
+.icon-main{
+  border: 2px solid #c8cccc;
+  border-radius: 50%;
+  padding: 25px;
+  background: #f4f5fa;
 }
 
 #modal
@@ -179,15 +239,7 @@
     width: 100%;
 }
   
-  @media screen and (min-width: 767px) { 
-    .principal{
-      transform: scale(1.05);
-    }
-    .principal:hover {
-      transform: scale(1.1);
-      z-index: 1;
-    }
-  }
+
   
   .plan-ribbon{
     font-size: 15px;
@@ -234,3 +286,183 @@
     font-size: 16px;
     color: rgb(190, 190, 190);
   }
+
+  @media screen and (min-width: 320px){
+
+    .navbar-title,.navbar-logout{
+      display: none !important;
+    }
+
+    .ui.huge.action.input{
+      width: calc(100% - 50px);
+      margin-left: -55px;
+      height: 45px;
+    }
+
+    #search_btn{
+      padding: 10px 5px;
+    }
+
+    #featured_jobs>.item{
+      padding: 15px;
+    }
+
+    #featured_jobs>.item>.content{
+      padding-bottom: 10px;
+    }
+
+    #call-to-action{
+      margin: 25px 0;
+    }
+
+    .call-to-action-column{
+      padding: 2em !important;
+    }
+
+    .call-to-action-column2{
+      padding: 2em !important;
+    }
+
+    .call-to-action-column p{
+      font-size: 17px;
+    }
+
+    .call-to-action-column2 p{
+      font-size: 17px;
+    }
+
+    .how-it-works {
+      padding: 0;
+    }
+    .for-who-row {
+      padding:20px 0px !important;
+    }
+
+    .call-to-action-column a{
+      padding: 15px;
+    }
+
+    .for-who-row>.row>.pad-3>.items>.item>.content {
+      padding-left: -20px;
+      text-align: center;
+    }
+
+    .for-who-row>.row>.pad-3>.items>.item>.image {
+      width: 65px !important;
+    }
+
+    .ui.cards>.card.categories-card{
+      margin: 15px auto;
+    }
+
+    #for-who{
+      background-color: aliceblue;
+    }
+
+    #for-who>.grid>.column{
+      text-align: center;
+    }
+  }
+
+  @media screen and (min-width: 480px){
+    .ui.huge.action.input{
+      width: calc(100% - 15px);
+      margin-left: -10px;
+      height: 55px;
+    }
+
+    #search_btn{
+      padding: 15px 10px;
+    }
+
+    .call-to-action-column{
+      padding: 3em !important;
+    }
+
+    .call-to-action-column2{
+      padding: 3em !important;
+    }
+
+    .how-steps p{
+      padding: 0 45px;
+    }
+    #for-who p{
+      padding: 10px 45px;
+    }
+
+    .for-who-row>.row>.pad-3>.items>.item>.content {
+      padding: 10px 45px;
+    }
+
+    .plan{
+    
+    }
+
+    #subscribe>.grid>{
+     padding: 25px;
+    }
+
+  }
+
+  @media screen and (min-width: 767px) { 
+    .principal{
+      transform: scale(1.05);
+    }
+    .principal:hover {
+      transform: scale(1.1);
+      z-index: 1;
+    }
+
+    #for-who{
+      padding-top: 50px;
+      padding-bottom: 50px;
+      background-color: aliceblue;
+    }
+
+    #for-who>.grid>.column{
+      text-align: center;
+    }
+
+    .navbar-sidebar-toggle, .navbar-logo{
+      display: none !important;
+    }
+    .navbar-title,.navbar-logout{
+      display: inline-block !important;
+    }
+  }
+
+  @media screen and (min-width: 767px){
+    .menu-div{
+      width: 19.5%;
+      height: 100%;
+      position: fixed;
+      background-color: rgb(38,53,68);
+      overflow-y: auto;
+    }
+  
+    .page-div{
+      width: 80.5%;
+      min-height: 100%;
+      margin-left: 19.5%;
+      background-color: lavender;
+    }
+  }
+
+  @media screen and (min-width: 1030px){
+    .menu-div{
+      width: 17.5%;
+      height: 100%;
+      position: fixed;
+      background-color: rgb(38,53,68);
+      overflow-y: auto;
+    }
+  
+    .page-div{
+      width: 82.5%;
+      min-height: 100%;
+      margin-left: 17.5%;
+      background-color: lavender;
+    }
+  }
+
+ 

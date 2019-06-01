@@ -15,12 +15,20 @@
     </head>
     <body>
         <?php include '../includes/company_sidebar_menu.php' ?>
+        <?php include '../includes/company_mobile_sidebar.php' ?>
         <div class='page-div'>
             <div>
-                <div class="pad-2 sixteen wide mobile sixteen wide tablet thirteen wide computer right floated column" id="content">
-                        <div class="row">
-                            <h1 class="ui huge dividing header">Dashboard</h1>
+            <div class="ui small huge menu">
+                    <a class="item borderless navbar-logo" href="/"><img src="../static/images/avatar/ononiru.png" alt="ononiru">noniru</a>
+                    <h2 class="ui item borderless medium header navbar-title">Dashboard</h2>
+                    <div class="right menu">
+                        <div class="ui item navbar-logout borderless">
+                            Logout 
                         </div>
+                        <a class="toc item borderless navbar-sidebar-toggle"><i class="sidebar icon"></i></a>
+                    </div>
+                </div>
+                <div class="pad-2 sixteen wide mobile sixteen wide tablet thirteen wide computer right floated column" id="content">
 
                         <div class="ui cards pad-1">
                             <div class="card">
@@ -138,7 +146,9 @@
             </div>
         </div>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="semantic/dist/semantic.min.js"></script>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/iziToast.min.js"></script>
+        <script src="../semantic/dist/semantic.min.js"></script>
+        <script src="../js/script.js"></script>
     </body>
 </html>

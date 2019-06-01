@@ -233,7 +233,7 @@
         // $(".ui.sidebar").sidebar("attach events", ".toc.item");
       });
     </script>
-    <script src="js/search.js"></script>
-    <script src="js/featuredjobs.js"></script>
+    <!-- <script src="js/search.js"></script>
+    <script src="js/featuredjobs.js"></script> -->
   </body>
 </html>

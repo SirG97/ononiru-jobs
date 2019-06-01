@@ -1,3 +1,3 @@
 ##Ononiru jobs
 
-start server with comand lind using php -S localhost:4000 or any port of your choice
+start server with command line using php -S localhost:4000 or any port of your choice
