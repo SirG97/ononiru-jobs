@@ -9,7 +9,7 @@
             <a href="/appliedjobs.php" class="pad-1 item pad">Applied jobs</a> 
             <a href="/subscribe.php" class="pad-1 item pad">Subscribe</a> 
             <a href="/password.php" class="pad-1 item pad">Change password</a> 
-            <a class="pad-1 item pad">Logout</a> 
+            <a href="/logout.php" class="pad-1 item pad">Logout</a> 
         </div>
     </div>
 </div>
