@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use Ononiru\Config\Database;
 use Ononiru\Core\Base;
@@ -10,10 +10,6 @@ use Ononiru\Core\job;
 // subscribe users to job alert
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-// include database and object files
-// include_once '../config/database.php';
-// include_once '../core/index.php';
-
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
@@ -21,7 +17,7 @@ $db = $database->getConnection();
 // prepare job object
 $job = new job($db);
 
-require '../../vendor/autoload.php';
+
 
 // use Ramsey\Uuid\Uuid;
 

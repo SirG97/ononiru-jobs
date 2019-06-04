@@ -93,7 +93,7 @@
                                                 <p>Stevie Feliciano is a <a>library scientist</a></p>
                                             </div>
                                             <div class="extra">
-                                                <div class="ui right floated primary button">
+                                                <div class="ui right floated primary button" id="shortlist_btn">
                                                     Shortlist
                                                     <i class="right chevron icon"></i>
                                                 </div>
@@ -114,5 +114,7 @@
         <script src="../js/iziToast.min.js"></script>
         <script src="../semantic/dist/semantic.min.js"></script>
         <script src="../js/script.js"></script>
+        <script src="../js/alljobs.js"></script>
+        <script src="../js/shortlist.js"></script>
     </body>
 </html>

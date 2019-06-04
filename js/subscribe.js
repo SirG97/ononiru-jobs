@@ -69,7 +69,7 @@ $(document).ready(function(){
      }
 
       $.ajax({
-        url: '/api/Jobs/subscribe.php',
+        url: '/api/Jobs/user/subscribe.php',
         method: 'POST',
         cache: false,
         contentType: false,

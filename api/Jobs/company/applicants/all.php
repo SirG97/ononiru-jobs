@@ -2,7 +2,7 @@
 session_start();
 /**
  * 
- * Here we get all applicantions a company has recieved for a particualr job
+ * Here we get all applicantions a company
  * 
  */
 require '../../../../vendor/autoload.php';

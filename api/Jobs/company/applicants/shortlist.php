@@ -30,7 +30,6 @@ $job = new job($db);
 
 // set job id to be deleted
 
-
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
     if($user_id == null){
