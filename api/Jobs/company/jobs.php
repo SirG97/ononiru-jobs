@@ -1,9 +1,7 @@
 <?php
-/**
- * 
- * Here we get all applicants for a particular job
- */
+// here we get all jobs that belong to a particular company
 
+session_start();
 require '../../../vendor/autoload.php';
 
 use Ononiru\Config\Database;
@@ -20,42 +18,41 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     die('HEY NIGGA!! SEND THE RIGHT REQUEST TYPE');
 }
 
+
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
 
+//uncomment in production
+$_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfq';
+
 // prepare job object
 $job = new job($db);
 
-// get job_i
-
-$job->id = isset($_REQUEST['job_id']) ? $_REQUEST['job_id'] : null;
-$company_id = isset($_REQUEST['company_id']) ? $_REQUEST['company_id'] : null;
 /**
  * We want to verify that only authenticated users can proceed so we need a token,else we use the user_id
  */
-$userToken = isset($_REQUEST['token']) ? true : null;
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-if($userToken == null){
-    $user_id = $_REQUEST['user_id'] ? $_REQUEST['user_id'] : null;
-/**
- * One of user_id or token should be provided
- */
     if($user_id == null){
         echo $job->forbidden('You cannot go any further');
-        die;
+        return;
     }
-}
+$job->query("SELECT * FROM users
+INNER JOIN company_profile ON company_profile.user_id = users.userid
+ WHERE userid = ?",[$user_id]);
 
-/**
- * More security measures should be implemented for now skipping it
- */
+if($job->_count <= 0){
+    echo $job->forbidden('No company profile set up for user');
+    return;
+}
+$company_id = $job->_result[0]->company_id;
 
  try {
     $job->query("SELECT *
-     FROM job_applications
-     INNER JOIN users ON job_applications.user_id = users.userid WHERE job_id = ? AND company_id = ?",[$job->id,$company_id]);
-    echo  $job->actionSuccess(['data' => $job->_result]);
+     FROM jobs  WHERE  company_id = ?",[$company_id]);
+     //job applications for a particular company
+    echo  $job->success($job->_result);
     return;     
  } catch (\Throwable $th) {
         echo $job->actionFailure('Opps! Something went wrong, error code xm112c3'. $th->getMessage()); 

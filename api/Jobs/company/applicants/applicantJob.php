@@ -7,6 +7,10 @@
  * Every Applicant belong to a company
  * 
  */
+require '../../../vendor/autoload.php';
+
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
 
  // required headers
 header("Access-Control-Allow-Origin: *");
@@ -19,9 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     die('HEY NIGGA!! SEND THE RIGHT REQUEST TYPE');
 }
 
-// include database and object file
-include_once '../../config/db.php';
-include_once '../../core/index.php';
 
 // get database connection
 $database = new Database();

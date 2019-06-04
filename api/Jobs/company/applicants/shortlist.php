@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../vendor/autoload.php';
+require '../../../../vendor/autoload.php';
 
 use Ononiru\Config\Database;
 use Ononiru\Core\Job;
@@ -29,11 +29,32 @@ $db = $database->getConnection();
 $job = new job($db);
 
 // set job id to be deleted
-$job->company_id = $_REQUEST['company_id'];
+
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+
+    if($user_id == null){
+        http_response_code(403);
+        echo $job->forbidden('You cannot go any further');
+        return;
+    }
+$job->query("SELECT * FROM users
+INNER JOIN company_profile ON company_profile.user_id = users.userid
+ WHERE userid = ?",[$user_id]);
+
+if($job->_count <= 0){
+    http_response_code(403);
+    echo $job->forbidden('No company profile set up for user');
+    return;
+}
+$job->company_id = $job->_result[0]->company_id;
+
 $job->id = $_REQUEST['job_id'];
 $user = $_REQUEST['user_id'];
 
 if(!$job->is_workable()){
+    http_response_code(404);
+
     echo $job->forbidden('Job is not Avialable');
     die;
 } 
@@ -42,6 +63,7 @@ $job->query("SELECT * FROM job_applications WHERE
  user_id=? AND company_id=? AND job_id=? AND is_shortlisted=?",[$user,$job->company_id,$job->id,$job->not_active],false,true);
 
 if(empty($job->_count)){
+    http_response_code(400);
     
     echo $job->actionFailure('User has already been shortlisted');
     return;
@@ -54,10 +76,14 @@ try{
      [$job->company_id,$sc_id,$job->id,$user],false,false);
 
 }catch(\Throwable $er){
+    http_response_code(500);
+
     echo $job->actionFailure('Opps! Something went wrong '.$er->getMessage(). $er->getLine(). $er);
     return;
 
 }catch(\Exception $exec){
+    http_response_code(500);
+
     echo $job->actionFailure('Opps! Something went wrong an exception '.$exec->getMessage());
     return;
 }
@@ -70,6 +96,7 @@ try {
  
 $job->query("UPDATE job_applications SET is_shortlisted = ? WHERE
 user_id = ? AND company_id = ? AND job_id = ? AND is_shortlisted = ? ",[$job->active_status,$user,$job->company_id,$job->id,$job->not_active],true,false);
+        http_response_code(200);
 
 echo $job->actionSuccess('User has been shortlisted successfully');
 return;

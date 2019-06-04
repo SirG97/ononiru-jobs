@@ -3,6 +3,11 @@
 session_start();
 require '../../../vendor/autoload.php';
 
+/**
+ * 
+ * Here we get all shortlisted candidates for a company
+ * 
+ */
 use Ononiru\Config\Database;
 use Ononiru\Core\Job;
 
@@ -27,9 +32,10 @@ if(is_null($user_id)){
 }
 
 try {
+    // fectch user
     $job->query("SELECT * FROM users WHERE userid = ?",[$user_id]);
 
-    if($job->_count < 0){
+    if($job->_count <= 0){
         echo $job->forbidden('User not found');
         return;
     }else {

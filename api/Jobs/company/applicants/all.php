@@ -1,10 +1,14 @@
 <?php
-
+session_start();
 /**
  * 
- * Here we get all applicantions a company has recieved
+ * Here we get all applicantions a company has recieved for a particualr job
  * 
  */
+require '../../../../vendor/autoload.php';
+
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
 
  // required headers
 header("Access-Control-Allow-Origin: *");
@@ -17,37 +21,35 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     die('HEY NIGGA!! SEND THE RIGHT REQUEST TYPE');
 }
 
-// include database and object file
-include_once '../../config/db.php';
-include_once '../../core/index.php';
 
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
 
+//uncomment in production
+$_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfq';
+
 // prepare job object
 $job = new job($db);
 
-// get job_i
-
-$job->id = isset($_REQUEST['job_id']) ? $_REQUEST['job_id'] : null;
-$company_id = isset($_REQUEST['company_id']) ? $_REQUEST['company_id'] : null;
 /**
  * We want to verify that only authenticated users can proceed so we need a token,else we use the user_id
  */
-$userToken = isset($_REQUEST['token']) ? true : null;
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-if($userToken == null){
-    $user_id = $_REQUEST['user_id'] ? $_REQUEST['user_id'] : null;
-/**
- * One of user_id or token should be provided
- */
     if($user_id == null){
         echo $job->forbidden('You cannot go any further');
-        die;
+        return;
     }
-}
+$job->query("SELECT * FROM users
+INNER JOIN company_profile ON company_profile.user_id = users.userid
+ WHERE userid = ?",[$user_id]);
 
+if($job->_count <= 0){
+    echo $job->forbidden('No company profile set up for user');
+    return;
+}
+$company_id = $job->_result[0]->company_id;
 /**
  * More security measures should be implemented for now skipping it
  */
@@ -55,7 +57,8 @@ if($userToken == null){
  try {
     $job->query("SELECT *
      FROM job_applications
-     INNER JOIN users ON job_applications.user_id = users.userid WHERE AND company_id = ?",[$company_id]);
+     INNER JOIN users ON job_applications.user_id = users.userid WHERE  company_id = ?",[$company_id]);
+     //job applications for a particular company
     echo  $job->actionSuccess(['data' => $job->_result]);
     return;     
  } catch (\Throwable $th) {
