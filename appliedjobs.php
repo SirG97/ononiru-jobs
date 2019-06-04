@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,144 +37,39 @@
                                 <table class="ui celled green table large">
                                         <thead>
                                             <tr>
-                                                <th>Title</th>
-                                                <th>Applied</th>
+                                                <th>Job Title</th>
+                                                <th>Company</th>
                                                 <th>Created</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                            <td data-label="Name">UI/UX Designer</td>
-                                            <td data-label="Age">24</td>
-                                            <td data-label="Job">October 17, 2012</td>
-                                            <td data-label="status">Active</td>
+                                        <tbody id="applied_job_row">
+                                        <tr>
+                                            <td data-label="Name">Loading..</td>
+                                            <td data-label="company">Loading..</td>
+                                            <td data-label="Job">Loading..</td>
+                                            <td data-label="status">Loading..</td>
                                             <td data-label="Action">
                                                 
                                                     <div class="ui icon buttons">
-                                                        <button class="ui blue button">
+                                                        <button class="ui blue button" disabled>
                                                                 <i class="eye icon"></i>
                                                         </button>
-                                                        <button class="ui yellow button">
+                                                        <button class="ui yellow button" disabled>
                                                             <i class="pencil icon"></i>
                                                         </button>
-                                                        <button class="ui red button">
+                                                        <button class="ui red button" disabled>
                                                             <i class="trash alternate outline icon"></i>
                                                         </button>
                                                     </div>
                                             
                                             </td>
                                             </tr>
-                                            <tr>
-                                            <td data-label="Name">UI/UX Designer</td>
-                                            <td data-label="Age">24</td>
-                                            <td data-label="Job">October 17, 2012</td>
-                                            <td data-label="status">Active</td>
-                                            <td data-label="Action">
-                                                <div class="ui icon buttons">
-                                                    <button class="ui blue button">
-                                                            <i class="eye icon"></i>
-                                                    </button>
-                                                    <button class="ui yellow button">
-                                                        <i class="pencil icon"></i>
-                                                    </button>
-                                                    <button class="ui red button">
-                                                        <i class="trash alternate outline icon"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <tr>
-                                            <td data-label="Name">UI/UX Designer</td>
-                                            <td data-label="Age">24</td>
-                                            <td data-label="Job">October 17, 2012</td>
-                                            <td data-label="status">Active</td>
-                                            <td data-label="Action">
-                                                <div class="ui icon buttons">
-                                                    <button class="ui blue button">
-                                                            <i class="eye icon"></i>
-                                                    </button>
-                                                    <button class="ui yellow button">
-                                                        <i class="pencil icon"></i>
-                                                    </button>
-                                                    <button class="ui red button">
-                                                        <i class="trash alternate outline icon"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="Name">UI/UX Designer</td>
-                                                <td data-label="Age">24</td>
-                                                <td data-label="Job">October 17, 2012</td>
-                                                <td data-label="status">Active</td>
-                                                <td data-label="Action">
-                                                    <div class="ui icon buttons">
-                                                        <button class="ui blue button">
-                                                                <i class="eye icon"></i>
-                                                        </button>
-                                                        <button class="ui yellow button">
-                                                            <i class="pencil icon"></i>
-                                                        </button>
-                                                        <button class="ui red button">
-                                                            <i class="trash alternate outline icon"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="Name">UI/UX Designer</td>
-                                                <td data-label="Age">24</td>
-                                                <td data-label="Job">October 17, 2012</td>
-                                                <td data-label="status">Active</td>
-                                                <td data-label="Action">
-                                                    <div class="ui icon buttons">
-                                                        <button class="ui blue button">
-                                                                <i class="eye icon"></i>
-                                                        </button>
-                                                        <button class="ui yellow button">
-                                                            <i class="pencil icon"></i>
-                                                        </button>
-                                                        <button class="ui red button">
-                                                            <i class="trash alternate outline icon"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="Name">UI/UX Designer</td>
-                                                <td data-label="Age">24</td>
-                                                <td data-label="Job">October 17, 2012</td>
-                                                <td data-label="status">Active</td>
-                                                <td data-label="Action">
-                                                    <div class="ui icon buttons">
-                                                        <button class="ui blue button">
-                                                                <i class="eye icon"></i>
-                                                        </button>
-                                                        <button class="ui yellow button">
-                                                            <i class="pencil icon"></i>
-                                                        </button>
-                                                        <button class="ui red button">
-                                                            <i class="trash alternate outline icon"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                              
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th colspan="5">
-                                                    <div class="ui right floated pagination menu">
-                                                    <a class="icon item"><i class="left chevron icon"></i></a>
-                                                    <a class="item">1</a>
-                                                    <a class="item">2</a>
-                                                    <a class="item">3</a>
-                                                    <a class="item">4</a>
-                                                    <a class="icon item"><i class="right chevron icon"></i></a>
-                                                    </div>
-                                                </th>
-                                            </tr>
+                                        <tfoot  id="pagination_row">
+                                           
                                         </tfoot>
                                 </table>
                         </div>
@@ -184,6 +82,6 @@
         <script src="js/jquery.min.js"></script>
         <script src="semantic/dist/semantic.min.js"></script>
         <script src="js/script.js"></script>
-        <script src="js/applied.js"></script>
+        <script src="js/applied_user_jobs.js"></script>
     </body>
 </html>

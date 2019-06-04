@@ -39,10 +39,10 @@ $(document).ready(function(){
       // For already logged in users
       if(plan.val() == 'basic'){
         data.set('plan_id', 'e4eaaaf2-d142-11e1-b3e4-080027620cdd');
-      }else if(plan.val() == 'classic'){
+      }else if(plan.val() == 'premium'){
         data.set('plan_id', '25769c6c-d34d-4bfe-ba98-e0ee856f3e7a');
         data.append('phonenumber', $("#phone_number").val());
-      }else if(plan.val() == 'premium'){
+      }else if(plan.val() == 'classic'){
         data.set('plan_id', '11a38b9a-b3da-360f-9353-a5a725514269');
         data.append('phonenumber', $("#phone_number").val());
         data.append('cv', $("#cv").prop('files')[0]);
@@ -56,7 +56,7 @@ $(document).ready(function(){
 
         data.append('phonenumber', $("#phone_number").val());
         data.append('cv', $("#cv").prop('files')[0]);
-
+        
       }else if(data.get('plan_id') == '11a38b9a-b3da-360f-9353-a5a725514269'){
 
         data.append('phonenumber', $("#phone_number").val());
