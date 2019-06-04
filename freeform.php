@@ -1,3 +1,7 @@
+
+<?php 
+  $plan_id = 'e4eaaaf2-d142-11e1-b3e4-080027620cdd';
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,7 +20,7 @@
     <meta name="theme-color" content="#ffffff" />
     <title>Ononiru::jobs</title>
     <link rel="stylesheet" href="semantic/dist/semantic.min.css" type="text/css"/>
-    <!-- <link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/fontawesome.min.css"> -->
+    <link rel="stylesheet" href="css/iziToast.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <style type="text/css">
       body {
@@ -166,41 +170,46 @@
         Ononiru Basic
       </div>
     </h2>
-    <form class="ui large form">
+    <form class="ui large form sub_form" style="text-align: left">
       <div class="ui stacked segment">
         <div class="field">
+        <label>Email</label>
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="email" placeholder="E-mail address">
+            <input id="email" type="text" name="email" placeholder="E-mail address">
           </div>
         </div>
         <div class="field">
-          <div class="ui left icon input">
-            <i class="bookmark icon"></i>
-            <input type="text" name="location" placeholder="Location eg. Lagos, Nigeria">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <select name="states" class="ui selection dropdown" multiple="" id="multi-select" placeholder="Job Category">
-                <option value="">Job Category</option>
-                <option value="IT">IT & Software</option>
-                <option value="Finance">Finance</option>
-                <option value="HR">Human Resource</option>
-                <option value="Travel">Travel & Logistics</option>
+            <label>Category</label>
+            <select id="job_category" class="ui search dropdown" required>
+              <option value="programming">Programming</option>
+              <option value="design">UX/UI design</option>
+              <option value="finance">Finance</option>
             </select>
-          </div>
         </div>
-        <div class="ui fluid large grey submit button">Let's go</div>
+        <div class="field">
+          <label>Location</label>
+          <select id="job_location" class="ui search dropdown" required>
+            <option value="lagos">Lagos</option>
+            <option value="abuja">Abuja</option>
+            <option value="portharcourt">Port Harcourt</option>
+            <option value="owerri">Owerri</option>
+            <option value="benin">Benin</option>
+            <option value="calabar">calabar</option>
+            <option value="aba">Aba</option>
+          </select>
+        </div>
+        <div class="ui fluid large grey submit button" id="subscribe_btn">Let's go</div>
       </div>
 
       <div class="ui error message"></div>
-
+<input type="hidden" id="plan_id" name="plan_id" value=<?=$plan_id?> >
     </form>
   </div>
 </div>
     <script src="js/jquery.min.js"></script>
     <script src="semantic/dist/semantic.min.js"></script>
+    <script src="js/iziToast.min.js"></script>
     <script>
       $(document).ready(function() {
         $('#multi-select')
@@ -221,7 +230,7 @@
         // $(".ui.sidebar").sidebar("attach events", ".toc.item");
       });
     </script>
-    <script src="js/search.js"></script>
-    <script src="js/featuredjobs.js"></script>
+    <script src="js/subscribe.js"></script>
+    
   </body>
 </html>

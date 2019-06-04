@@ -29,24 +29,7 @@ company_profile.on('submit', function(e){
         for(var pair of data.entries()) {
             console.log(pair[0]+ ', '+ pair[1]); 
          }
-        // jsondata = {
-        //     company_name: $("#company_name").val(),
-        //     about : $("#about").val(),
-        //     sector:  $("#sector").val(),
-        //     rcc: $("#rcc").val(),
-        //     logo: logo,
-        //     facebook: $("#facebook").val(),
-        //     twitter: $("#twitter").val(),
-        //     linkedin: $("#linkedin").val(),
-        //     phone1: $("#phone1").val(),
-        //     phone2: $("#phone2").val(),
-        //     website: $("#website").val(),
-        //     email: $("#email").val(),
-        //     fax: $('#fax').val(),
-        //     address: $("#address").val(),
-        //     location: $("#city").val()
-        // }
-        //     console.log(data);
+    
 
         $("#logo").change(function(){
             let file = this.files[0];

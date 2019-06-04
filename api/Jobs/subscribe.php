@@ -11,8 +11,8 @@ use Ononiru\Core\job;
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 // include database and object files
-include_once '../config/database.php';
-include_once '../core/index.php';
+// include_once '../config/database.php';
+// include_once '../core/index.php';
 
 // get database connection
 $database = new Database();
@@ -41,19 +41,20 @@ $plan = isset($_REQUEST['plan_id']) ? $_REQUEST['plan_id'] : null;
 $phone_number = isset($_REQUEST['phonenumber']) ? $_REQUEST['phonenumber'] : null;
 $cv = isset($_FILES['cv']) ? $_FILES['cv'] : null;
 $active = 1;
+
 $not_active = !$active;
 $job_sub_id = uniqid() . time() . md5('ononirujobs');
 
 $response = new Base();
 
-if (is_null($job->sanitize($job_category))) {
+if (is_null($job_category)) {
     echo $response->forbidden('Job Category cannot be empty');
     return;
-} else if ($job->sanitize($job_location) == null) {
+} else if ($job_location == null) {
     echo $response->forbidden('Job Location cannot be empty');
     return;
 
-} else if ($job->sanitize($plan) == null || empty($job->sanitize($plan))) {
+} else if ($plan == null) {
     echo $response->forbidden('Job Plan cannot be empty');
     return;
 }
@@ -92,7 +93,7 @@ if ($plan == $basicPlan->plan_id) {
 
         if (!isset($_REQUEST[$key]) || $_REQUEST[$key] == '') {
             if (!($Key == 'cv')) {
-                echo $response->forbidden($key . ' is required for this plan o');
+                echo $response->forbidden($key . ' is required for this plan');
                 return;
             }
 
@@ -118,7 +119,7 @@ if ($plan == $basicPlan->plan_id) {
         } else {
             //insert where user id session is found
 
-            $job->query("INSERT INTO job_subscribers SET emaill=?,status = ?,job_subscribers_id = ?,job_supscription_plan_id = ?,user_id = ?",
+            $job->query("INSERT INTO job_subscribers SET email=?,status = ?,job_subscribers_id = ?,job_subscription_plan_id = ?,user_id = ?",
                 [$email, $not_active, $job_sub_id, $plan, $user_id], false, false);
 
             echo $response->actionSuccess('Go ahead with payments');
@@ -146,7 +147,7 @@ foreach ($requirements as $key) {
     } else {
         if (!isset($_REQUEST[$key]) || $_REQUEST[$key] == '') {
 
-            echo $response->forbidden($key . ' is required for this plan o');
+            echo $response->forbidden($key . ' is required for this plan');
             return;
 
         }
@@ -165,7 +166,7 @@ try {
     if ($user_id == null || $user_id == '') {
 
         $job->query("INSERT INTO job_subscribers SET phone_number = ?,email = ?,status = ?,job_subscribers_id = ?,job_subscription_plan_id = ?",
-            [$phone,$email, $not_active, $job_sub_id, $premiumPlan->plan_id], false, false);
+            [$phone_number,$email, $not_active, $job_sub_id, $premiumPlan->plan_id], false, false);
             echo $response->actionSuccess('Go ahead with payments');
 
         return;
@@ -173,8 +174,8 @@ try {
     } else {
         //insert where user id session is found
 
-        $job->query("INSERT INTO job_subscribers SET phone_number = ?,emaill=?,status = ?,job_subscribers_id = ?,job_supscription_plan_id = ?,user_id = ?",
-            [$phone,$email, $not_active, $job_sub_id, $plan, $user_id], false, false);
+        $job->query("INSERT INTO job_subscribers SET phone_number = ?,email=?,status = ?,job_subscribers_id = ?,job_subscription_plan_id = ?,user_id = ?",
+            [$phone_number,$email, $not_active, $job_sub_id, $plan, $user_id], false, false);
 
         echo $response->actionSuccess('Go ahead with payments');
         return;
@@ -237,7 +238,7 @@ try {
                 return;
             }
             if ($cv['error']) {
-                echo $job->actionFailure('File could not be uploaede');
+                echo $job->actionFailure('File could not be uploaded');
                 return;
             }
             $filename = time() . uniqid() . '.' . $type[1];
@@ -267,7 +268,7 @@ try {
         } else {
             //insert where user id session is found
 
-            $job->query("INSERT INTO job_subscribers SET emaill=?,status = ?,job_subscribers_id = ?,job_supscription_plan_id = ?,user_id = ?",
+            $job->query("INSERT INTO job_subscribers SET email=?,status = ?,job_subscribers_id = ?,job_subscription_plan_id = ?,user_id = ?",
                 [$email, $not_active, $job_sub_id, $plan, $user_id], false, false);
 
             echo $response->actionSuccess('Go ahead with payments');

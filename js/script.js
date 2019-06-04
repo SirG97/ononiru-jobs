@@ -3,4 +3,7 @@ $(document).ready(function() {
     $(".ui.sidebar").sidebar("attach events", ".toc.item");
 
     $('.skill').progress();
+    $('select.dropdown').dropdown();
+
+  
 });

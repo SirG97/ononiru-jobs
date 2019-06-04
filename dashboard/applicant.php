@@ -9,15 +9,15 @@
     <div class='page-div'>
         <div>
         <div class="ui small huge menu">
-                    <a class="item borderless navbar-logo" href="/"><img src="../static/images/avatar/ononiru.png" alt="ononiru">noniru</a>
-                    <h2 class="ui item borderless medium header navbar-title">Applicant</h2>
-                    <div class="right menu">
-                        <div class="ui item navbar-logout borderless">
-                            Logout 
-                        </div>
-                        <a class="toc item borderless navbar-sidebar-toggle"><i class="sidebar icon"></i></a>
-                    </div>
+            <a class="item borderless navbar-logo" href="/"><img src="../static/images/avatar/ononiru.png" alt="ononiru">noniru</a>
+            <h2 class="ui item borderless medium header navbar-title">Applicant</h2>
+            <div class="right menu">
+                <div class="ui item navbar-logout borderless">
+                    Logout 
                 </div>
+                <a class="toc item borderless navbar-sidebar-toggle"><i class="sidebar icon"></i></a>
+            </div>
+        </div>
             <div class="pad-2 sixteen wide mobile sixteen wide tablet thirteen wide computer right floated column" id="content">
                     <!-- <div class="row">
                         <h1 class="ui huge dividing header">Applicant</h1>

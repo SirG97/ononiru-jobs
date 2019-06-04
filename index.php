@@ -417,7 +417,8 @@ session_start();
                             <div class="ui  attached segment feature">
                               <i class="icon green check"></i>
                                 Cover letter review
-                            </div>           
+                            </div>    
+                            
                         <div class="ui bottom attached violet button btn-plan">
                             <i class="cart icon"></i>
                             <a href="premiumform.php">SUBSCRIBE</a>
@@ -466,9 +467,12 @@ session_start();
                           <i class="icon red remove"></i>
                               Cover letter review
                           </div>           
-                        <div class="ui bottom attached brown button btn-plan">
+                          
+                          <div class="ui bottom attached brown button btn-plan">
                             <i class="cart icon"></i>
-                            SUBSCRIBE
+                            <a href="/paidform.php">
+                              SUBSCRIBE
+                            </a>
                         </div>
           
                     </div>

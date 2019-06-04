@@ -15,13 +15,26 @@
     </head>
     <body>
         <?php include 'includes/candidate_sidebar_menu.php';?>
+        <?php include 'includes/candidate_mobile_sidebar.php'; ?>
         <div class='page-div'>
             <div>
+            <div class="ui small huge menu">
+            <a class="item borderless navbar-logo" href="/"><img src="../static/images/avatar/ononiru.png" alt="ononiru">noniru</a>
+            <h2 class="ui item borderless medium header navbar-title">Shortlisted jobs</h2>
+            <div class="right menu">
+                <div class="ui item navbar-logout borderless">
+                    Logout 
+                </div>
+                <a class="toc item borderless navbar-sidebar-toggle"><i class="sidebar icon"></i></a>
+            </div>
+        </div>
             
             </div>
         </div>
 
         <script src="js/jquery.min.js"></script>
         <script src="semantic/dist/semantic.min.js"></script>
+        <script src="js/script.js"></script>
+
     </body>
 </html>
