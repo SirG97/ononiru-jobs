@@ -1,8 +1,16 @@
 <?php
+
 /**
  * 
- * Here we get all applicants for a particular job
+ * Here we want to get an applicants profile together with details of the job applied for in a case where 
+ * a company wants to browse through all the applicants they have
+ * Every Applicant belong to a company
+ * 
  */
+require '../../../vendor/autoload.php';
+
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
 
  // required headers
 header("Access-Control-Allow-Origin: *");
@@ -15,9 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     die('HEY NIGGA!! SEND THE RIGHT REQUEST TYPE');
 }
 
-// include database and object file
-include_once '../../config/db.php';
-include_once '../../core/index.php';
 
 // get database connection
 $database = new Database();
@@ -28,8 +33,9 @@ $job = new job($db);
 
 // get job_i
 
-$job->id = isset($_REQUEST['job_id']) ? $_REQUEST['job_id'] : null;
+$user_id = isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : null;
 $company_id = isset($_REQUEST['company_id']) ? $_REQUEST['company_id'] : null;
+$job_id = isset($_REQUEST['job_id']) ? $_REQUEST['job_id'] : null;
 /**
  * We want to verify that only authenticated users can proceed so we need a token,else we use the user_id
  */
@@ -53,7 +59,7 @@ if($userToken == null){
  try {
     $job->query("SELECT *
      FROM job_applications
-     INNER JOIN users ON job_applications.user_id = users.userid WHERE job_id = ? AND company_id = ?",[$job->id,$company_id]);
+     INNER JOIN users ON job_applications.user_id = users.userid WHERE user_id = ? AND company_id = ? AND job_id = ? LIMIT 1",[$user_id,$company_id,$job_id]);
     echo  $job->actionSuccess(['data' => $job->_result]);
     return;     
  } catch (\Throwable $th) {

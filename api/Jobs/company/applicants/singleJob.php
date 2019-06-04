@@ -1,10 +1,13 @@
 <?php
-
 /**
  * 
- * Here we get all applicantions a company has recieved
- * 
+ * Here we get all applicants for a particular job
  */
+
+require '../../../vendor/autoload.php';
+
+use Ononiru\Config\Database;
+use Ononiru\Core\Job;
 
  // required headers
 header("Access-Control-Allow-Origin: *");
@@ -16,10 +19,6 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     die('HEY NIGGA!! SEND THE RIGHT REQUEST TYPE');
 }
-
-// include database and object file
-include_once '../../config/db.php';
-include_once '../../core/index.php';
 
 // get database connection
 $database = new Database();
@@ -55,7 +54,7 @@ if($userToken == null){
  try {
     $job->query("SELECT *
      FROM job_applications
-     INNER JOIN users ON job_applications.user_id = users.userid WHERE AND company_id = ?",[$company_id]);
+     INNER JOIN users ON job_applications.user_id = users.userid WHERE job_id = ? AND company_id = ?",[$job->id,$company_id]);
     echo  $job->actionSuccess(['data' => $job->_result]);
     return;     
  } catch (\Throwable $th) {
