@@ -79,7 +79,7 @@
                                         </div>
                                         <div class="fields">
                                             <div class="field">
-                                            <label>Company Logo</label>
+                                            <label>profile picture</label>
                                             <input type="file" placeholder="Location">
                                             </div>
                                             <div class="field">

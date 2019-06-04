@@ -6,41 +6,42 @@ function init(){
 }
 
 function loadCompanyJobs(){
-    const container = document.getElementById('featured_jobs');
+    const applicant = document.getElementById('applicants');
     let content =  '';
-    container.innerHTML = content;
+    applicant.innerHTML = content;
     
     $.ajax({
-        url:`/api/jobs/read.php`,
+        url:`/api/jobs/company/applicants/applicantJob.php`,
         method:'GET',
         beforeSend: function(){
-        container.innerHTML = 'loading...';
+        applicant.innerHTML = 'loading...';
         }
     }).done(res => {
         let response  = res.data;
-        response.forEach(element => {
+        console.log(res.message);
+        response.forEach(applicant => {
+          console.log(applicant);
             content += `
-            
-            <div class="item" style="padding-top: 20px;">
-            <div class="image">
-              <img src="static/images/avatar/nan.jpg" style="width: 8em; height: 8em; max-width: 100%; border-radius: 50%;margin:auto">
-            </div>
-            <div class="content">
-              <a class="header">${element.title}</a>
-              <div class="meta">
-                <span class="cinema">${element.location}</span>
+            <div class="item">
+              <div class="ui tiny image">
+                  <img src="../uploads/users/">
               </div>
-              <div class="description">
-                <p>
-                ${element.description}
-                </p>
+              <div class="content">
+                  <div class="header">Stevie Feliciano</div>
+                  <div class="meta">
+                      <span class="cinema">Union Square 14</span>
+                  </div>
+                  <div class="description">
+                      <p>Stevie Feliciano is a <a>library scientist</a> living in New York City. She likes to spend her time reading, running, and writing.</p>
+                  </div>
+                  <div class="extra">
+                      <div class="ui right floated primary button">
+                          shortlist
+                          <i class="right chevron icon"></i>
+                      </div>
+                  </div>
               </div>
-              <div class="extra">
-                  <button class="ui right floated primary basic button apply"><a href="/job.php?id=${element.job_id}&s=1&u=true">More</a></button>
-                <div class="ui label">${element.display_name}</div>
-              </div>
-            </div>
-            </div>
+          </div>
             `;
         });
 

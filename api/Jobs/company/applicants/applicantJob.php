@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /**
  * 
  * Here we want to get an applicants profile together with details of the job applied for in a case where 
@@ -7,7 +7,7 @@
  * Every Applicant belong to a company
  * 
  */
-require '../../../vendor/autoload.php';
+require '../../../../vendor/autoload.php';
 
 use Ononiru\Config\Database;
 use Ononiru\Core\Job;
@@ -39,18 +39,10 @@ $job_id = isset($_REQUEST['job_id']) ? $_REQUEST['job_id'] : null;
 /**
  * We want to verify that only authenticated users can proceed so we need a token,else we use the user_id
  */
-$userToken = isset($_REQUEST['token']) ? true : null;
+$_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfqh';
 
-if($userToken == null){
-    $user_id = $_REQUEST['user_id'] ? $_REQUEST['user_id'] : null;
-/**
- * One of user_id or token should be provided
- */
-    if($user_id == null){
-        echo $job->forbidden('You cannot go any further');
-        die;
-    }
-}
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+
 
 /**
  * More security measures should be implemented for now skipping it
