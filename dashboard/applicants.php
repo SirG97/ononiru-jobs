@@ -25,88 +25,14 @@
                     <div class="ui grid padded">    
                         <div class="ui sixteen wide column">
                             <div class="ui segment">
-                                <div class="ui link divided items pad-1">
-                                        <div class="item">
-                                            <div class="ui tiny image">
-                                                <img src="../static/images/avatar/nan.jpg">
-                                            </div>
-                                            <div class="content">
-                                            <div class="header">Stevie Feliciano</div>
-                                                <div class="meta">
-                                                    <span class="cinema">Union Square 14</span>
-                                                </div>
-                                                <div class="description">
-                                                    <p>Stevie Feliciano is a <a>library scientist</a> living in New York City. She likes to spend her time reading, running, and writing.</p>
-                                                </div>
-                                            <div class="extra">
-                                                <div class="ui right floated primary button">
-                                                    shortlist
-                                                    <i class="right chevron icon"></i>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                                <div class="ui tiny image">
-                                                    <img src="../static/images/avatar/nan.jpg">
-                                                </div>
-                                                <div class="content">
-                                                <div class="header">Stevie Feliciano</div>
-                                                    <div class="meta">
-                                                        <span class="cinema">Union Square 14</span>
-                                                    </div>
-                                                    <div class="description">
-                                                        <p>Stevie Feliciano is a <a>library scientist</a> living in New York City. She likes to spend her time reading, running, and writing.</p>
-                                                    </div>
-                                                <div class="extra">
-                                                    <div class="ui right floated primary button">
-                                                        shortlist
-                                                        <i class="right chevron icon"></i>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        <div class="item">
-                                        <div class="ui tiny image">
-                                            <img src="../static/images/avatar/nan.jpg">
-                                        </div>
-                                        <div class="content">
-                                            <div class="header">Veronika Ossi</div>
-                                            <div class="description">
-                                                <p>Stevie Feliciano is a <a>library scientist</a> living in New York City. She likes to spend her time reading, running, and writing.</p>
-                                            </div>
-                                            <div class="extra">
-                                                <div class="ui right floated primary button">
-                                                Shortlist
-                                                    <i class="right chevron icon"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="item">
-                                        <div class="ui tiny image">
-                                            <img src="../static/images/avatar/nan.jpg">
-                                        </div>
-                                        <div class="content">
-                                            <div class="header">Jenny Hess</div>
-                                            <div class="description">
-                                                <p>Stevie Feliciano is a <a>library scientist</a></p>
-                                            </div>
-                                            <div class="extra">
-                                                <div class="ui right floated primary button" id="shortlist_btn">
-                                                    Shortlist
-                                                    <i class="right chevron icon"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
+                                <div class="ui link divided items pad-1" id="applicants">
+                                        
                                 </div>
                             </div>
                         </div>
                                 
                     </div>
                 </div>
-                
             </div>
         </div>
 

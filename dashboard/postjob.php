@@ -76,10 +76,11 @@ if(!$_user->uses_job){
                                   <div class="field">
                                     <label>Job type</label>
                                     <select id="sector" name="sector" class="ui search dropdown" required>
-                                      <option value="programming">Programming</option>
-                                      <option value="Human resource">Human Resource</option>
-                                      <option value="finance">Finance</option>
-                                      <option value="Web">Web Design</option>
+                                      <option value="ASDFEQQ-QFQCWFDW2FW-QVQVQ-GVB4EBE">Web Design & IT</option>
+                                      <option value="SSCWQDVVC-WUYGBNCQ-WDCQCA">Engineering</option>
+                                      <option value="ASOIUYWGCW-VWCQCNIEQ-QECQSCXQ">Finance</option>
+                                      <option value="SKJYTFVBNWCX-HGVBNKJHGCX-WCXGVBNWM">Oil & Gas</option>
+                                      
                                     </select>
                                   </div>
                                   <div class="field">

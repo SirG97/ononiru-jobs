@@ -1,14 +1,14 @@
 
 let submit_btn = $("#submit-btn");
 
-submit_btn.on('submit', function(e){
+submit_btn.on('click', function(e){
     e.preventDefault();
     // var validator = $( "#create_job_form" ).validate();
     
         data = {
             title: $("#job_title").val(),
             description : $("#job_description").val(),
-            sector:  $("#sector").val(),
+            category_id:  $("#sector").val(),
             gender: $("#gender").val(),
             experience_level: $("#experience_level").val(),
             age: $("#min_age").val() +'-'+ $("#max_age").val(),
@@ -50,7 +50,7 @@ submit_btn.on('submit', function(e){
                 });
 
                 setTimeout(() => {
-                    window.location.href = window.location.origin + '/dashboard/jobs.php';
+                    window.location.href = window.location.origin + '/dashboard/managejobs.php';
                 },2500)
             }
 
