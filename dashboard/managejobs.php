@@ -34,123 +34,8 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                        <td data-label="Name">UI/UX Designer</td>
-                                        <td data-label="Age">24</td>
-                                        <td data-label="Job">October 17, 2012</td>
-                                        <td data-label="status">Active</td>
-                                        <td data-label="Action">
-                                            
-                                                <div class="ui icon buttons">
-                                                    <button class="ui blue button">
-                                                            <i class="eye icon"></i>
-                                                    </button>
-                                                    <button class="ui yellow button">
-                                                        <i class="pencil icon"></i>
-                                                    </button>
-                                                    <button class="ui red button">
-                                                        <i class="trash alternate outline icon"></i>
-                                                    </button>
-                                                </div>
-                                        
-                                        </td>
-                                        </tr>
-                                        <tr>
-                                        <td data-label="Name">UI/UX Designer</td>
-                                        <td data-label="Age">24</td>
-                                        <td data-label="Job">October 17, 2012</td>
-                                        <td data-label="status">Active</td>
-                                        <td data-label="Action">
-                                            <div class="ui icon buttons">
-                                                <button class="ui blue button">
-                                                        <i class="eye icon"></i>
-                                                </button>
-                                                <button class="ui yellow button">
-                                                    <i class="pencil icon"></i>
-                                                </button>
-                                                <button class="ui red button">
-                                                    <i class="trash alternate outline icon"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        </tr>
-                                        <tr>
-                                        <td data-label="Name">UI/UX Designer</td>
-                                        <td data-label="Age">24</td>
-                                        <td data-label="Job">October 17, 2012</td>
-                                        <td data-label="status">Active</td>
-                                        <td data-label="Action">
-                                            <div class="ui icon buttons">
-                                                <button class="ui blue button">
-                                                        <i class="eye icon"></i>
-                                                </button>
-                                                <button class="ui yellow button">
-                                                    <i class="pencil icon"></i>
-                                                </button>
-                                                <button class="ui red button">
-                                                    <i class="trash alternate outline icon"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        </tr>
-                                        <tr>
-                                            <td data-label="Name">UI/UX Designer</td>
-                                            <td data-label="Age">24</td>
-                                            <td data-label="Job">October 17, 2012</td>
-                                            <td data-label="status">Active</td>
-                                            <td data-label="Action">
-                                                <div class="ui icon buttons">
-                                                    <button class="ui blue button">
-                                                            <i class="eye icon"></i>
-                                                    </button>
-                                                    <button class="ui yellow button">
-                                                        <i class="pencil icon"></i>
-                                                    </button>
-                                                    <button class="ui red button">
-                                                        <i class="trash alternate outline icon"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td data-label="Name">UI/UX Designer</td>
-                                            <td data-label="Age">24</td>
-                                            <td data-label="Job">October 17, 2012</td>
-                                            <td data-label="status">Active</td>
-                                            <td data-label="Action">
-                                                <div class="ui icon buttons">
-                                                    <button class="ui blue button">
-                                                            <i class="eye icon"></i>
-                                                    </button>
-                                                    <button class="ui yellow button">
-                                                        <i class="pencil icon"></i>
-                                                    </button>
-                                                    <button class="ui red button">
-                                                        <i class="trash alternate outline icon"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td data-label="Name">UI/UX Designer</td>
-                                            <td data-label="Age">24</td>
-                                            <td data-label="Job">October 17, 2012</td>
-                                            <td data-label="status">Active</td>
-                                            <td data-label="Action">
-                                                <div class="ui icon buttons">
-                                                    <button class="ui blue button">
-                                                            <i class="eye icon"></i>
-                                                    </button>
-                                                    <button class="ui yellow button">
-                                                        <i class="pencil icon"></i>
-                                                    </button>
-                                                    <button class="ui red button">
-                                                        <i class="trash alternate outline icon"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <tbody id="company_jobs">
+
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -179,5 +64,6 @@
         <script src="../js/iziToast.min.js"></script>
         <script src="../semantic/dist/semantic.min.js"></script>
         <script src="../js/script.js"></script>
+        <script src="../js/managejobs.js"></script>
 </body>
 </html>

@@ -186,7 +186,7 @@ if (is_null($job_id)) {
 
             </div>
         </div>
-        <div class="ui mini modal" 
+        <div class="ui mini modal">
                 <i class="close icon"></i>
                 <div class="header">
                   Confirmation

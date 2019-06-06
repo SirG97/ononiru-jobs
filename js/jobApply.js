@@ -15,7 +15,7 @@ function jobApplyInit(id,company_id){
     }
 
     $.ajax({
-        url: 'http://localhost:4000/api/Jobs/apply.php',
+        url: 'http://localhost:4000/api/Jobs/user/apply.php',
         method: 'POST',
         data,
     }).done(data => {

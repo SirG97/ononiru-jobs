@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use Ononiru\Config\Database;
 use Ononiru\Core\Job;
