@@ -1,5 +1,5 @@
 <?php
-
+ 
 /**
  * Here we want to get the profile of a sigle applicant for a particular company
  */

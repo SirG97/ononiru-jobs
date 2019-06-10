@@ -18,21 +18,22 @@ function loadShortlisted() {
         }
     }).done(res => {
         let response = res.data;
+        console.log(res);
         response.forEach(element => {
             content += `
             <tr>
-                                            <td data-label="Name">${element.title}</td>
-                                            <td data-label="Action">
-                                                
-                                                    <div class="ui icon buttons">
-                                                        <a class="ui green button" href="inbox.php?id=${element.job_id}">
-                                                             View Confirmation Message
-                                                        </a>
-                                                        
-                                                    </div>
-                                            
-                                            </td>
-                                            </tr>
+                <td data-label="Name">${element.title}</td>
+                <td data-label="Action">
+                    
+                        <div class="ui icon buttons">
+                            <a class="ui green button" href="inbox.php?id=${element.job_id}">
+                                    View Confirmation Message
+                            </a>
+                            
+                        </div>
+                
+                </td>
+                </tr>
             `;
         });
 

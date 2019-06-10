@@ -2,7 +2,7 @@
 session_start();
 require '../../../vendor/autoload.php';
 header('Content-Type: Application/json',true);
-$_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfqh';
+$_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfq';
 use Ononiru\Config\Database;
 use Ononiru\Core\Job;
 use Ramsey\Uuid\Uuid;

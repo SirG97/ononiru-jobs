@@ -31,31 +31,30 @@ $db = $database->getConnection();
 // prepare job object
 $job = new job($db);
 
-// get job_i
-
-$user_id = isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : null;
-$company_id = isset($_REQUEST['company_id']) ? $_REQUEST['company_id'] : null;
-$job_id = isset($_REQUEST['job_id']) ? $_REQUEST['job_id'] : null;
 /**
  * We want to verify that only authenticated users can proceed so we need a token,else we use the user_id
  */
-$_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfqh';
+$_SESSION['user_id'] = 'dnwenicwo-qfqefwfwfw-fwqfqfq';
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-
-/**
- * More security measures should be implemented for now skipping it
- */
-
  try {
+     
+$job->query('SELECT user_id,company_id FROM company_profile WHERE user_id = ?',[$user_id]);
+ if($job->_count <= 0){
+    echo $job->actionFailure('User does not have a company profile set up'); 
+    return;
+ } 
+$company_id = $job->_result[0]->company_id;
     $job->query("SELECT *
      FROM job_applications
-     INNER JOIN users ON job_applications.user_id = users.userid WHERE user_id = ? AND company_id = ? AND job_id = ? LIMIT 1",[$user_id,$company_id,$job_id]);
+    --  INNER JOIN jobs ON  job_applications.job_id = jobs.job_id
+     INNER JOIN users ON job_applications.user_id = users.userid 
+     WHERE company_id = ?  LIMIT 20",[$company_id]);
     echo  $job->actionSuccess(['data' => $job->_result]);
     return;     
  } catch (\Throwable $th) {
         echo $job->actionFailure('Opps! Something went wrong, error code xm112c3'. $th->getMessage()); 
-        die;
+        return;
     }
 

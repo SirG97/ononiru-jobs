@@ -40,7 +40,7 @@
         <script src="../js/iziToast.min.js"></script>
         <script src="../semantic/dist/semantic.min.js"></script>
         <script src="../js/script.js"></script>
-        <script src="../js/alljobs.js"></script>
+        <script src="../js/allApplicants.js"></script>
         <script src="../js/shortlist.js"></script>
     </body>
 </html>

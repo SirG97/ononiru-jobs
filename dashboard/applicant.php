@@ -169,7 +169,7 @@
                                     <div class="label">PHP</div>
                                 </div>
                             </div>
-                            <button class="ui green button right floated">Shortlist candidate</button>
+                            <button class="ui green button right floated" id="shortlist_btn">Shortlist candidate</button>
                     </div>
             </div>  
         </div>

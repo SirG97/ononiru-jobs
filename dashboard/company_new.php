@@ -284,8 +284,8 @@ if($_user->uses_job){
         </div>
       </div>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../semantic/dist/semantic.min.js"></script>
     <script>
       $(document).ready(function() {
         // fix menu when passed

@@ -5,7 +5,6 @@ require './vendor/autoload.php';
 use Ononiru\Config\Database;
 use Ononiru\Core\Job;
 
-$_SESSION['user_id'] = 'hgfrdfcgvbhjnkmlmkjh';
 $user_id =  $_SESSION['user_id'];
 //start server side rendering
 $job_id = isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
@@ -77,6 +76,8 @@ if (is_null($job_id)) {
 </style>
     </head>
     <body>
+        <?php include 'includes/candidate_sidebar_menu.php';?>
+        <?php include 'includes/candidate_mobile_sidebar.php'; ?>
     <div id="successMsg">
             
             </div>
